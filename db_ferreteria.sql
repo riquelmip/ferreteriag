@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-10-2021 a las 21:40:12
+-- Tiempo de generación: 25-10-2021 a las 23:26:01
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.12
 
@@ -409,7 +409,10 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`idusuario`, `email_usuario`, `contrasena`, `idempleado`, `token`, `rolid`, `datecreated`, `estado`) VALUES
 (1, 'admin@gmail.com', '27eb732b26875d5243b618cd0372dd68827913517af0ab5c15435990a8f3039e', 2, '', 1, '2021-08-11 16:22:35', 1),
 (4, 'administrador@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 2, '', 1, '2021-08-22 19:35:29', 1),
-(5, 'riccieripalacios@gmail.com', 'b0aad50a487a562d3eed26bb582740883639c1e0fbcf723683fa773beab97c54', 2, '', 1, '2021-10-24 14:53:18', 1);
+(5, 'riccieripalacios@gmail.com', 'b0aad50a487a562d3eed26bb582740883639c1e0fbcf723683fa773beab97c54', 2, '', 1, '2021-10-24 14:53:18', 1),
+(6, 'palaciosbarreravladimir@gmail.com', 'bcbf8c1c5632fafed951be62bfa87114e716b3b225378d92df70ea05b624d01b', 2, '', 1, '2021-10-25 15:24:18', 1),
+(7, 'williamdelcid@gmail.com', 'bcbf8c1c5632fafed951be62bfa87114e716b3b225378d92df70ea05b624d01b', 2, '', 1, '2021-10-25 15:24:40', 1),
+(8, 'mishel@gmail.com', 'bcbf8c1c5632fafed951be62bfa87114e716b3b225378d92df70ea05b624d01b', 2, '', 1, '2021-10-25 15:25:10', 1);
 
 -- --------------------------------------------------------
 
@@ -649,7 +652,7 @@ ALTER TABLE `unidadmedida`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idusuario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idusuario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `venta`
