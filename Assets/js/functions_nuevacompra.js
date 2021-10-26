@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function(){
                                 confirmButtonText: 'Ok!'
                               }, 
                               function(){
-                                   window.location.href = base_url+"/usuarios";
+                                   window.location.href = base_url+"/compras";
                               });
                            
                         }else{
