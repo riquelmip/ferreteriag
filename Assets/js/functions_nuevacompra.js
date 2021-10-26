@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 request.onreadystatechange = function(){
     
                     if(request.readyState == 4 && request.status == 200){
-                        console.log(request.responseText);
+                  
                         let objData = JSON.parse(request.responseText);
                         if(objData.estado)
                         {
@@ -94,20 +94,18 @@ window.addEventListener('load', function() {
 var arreglo= [];
 
 $(document).on("change",".precioc",function(){
-    console.log("Aqui");
+  
     var num = arrayIdProductos.length;
-    console.log(arrayIdProductos.length);
+ 
     var data = $(this).attr("data-numero");
     var producto = $(this).attr("data-producto");
-    console.log(data);
-    console.log(producto);
+    
 
     var cantidad = document.querySelector("#cantidad_"+data).value;
     var numero = document.querySelector("#preciocompra_"+data).value;
-    console.log(cantidad);
-    console.log(numero);
+
     var n = parseFloat(numero*0.1);
-  console.log(n);
+
    var na = parseFloat(numero)+parseFloat(n);
   var subtotal = parseInt(cantidad)*parseFloat(numero);
     var totalventa = na.toFixed(2);
@@ -121,7 +119,7 @@ $(document).on("change",".precioc",function(){
         }
       }
 
-console.log(arreglo);
+
 var sum = 0;
 
 
@@ -143,13 +141,13 @@ var sumtotal = sum.toFixed(2);
             arrayIdProductos[i].precioventa = na;
         }
       }
-      console.log(arrayIdProductos);
+     
    });
 
 
 
    $(document).on("change",".precioc1",function(){
-    console.log("Aqui cantidad");
+    
 
 
     var data = $(this).attr("data-numero");
@@ -164,7 +162,7 @@ var sumtotal = sum.toFixed(2);
 
         }
       }
-      console.log(arrayIdProductos);
+   
    });
 
 
@@ -187,7 +185,7 @@ request.onreadystatechange = function(){
         
         document.querySelector('#listProve').innerHTML = objData.proveedores;
         $('#listProve').selectpicker('render');
-        console.log(objData.proveedores);
+      
 
       
     }
@@ -209,9 +207,9 @@ function fntAddCoroAv(idprod){
     request.onreadystatechange = function(){
 
         if(request.readyState == 4 && request.status == 200){
-            console.log(request.responseText);
+        
             let objData = JSON.parse(request.responseText);
-           console.log(objData.dataidproducto);   
+         
             if(objData.status)
             {
                 if(arrayIdProductos.length === 0){
@@ -248,13 +246,13 @@ function fntAddCoroAv(idprod){
                             "precioventa":document.querySelector("#precioventa_"+numero).value
                         
                         })
-            console.log(arrayIdProductos);  
+         
                      
             arreglo.push({ "subtotal" : document.querySelector("#subtotal_"+numero).value,"id" : objData.dataidproducto
         })
                 }else{
                     var numerocontador =  arrayIdProductos.length+1;
-                    console.log(numerocontador);
+                
                     var existe=0;
                     for (var i = 0; i < arrayIdProductos.length; i++) {
                         if (arrayIdProductos[i].id == objData.dataidproducto) {
@@ -291,7 +289,7 @@ function fntAddCoroAv(idprod){
                             '</div>'+
                 
                         '</div>')
-                            console.log(objData.dataidproducto);
+                        
                         //agregamos el id del coro al array detalles
                         //arrayIdProductos.push(objData.data.idcoro);
                         arrayIdProductos.push({ "id" : objData.dataidproducto, 
@@ -304,7 +302,7 @@ function fntAddCoroAv(idprod){
                         
                         )
                         //revisamos si se inserto
-                        console.log(arrayIdProductos);
+                  
                         arreglo.push({ "subtotal" : document.querySelector("#subtotal_"+numerocontador).value,"id" : objData.dataidproducto
                     })
                     }
@@ -338,7 +336,7 @@ $("#formProducto").on("click", "button.quitarCoro", function(){
           break;
         }
       }
-      console.log(arrayIdProductos);
+ 
 
 })
 
