@@ -70,18 +70,10 @@
 					if($arrData[$i]['estado'] == 1)
 					{
 						$arrData[$i]['estado'] = '<span class="badge badge-success">Activo</span>';
-									if ($_SESSION['permisosMod']['eliminar']) {
-						$btnDelete = '<button class="btn btn-danger btn-sm btnDelEmpleado" data-estado=1 onClick="fntDelEmpleado('.$arrData[$i]['idempleado'].',1)" title="Deshabilitar"><i class="fas fa-exclamation-circle"></i></button>';
-					}
+				
 					
 					}else{
 						$arrData[$i]['estado'] = '<span class="badge badge-danger">Inactivo</span>';
-
-									if ($_SESSION['permisosMod']['eliminar']) {
-						$btnDelete = '<button class="btn btn-success btn-sm btnDelEmpleado" data-estado=2 onClick="fntDelEmpleado('.$arrData[$i]['idempleado'].',0)" title="Habilitar"><i class="fas fa-exclamation-circle"></i></button>';
-					}
-				
-
 					}
 
 					
@@ -92,6 +84,10 @@
 					if ($_SESSION['permisosMod']['actualizar']) {
 					
 						$btnEdit = '<button class="btn btn-primary btn-sm btnEditEmpleado" onClick="fntEditEmpleado('.$arrData[$i]['idempleado'].')" title="Editar"><i class="fas fa-pencil-alt"></i></button>';
+					}
+
+					if ($_SESSION['permisosMod']['eliminar']) {
+						$btnDelete = '<button class="btn btn-danger btn-sm btnDelEmpleado" data-estado=1 onClick="fntDelEmpleado('.$arrData[$i]['idempleado'].',2)" title="Deshabilitar"><i class="fas fa-exclamation-circle"></i></button>';
 					}
 					//si tiene permiso de eliminar se agrega el boton
 					
@@ -140,7 +136,7 @@
 			$anio = intval($porciones[0]);
 			$mes = intval($porciones[1]);
 			$dia = intval($porciones[2]);
-			$intestado=1;
+			$intestado=intval($_POST['listaEstado']);
 			$intCargo = intval($_POST['listCargo']);
 
 
@@ -203,9 +199,9 @@
 					$requestDelete = $this->model->deleteEmpleado($idempleado,$estado);
 					if($requestDelete == 'ok')
 					{
-						$arrResponse = array('estado' => true, 'msg' => 'Estado se ha Actualizado');
+						$arrResponse = array('estado' => true, 'msg' => 'Dado de Baja');
 					}else if($requestDelete == 'exist'){
-						$arrResponse = array('estado' => false, 'msg' => 'No puede desactivar este empleado Empleado');
+						$arrResponse = array('estado' => false, 'msg' => 'No puede dar de baja al Empleado');
 					}else{
 						$arrResponse = array('estado' => false, 'msg' => 'Error al cambiar el estado el Empleado.');
 					}

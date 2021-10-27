@@ -1,6 +1,6 @@
 
 var tableEmpleado;
-var divLoading = document.querySelector('#divLoading');
+// var divLoading = document.querySelector('#divLoading');
 document.addEventListener('DOMContentLoaded', function(){
 
     $.mask.definitions['~']='[2,6,7]';
@@ -18,14 +18,10 @@ document.addEventListener('DOMContentLoaded', function(){
         },
         "columns":[
             {"data":"dui"},
-            {"data":"nit"},
             {"data":"nombre"},
-            {"data":"apellido"}, 
-            // {"data":"direccion"},
-            // {"data":"telefono"},
-            // {"data":"dia"},
-            {"data":"estado"},
+            {"data":"apellido"},
             {"data":"nombrecargo"},
+            {"data":"estado"},
             {"data":"opciones"}
         ],
         "resonsieve":"true",
@@ -42,7 +38,32 @@ document.addEventListener('DOMContentLoaded', function(){
 
    var formEmpleado = document.querySelector("#formEmpleado");
     formEmpleado.onsubmit = function(e) {
-        e.preventDefault();
+        e.preventDefault();       var mensaje1 =  document.getElementById('msje1');
+        var mensaje2 =  document.getElementById('msje2');
+
+        if(mensaje1.textContent == '* Solo letras'){
+            swal("Atención", "Campo Nombre solo permite letras." , "error");
+            return false;
+        }else{
+            if(mensaje2.textContent == '* Solo letras'){
+                swal("Atención", "Campo Apellido solo permite letras." , "error");
+                return false;
+            }   
+        }
+
+               var mensaje1 =  document.getElementById('msje1');
+        var mensaje2 =  document.getElementById('msje2');
+
+        if(mensaje1.textContent == '* Solo letras'){
+            swal("Atención", "Campo Nombre solo permite letras." , "error");
+            return false;
+        }else{
+            if(mensaje2.textContent == '* Solo letras'){
+                swal("Atención", "Campo Apellido solo permite letras." , "error");
+                return false;
+            }   
+        }
+        
             var strId = document.querySelector('#idEmpleado').value;
             var strDui = document.querySelector('#txtDui').value;
             var strNit = document.querySelector('#txtNit').value; 
@@ -97,30 +118,75 @@ window.addEventListener('load', function() {
 
 function fntSelects(){
 
-let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-let ajaxUrl = base_url+'/Empleado/getCargo';
-request.open("GET",ajaxUrl,true);
-request.send();
-request.onreadystatechange = function(){
-    if(request.readyState == 4 && request.status == 200){
+
+
+    if (document.querySelector('#listCargo')) {
+
+
+        let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+        let ajaxUrl = base_url+'/Empleado/getCargo';
+        request.open("GET",ajaxUrl,true);
+        request.send();
+        request.onreadystatechange = function(){
+            if(request.readyState == 4 && request.status == 200){
         let objData = JSON.parse(request.responseText);//Lo que trae el JSON del select de NuevaCompra
 
         
         document.querySelector('#listCargo').innerHTML = objData.cargos;
         $('#listCargo').selectpicker('render');
-        console.log(objData.cargos);
 
       
-    }
-}
+    }//if
+        }//funcion
+  
+    }//if arriba
 
 
-}
 
-$('#tableEmpleado').DataTable();
+}//fin funcion
+
+// $('#tableEmpleado').DataTable(); //ESTO NO LO TIENE
 
 //ABRIR MODAL
+//SOLO LETRAS
+$(function(){
 
+    var mayus = new RegExp("^(?=.*[A-Z])");
+    var lower = new RegExp("^(?=.*[a-z])");
+     var numbers = new RegExp("^(?=.*[0-9])");
+    $("#txtNombre").on("keyup",function(){
+        var text = $("#txtNombre").val();
+
+        if(mayus.test(text) || lower.test(text)){
+            $("#msje1").text("");
+        }else{
+            $("#msje1").text("* Solo letras").css("color","red");
+        }
+
+        if(numbers.test(text)){
+            $("#msje1").text("* Solo letras").css("color","red");
+        }else{
+            $("#msje1").text("");
+        }
+    });
+
+    $("#txtApellido").on("keyup",function(){
+        var text = $("#txtApellido").val();
+
+        if(mayus.test(text) || lower.test(text)){
+            $("#msje2").text("");
+        }else{
+            $("#msje2").text("* Solo letras").css("color","red");
+        }
+
+        if(numbers.test(text)){
+            $("#msje2").text("* Solo letras").css("color","red");
+        }else{
+            $("#msje2").text("");
+        }
+    });
+
+});
 
 function fntViewEmpleado(idempleado){
     //let idempleado = idempleado;
@@ -153,7 +219,6 @@ function fntViewEmpleado(idempleado){
                 var da=dia+"-"+mes+"-"+objData.data.anio;
 
   
-                console.log(objData);
                 document.querySelector("#celDui").innerHTML = objData.data.dui;
                 document.querySelector("#celNit").innerHTML = objData.data.nit;
                 document.querySelector("#celNombre").innerHTML = objData.data.nombre;
@@ -183,20 +248,12 @@ function openModal(){
 
 // //METODO BORRAR
 function fntDelEmpleado(idempleado,estad){
-     var estado="";
-     var estadi="";
+
     var idempleado = idempleado;
-    if(estad==1){
-        estado="Realmente quiere Deshabilitar el empleado?";
-        estadi="Desactivar Empleado";
-    }else{
-         estado="¿Realmente quiere Habilitar el Empleado?";
-         estadi="Activar Empleado";
-    }
-    var idempleado = idempleado;
+
     swal({
-        title: estadi,
-        text: estado,
+        title:"¿Desea dar de baja a el Empleado?",
+        text: "",
         type: "warning",
         showCancelButton: true,
         confirmButtonText: "Si!",
@@ -219,7 +276,6 @@ function fntDelEmpleado(idempleado,estad){
             request.onreadystatechange = function(){
                 if(request.readyState == 4 && request.status == 200){
                     var objData = JSON.parse(request.responseText);
-                    console.log(objData);
                     if(objData.estado)
                     {
                         swal("Cambio Realizado", objData.msg , "success");
@@ -237,54 +293,6 @@ function fntDelEmpleado(idempleado,estad){
 }
 
 
-function fntDelEmpleado2(idempleado,estad){
-    //var estad= $(this).attr("data-estado");
-    var estado="";
-    var idempleado = idempleado;
-    if(estad==1){
-        estado="¿Desea Habilitar el empleado?";
-    }else{
-         estado="¿Realmente quiere Habilitar el Empleado?";
-    }
-
-    swal({
-        title: "Habilitar Empleado",
-        text: estado,
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Si!",
-        cancelButtonText: "No!",
-        closeOnConfirm: false,
-        closeOnCancel: true
-    }, function(isConfirm) {
-        
-        if (isConfirm) 
-        {
-            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-            var ajaxUrl = base_url+'/Empleado/delEmpleado2';
-            var strData = "idEmpleado="+idempleado;
-            request.open("POST",ajaxUrl,true);
-            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            request.send(strData);
-            request.onreadystatechange = function(){
-                if(request.readyState == 4 && request.status == 200){
-                    var objData = JSON.parse(request.responseText);
-                    console.log(objData);
-                    if(objData.estado)
-                    {
-                        swal("Eliminado!", objData.msg , "success");
-                        tableEmpleado.api().ajax.reload(function(){
-
-                        });
-                    }else{
-                        swal("Atención!", objData.msg , "error");
-                    }
-                }
-            }
-        }
-
-    });
-}
 
 
 // //METODO EDITAR
@@ -332,7 +340,6 @@ function fntEditEmpleado(idEmpleado){
 
   
          // var fecha=anio+ '-' + mes+ '-'+ dia ;
-         console.log(da);
             document.querySelector('#idEmpleado').value=objData.data.idempleado;
             document.querySelector('#txtDui').value=objData.data.dui;
             document.querySelector('#txtNit').value=objData.data.nit; 
@@ -340,7 +347,7 @@ function fntEditEmpleado(idEmpleado){
             document.querySelector('#txtApellido').value=objData.data.apellido;  
             document.querySelector('#txtDireccion').value=objData.data.direccion;
             document.querySelector('#txtTelefono').value=objData.data.telefono;
-            // document.querySelector('#txtFecha').value=fecha;
+             document.querySelector('#listaEstado').value=objData.data.estado;
             document.querySelector("#txtFecha").value = da;
             document.querySelector('#listCargo').value=objData.data.idcargo;
               $('#listCargo').selectpicker('render');
