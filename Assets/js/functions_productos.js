@@ -41,8 +41,7 @@ tableProductos = $('#tableProductos').dataTable( {
             "extend": "copyHtml5",
             "text": "<i class='far fa-copy'></i> Copiar",
             "titleAttr":"Copiar",
-            "style": "color:red;" ,
-            "className": "btn",
+            "className": "btn btn-primary",
             "exportOptions": { 
                 "columns": [ 0, 1, 2, 3] 
             }

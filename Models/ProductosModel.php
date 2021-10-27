@@ -27,7 +27,7 @@
 		}	
 
 		public function selectMarca(){
-			$sql = "SELECT * FROM marca";
+			$sql = "SELECT * FROM marca WHERE estado != 0";
 					$request = $this->select_all($sql);
 			return $request;
 		}	

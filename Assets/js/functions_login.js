@@ -38,11 +38,14 @@ document.addEventListener('DOMContentLoaded', function(){
                             swal("Inicio de Sesión", objData.msg ,"success");
                             window.location = base_url+'/dashboard'
                         }else{
+                            
                             contadorLogin++;
                             if (contadorLogin != 3) {
                                  swal("Atención!", "Intento "+contadorLogin+": "+objData.msg , "error");
                                  document.querySelector('#txtPassword').value = "";
                             }else{
+                                 //mostrando loading
+                                divLoading.style.display = "flex";
                                 var request1 = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
                                 var ajaxUrl1 = base_url+'/Login/resetPassBloqueo'; 
                                 var formData1 = new FormData(formLogin);
@@ -53,7 +56,8 @@ document.addEventListener('DOMContentLoaded', function(){
                                     if (request1.status == 200) {
                                          console.log(request1.responseText);
                                         var objData1 = JSON.parse(request1.responseText);
-
+                                         //mostrando loading
+                                divLoading.style.display = "flex";
                                         if(objData1.estado)
                                         {
                                             swal("Atención!", "Intento "+contadorLogin+": " +objData1.msg, "error");
@@ -62,7 +66,8 @@ document.addEventListener('DOMContentLoaded', function(){
                                     } else{
                                         swal("Atención!", "Error en el proceso" , "error");
                                     } //fin el on ready 2 péticion
-
+                                    //quitando el loading
+                                    divLoading.style.display = "none";
                                  }
                                
                             } //fin else intentos

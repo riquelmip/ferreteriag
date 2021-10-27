@@ -27,7 +27,7 @@
 			$return = 0;
 
 			$sql = "SELECT * FROM usuario WHERE 
-					email_usuario = '{$this->strEmail}' ";
+					email_usuario = '{$this->strEmail}' AND estado != 0";
 			$request = $this->select_all($sql);
 
 			if(empty($request))
