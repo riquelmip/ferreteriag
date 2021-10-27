@@ -257,7 +257,7 @@ function fntAddCoroAv(idprod){
                     for (var i = 0; i < arrayIdProductos.length; i++) {
                         if (arrayIdProductos[i].id == objData.dataidproducto) {
                             swal({
-                                title: "Ese coro ya esta añadido!",
+                                title: "!Ese producto ya esta en la lista",
                                 type: "error",
                                 confirmButtonText: "¡Cerrar!"
                               });

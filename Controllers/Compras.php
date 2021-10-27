@@ -21,8 +21,40 @@
 			$data['page_tag'] = "Compra";//Nombre superior
 			$data['page_name'] = "rol_categoria";//Nombre de la pagina 
 			$data['page_title'] = "Compra"; //Nombre del titulo en la vista
-			$data['page_functions_js'] = "functions_categoria.js";// Funcion de js para las acciones
+			$data['page_functions_js'] = "functions_compra.js";// Funcion de js para las acciones
 			$this->views->getView($this,"compras",$data);//Se refiere al nombre de la vista
+		}
+		public function getCompras()
+		{
+			if ($_SESSION['permisosMod']['leer']) {
+				$arrData = $this->model->selectCategorias();
+             
+				for ($i=0; $i < count($arrData); $i++) {
+					$btnView = "";
+					$btnEdit = "";
+					$btnDelete = "";
+					//concatenamos la fecha XD
+					$fecha= $arrData[$i]['dia'] ."/". $arrData[$i]['mes'] ."/". $arrData[$i]['anio'];
+					$arrData[$i]['dia']=$fecha;
+					$datito="$".$arrData[$i]['credito'];
+					$arrData[$i]['credito'] = $datito;
+					$datito2="$".$arrData[$i]['monto'];
+					$arrData[$i]['monto'] = $datito2;
+					
+					if ($_SESSION['permisosMod']['leer']) {
+						$btnView = '<button class="btn btn-info btn-sm btnViewEmpleado" onClick="fntViewEmpleado('.$arrData[$i]['idcompra'].')" title="Ver usuario"><i class="far fa-eye"></i></button>';
+					}
+					//si tiene permiso de editar se agrega el botn
+					//si tiene permiso de eliminar se agrega el boton
+					
+					//agregamos los botones
+					$arrData[$i]['opciones'] = '<div class="text-center">'.$btnView.' </div>';
+
+				
+				}
+				echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
+			}
+			die();
 		}
         
 	}
