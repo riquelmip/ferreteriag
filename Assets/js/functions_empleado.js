@@ -252,7 +252,7 @@ function fntDelEmpleado(idempleado,estad){
     var idempleado = idempleado;
 
     swal({
-        title:"¿Desea dar de baja a el Empleado?",
+        title:"¿Desea dar  baja a el Empleado?",
         text: "",
         type: "warning",
         showCancelButton: true,
