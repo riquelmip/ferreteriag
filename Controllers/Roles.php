@@ -47,7 +47,7 @@
 			
 					//si tiene permiso de editar se agrega el botn
 					if ($_SESSION['permisosMod']['actualizar']) {
-						$btnView = '<button class="btn btn-warning btn-sm btnPermisosRol" onClick="fntPermisos('.$arrData[$i]['idrol'].')" title="Permisos"><i class="fas fa-key"></i></button>';
+						$btnView = '<button class="btn btn-info btn-sm btnPermisosRol" onClick="fntPermisos('.$arrData[$i]['idrol'].')" title="Permisos"><i class="fas fa-key"></i></button>';
 						$btnEdit = '<button class="btn btn-primary btn-sm btnEditRol" onClick="fntEditRol('.$arrData[$i]['idrol'].')" title="Editar"><i class="fas fa-pencil-alt"></i></button>';
 					}
 					//si tiene permiso de eliminar se agrega el boton

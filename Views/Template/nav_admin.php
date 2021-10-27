@@ -61,8 +61,8 @@
                 </a>
                 <ul class="treeview-menu">
                 <?php if (!empty($_SESSION['permisos'][5]['leer'])) { ?>
-                    <li><a class="treeview-item" href="<?= base_url(); ?>/productos"><i class="icon fa fa-circle-o"></i> Nueva Compra</a></li>
-                    <li><a class="treeview-item" href="<?= base_url(); ?>/productos"><i class="icon fa fa-circle-o"></i> Gestionar Compras</a></li>
+                    <li><a class="treeview-item" href="<?= base_url(); ?>/nuevacompra"><i class="icon fa fa-circle-o"></i> Nueva Compra</a></li>
+                    <li><a class="treeview-item" href="<?= base_url(); ?>/compras"><i class="icon fa fa-circle-o"></i> Gestionar Compras</a></li>
                 <?php  } ?>
                 <?php if (!empty($_SESSION['permisos'][10]['leer'])) { ?>
                     <li><a class="treeview-item" href="<?= base_url(); ?>/proveedor"><i class="icon fa fa-circle-o"></i> Proveedores</a></li>

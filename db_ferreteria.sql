@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-10-2021 a las 23:26:01
+-- Tiempo de generación: 27-10-2021 a las 04:10:13
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.12
 
@@ -92,12 +92,20 @@ CREATE TABLE `compra` (
   `dia` int(11) NOT NULL,
   `mes` int(11) NOT NULL,
   `anio` int(11) NOT NULL,
-  `credito` double NOT NULL,
+  `credito` double DEFAULT NULL,
   `estado` tinyint(4) NOT NULL,
   `monto` double NOT NULL,
   `idproveedor` bigint(20) NOT NULL,
-  `idusuario` bigint(20) NOT NULL
+  `idusuario` bigint(20) NOT NULL,
+  `fecha_credito` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `compra`
+--
+
+INSERT INTO `compra` (`idcompra`, `dia`, `mes`, `anio`, `credito`, `estado`, `monto`, `idproveedor`, `idusuario`, `fecha_credito`) VALUES
+(1, 26, 10, 2021, 0, 0, 1225, 1, 1, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -113,6 +121,13 @@ CREATE TABLE `detallecompra` (
   `preciocompra` double NOT NULL,
   `precioventa` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `detallecompra`
+--
+
+INSERT INTO `detallecompra` (`iddetalle`, `idcompra`, `idproducto`, `cantidad`, `preciocompra`, `precioventa`) VALUES
+(1, 1, 4, 35, 35, 38.5);
 
 -- --------------------------------------------------------
 
@@ -174,8 +189,8 @@ CREATE TABLE `imagen` (
 INSERT INTO `imagen` (`id`, `productoid`, `img`) VALUES
 (3, 19, 'pro_dc1c3e46a3dffd71760f22172d8a4604.jpg'),
 (4, 19, 'pro_6df440caa9905b20374b142c91712424.jpg'),
-(10, 21, 'pro_f44d6802c5d333c830d90ecc8f4c1ae3.jpg'),
-(11, 21, 'pro_90688aec07630a7c897a3b60c94bf5e6.jpg');
+(13, 21, 'pro_f94a00cb5c4b4035848a6f378afdda5d.jpg'),
+(14, 12, 'pro_bc1566bbc5aecdb8195070545b9080e4.jpg');
 
 -- --------------------------------------------------------
 
@@ -303,7 +318,7 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`idproducto`, `codigobarra`, `descripcion`, `estado`, `stock`, `imagen`, `idmarca`, `idcategoria`, `idunidadmedida`) VALUES
-(4, '2456', 'set', 1, 10, '', 1, 2, 1),
+(4, '2456', 'set', 1, 45, '', 1, 2, 1),
 (5, '12', '1324', 1, 0, '', 1, 2, 1),
 (6, '123434', 'dzgh', 1, 0, '', 1, 2, 1),
 (7, '111111', 'dfsadghsdgh1', 1, 0, '', 1, 2, 1),
@@ -336,6 +351,13 @@ CREATE TABLE `proveedor` (
   `telefono` varchar(9) NOT NULL,
   `contacto_vendedor` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `proveedor`
+--
+
+INSERT INTO `proveedor` (`idproveedor`, `nombre`, `direccion`, `estado`, `telefono`, `contacto_vendedor`) VALUES
+(1, 'sergh', 'sdgh', 1, '2345-6325', 'ghwe');
 
 -- --------------------------------------------------------
 
@@ -409,7 +431,7 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`idusuario`, `email_usuario`, `contrasena`, `idempleado`, `token`, `rolid`, `datecreated`, `estado`) VALUES
 (1, 'admin@gmail.com', '27eb732b26875d5243b618cd0372dd68827913517af0ab5c15435990a8f3039e', 2, '', 1, '2021-08-11 16:22:35', 1),
 (4, 'administrador@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 2, '', 1, '2021-08-22 19:35:29', 1),
-(5, 'riccieripalacios@gmail.com', 'b0aad50a487a562d3eed26bb582740883639c1e0fbcf723683fa773beab97c54', 2, '', 1, '2021-10-24 14:53:18', 1),
+(5, 'riccieripalacios@gmail.com', '3bb6fbcfe25c3ec335f28c424d829f6144583e91d4ab334fb1b6c0275b932d9e', 2, '', 1, '2021-10-24 14:53:18', 1),
 (6, 'palaciosbarreravladimir@gmail.com', 'bcbf8c1c5632fafed951be62bfa87114e716b3b225378d92df70ea05b624d01b', 2, '', 1, '2021-10-25 15:24:18', 1),
 (7, 'williamdelcid@gmail.com', 'bcbf8c1c5632fafed951be62bfa87114e716b3b225378d92df70ea05b624d01b', 2, '', 1, '2021-10-25 15:24:40', 1),
 (8, 'mishel@gmail.com', 'bcbf8c1c5632fafed951be62bfa87114e716b3b225378d92df70ea05b624d01b', 2, '', 1, '2021-10-25 15:25:10', 1);
@@ -580,13 +602,13 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `compra`
 --
 ALTER TABLE `compra`
-  MODIFY `idcompra` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `idcompra` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `detallecompra`
 --
 ALTER TABLE `detallecompra`
-  MODIFY `iddetalle` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `iddetalle` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `detalleventa`
@@ -604,7 +626,7 @@ ALTER TABLE `empleado`
 -- AUTO_INCREMENT de la tabla `imagen`
 --
 ALTER TABLE `imagen`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `marca`
@@ -634,7 +656,7 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `idproveedor` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `idproveedor` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
