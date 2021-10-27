@@ -21,7 +21,7 @@ tableProductos = $('#tableProductos').dataTable( {
         "dataSrc":""
     },
     "columns":[
-        {"data":"idproducto"},
+
         {"data":"codigobarra"},
         {"data":"imagenes"},
         {"data":"descripcion"},
@@ -30,10 +30,10 @@ tableProductos = $('#tableProductos').dataTable( {
         {"data":"options"}
     ],
     "columnDefs": [
+                    { 'className': "textcenter", "targets": [ 1 ] },
                     { 'className': "textcenter", "targets": [ 2 ] },
-                    { 'className': "textcenter", "targets": [ 3 ] },
-                    { 'className': "textright", "targets": [ 4 ] },
-                    { 'className': "textcenter", "targets": [ 5 ] }
+                    { 'className': "textright", "targets": [ 3 ] },
+                    { 'className': "textcenter", "targets": [ 4 ] }
                   ],       
     'dom': 'lBfrtip',
     'buttons': [
@@ -41,37 +41,37 @@ tableProductos = $('#tableProductos').dataTable( {
             "extend": "copyHtml5",
             "text": "<i class='far fa-copy'></i> Copiar",
             "titleAttr":"Copiar",
-            "className": "btn btn-secondary",
+            "className": "btn btn-primary",
             "exportOptions": { 
-                "columns": [ 0, 1, 2, 3, 4] 
+                "columns": [ 0, 1, 2, 3] 
             }
         },{
             "extend": "excelHtml5",
             "text": "<i class='fas fa-file-excel'></i> Excel",
-            "titleAttr":"Esportar a Excel",
-            "className": "btn btn-success",
+            "titleAttr":"Exportar a Excel",
+            "className": "btn btn-primary",
             "exportOptions": { 
-                "columns": [ 0, 1, 2, 3, 4] 
+                "columns": [ 0, 1, 2, 3] 
             }
         },{
             "extend": "pdfHtml5",
             "text": "<i class='fas fa-file-pdf'></i> PDF",
-            "titleAttr":"Esportar a PDF",
-            "className": "btn btn-danger",
+            "titleAttr":"Exportar a PDF",
+            "className": "btn btn-primary",
             "exportOptions": { 
-                "columns": [ 0, 1, 2, 3, 4] 
+                "columns": [ 0, 1, 2, 3] 
             }
         },{
             "extend": "csvHtml5",
             "text": "<i class='fas fa-file-csv'></i> CSV",
-            "titleAttr":"Esportar a CSV",
-            "className": "btn btn-info",
+            "titleAttr":"Exportar a CSV",
+            "className": "btn btn-primary",
             "exportOptions": { 
-                "columns": [ 0, 1, 2, 3, 4] 
+                "columns": [ 0, 1, 2, 3] 
             }
         }
     ],
-    "resonsieve":"true",
+    "responsive":"true",
     "bDestroy": true,
     "iDisplayLength": 10,
     "order":[[0,"desc"]]  
