@@ -19,7 +19,7 @@
               <div class="tile">
                 <div class="tile-body">
                   <form id="formProducto" name="formProducto" class="form-horizontal">
-                    <input type="hidden" id="idCadena" name="idCadena" value="">
+                    <input type="hidden" id="idCadena" name="idCadena"  value="">
                     <p  style="text-align: left; font-size: large;" >Fecha : <?php echo date("d-m-Y"); ?></p>
                    
 
