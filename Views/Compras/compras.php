@@ -31,7 +31,7 @@
                           <th>Monto pagado</th>
                           <th>Credito</th>
                           <th>Fecha de Credito</th>
-                          <th>Acciones</th>
+                          <th>Detalles</th>
 
                         </tr>
                       </thead>
