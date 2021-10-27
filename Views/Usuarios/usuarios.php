@@ -29,7 +29,7 @@
                           <th>Email</th>
                           <th>Teléfono</th>
                           <th>Rol</th>
-                          <th>Status</th>
+                          <th>Estado</th>
                           <th>Acciones</th>
                         </tr>
                       </thead>
