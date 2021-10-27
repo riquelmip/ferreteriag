@@ -126,8 +126,6 @@ function fntGraficoBarra(){
         ]);
 
         var options = {
-            width: 400,
-            height: 200,
             chart: {
               title: 'Título',
               subtitle: 'Subtítulo'

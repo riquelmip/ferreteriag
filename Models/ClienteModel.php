@@ -38,7 +38,7 @@
 			$this->strApellido = $apellido;
 			$this->intEstado = $estado;
 
-			$sql = "SELECT * FROM cliente WHERE nombre = '{$this->strNombre}' and  apellido = '{$this->strApellido}' and dui = '{$this->strDui}'";
+			$sql = "SELECT * FROM cliente WHERE dui = '{$this->strDui}'";
 			$request = $this->select_all($sql);
 
 			if(empty($request))
@@ -60,7 +60,7 @@
 			$this->strApellido = $apellido;
 			$this->intEstado = $estado;
 
-			$sql = "SELECT * FROM cliente WHERE nombre = '{$this->strNombre}' and  apellido = '{$this->strApellido}' and dui = '{$this->strDui}'";
+			$sql = "SELECT * FROM cliente WHERE dui = '{$this->strDui}' and idcliente!=$this->intIdcliente";
 			$request = $this->select_all($sql);
 
 			if(empty($request)){

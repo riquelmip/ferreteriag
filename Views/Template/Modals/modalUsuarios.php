@@ -22,11 +22,11 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                 <label for="txtEmail">Email</label>
-                  <input type="email" class="form-control valid validEmail" id="txtEmail" name="txtEmail" required="">
+                  <input type="email" class="form-control valid validEmail" id="txtEmail" name="txtEmail" required="" autocomplete="off">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="txtPassword">Contraseña</label>
-                  <input type="password" class="form-control" id="txtPassword" name="txtPassword" maxlength="20">
+                  <input type="password" class="form-control" id="txtPassword" name="txtPassword" maxlength="20" autocomplete="off">
                   <p style="font-size: 13px;"><span id="msje"></span></p>
                 </div>
               </div>

@@ -56,14 +56,15 @@
       <div class="col-md-6">
               <div class="tile">
                 <div class="tile-body">
-                     <div id="graficoPastel"  style=" width: 400px; height: 200px; margin: auto; display: flex; align-items: letf; justify-content: left; "></div>
+                     <div id="graficoPastel"  style=" width: 400px; height: 200px; margin: auto; display: flex; align-items: letf; justify-content: left; position: relative;"></div>
                     </div>
                   </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-6" >
               <div class="tile">
                 <div class="tile-body">
-                      <div id="graficoBarras"  style=" width: 400px; height: 200px; margin: auto; display: flex; align-items: letf; justify-content: left; "></div>
+                      <div id="graficoBarras"  style=" width: 100%;">
+                      </div>
                 </div>
               </div>
               </div>
@@ -73,7 +74,7 @@
             <div class="col-md-12">
               <div class="tile">
                 <div class="tile-body">
-                  <div id="graficoLinea" style=" margin: auto; display: flex; align-items: center; justify-content: center; "></div>        
+                  <div id="graficoLinea" style=" margin: auto; display: flex; align-items: center; justify-content: center; position: relative;"></div>        
                 </div>
               </div>
             </div>

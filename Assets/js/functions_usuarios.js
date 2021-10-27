@@ -67,18 +67,22 @@ document.addEventListener('DOMContentLoaded', function(){
                 let intTipousuario = document.querySelector('#listRolid').value;
                 let intStatus = document.querySelector("#listEstado").value;
                 var mensaje =  document.getElementById('msje');
+                var btn =  document.getElementById('btnText');
 
                 if(strEmail == '' || intTipousuario == '' || intEmpleado == '')
                 {
                     swal("Atención", "Todos los campos son obligatorios." , "error");
                     return false;
                 }
-                console.log(mensaje.textContent);
-                if(mensaje.textContent != '* Contraseña Segura'){
+
+                if(btn.textContent=="Actualizar"){
+
+                }else if(mensaje.textContent != '* Contraseña Segura'){
 
                     swal("Atención", "Contraseña Inválida" , "warning");
                     return false;
-                }
+                } 
+
                 let elementsValid = document.getElementsByClassName("valid");
                 for (let i = 0; i < elementsValid.length; i++) { 
                     if(elementsValid[i].classList.contains('is-invalid')) { 
@@ -348,6 +352,8 @@ function fntEditUsuario(element, idpersona){
     document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
     document.querySelector('#btnText').innerHTML ="Actualizar";
 
+
+
     //let idpersona =idpersona;
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     let ajaxUrl = base_url+'/Usuarios/getUsuario/'+idpersona;
@@ -447,11 +453,16 @@ $(function(){
     var mayus = new RegExp("^(?=.*[A-Z])");
     var numbers = new RegExp("^(?=.*[0-9])");
     var len = new RegExp("^(?=.{8,})");
+    
 
     $("#txtPassword").on("keyup",function(){
         var pass = $("#txtPassword").val();
+        var id =  $("#idUsuario").val();
+         
 
-        if(!len.test(pass)){
+        if(id!=0){
+            $("#msje").text("");
+        }else if(!len.test(pass)){
             $("#msje").text("* Digite una contraseña mínima a 8 caracteres").css("color","red");
         }else{
             $("#msje").text("");
