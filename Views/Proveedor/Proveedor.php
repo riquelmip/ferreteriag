@@ -28,10 +28,10 @@
                         <tr>
                           
                           <th>Nombre</th>
-                          <th>Descripción</th>
-                          <th>Estado</th>
+                          <th>Dirección</th>
                           <th>Telefono</th>
                           <th>Contacto Vendedor</th>
+                          <th>Estado</th>
                           <th>Acciones</th>
                         </tr>
                       </thead>

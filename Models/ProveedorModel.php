@@ -18,7 +18,7 @@
 		{
 	
 			//SELECCIONAR PROVEEDORES
-			$sql = "SELECT * FROM proveedor";
+			$sql = "SELECT * FROM proveedor WHERE estado!=2";
 			$request = $this->select_all($sql);
 			return $request;
 		}
@@ -89,10 +89,11 @@
 			$request = $this->select_all($sql);
 			if(empty($request))
 			{
-				$sql = "DELETE FROM proveedor WHERE idproveedor = $this->intIdProveedor ";
-				// $arrData = array(0);
+				//$sql = "DELETE FROM proveedor WHERE idproveedor = $this->intIdProveedor ";
+				$sql = "UPDATE proveedor SET estado=?  WHERE idproveedor = $this->intIdProveedor ";
+				 $arrData = array(2);
 				// $request = $this->update($sql,$arrData);
-				$request = $this->delete($sql);
+				$request = $this->update($sql,$arrData);
 
 				if($request)
 				{

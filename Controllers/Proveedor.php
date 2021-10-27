@@ -142,7 +142,7 @@
 					$requestDelete = $this->model->deleteproveedor($intIdproveedor);
 					if($requestDelete == 'ok')
 					{
-						$arrResponse = array('estado' => true, 'msg' => 'Se ha eliminado el proveedor');
+						$arrResponse = array('estado' => true, 'msg' => 'El proveedor ha sido dado de baja');
 					}else if($requestDelete == 'exist'){
 						$arrResponse = array('estado' => false, 'msg' => 'Aún existen registros de compras asociados a este proveedor');
 					}else{

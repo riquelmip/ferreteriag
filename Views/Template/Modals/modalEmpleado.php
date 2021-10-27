@@ -34,12 +34,14 @@ date_default_timezone_set("America/El_Salvador");
 
                  <div class="form-group col-md-6">
                   <label for="txtNombre">Nombre</label>
-                  <input type="text" class="form-control" id="txtNombre" name="txtNombre"  required autocomplete="off">
+                  <input type="text" class="form-control" maxlength="50" id="txtNombre" name="txtNombre"  required autocomplete="off">
+                  <p style="font-size: 13px;"><span id="msje1"></span></p>
                 </div>
 
                    <div class="form-group col-md-6">
                   <label for="txtApellido">Apellido</label>
-                  <input type="text" class="form-control" id="txtApellido" name="txtApellido"  required autocomplete="off">
+                  <input type="text" class="form-control" maxlength="50" id="txtApellido" name="txtApellido"  required autocomplete="off">
+                  <p style="font-size: 13px;"><span id="msje2"></span></p>
                 </div>
 
                   <div class="form-group col-md-6">
@@ -53,9 +55,9 @@ date_default_timezone_set("America/El_Salvador");
                 </div>
 
                 <div class="form-group col-md-6">
-                  <label for="txtFecha">Fecha</label>
+                  <label for="txtFecha">Fecha Nacimiento</label>
                   <!-- solo aceptamos a gente que tenga maximo 30 años y 18 años jajaja -->
-                  <input type="date" class="form-control" min="2015-01-01" max="<?php echo date('Y-m-d'); ?>" id="txtFecha" name="txtFecha"  required autocomplete="off">
+                  <input type="date" class="form-control" min="1961-01-01" max="2003-12-31" id="txtFecha" name="txtFecha"  required autocomplete="off">
                 </div>
 
 
@@ -66,7 +68,17 @@ date_default_timezone_set("America/El_Salvador");
                     <select class="form-control" data-live-search="true" id="listCargo" name="listCargo" required >
                     </select>
 
-</div>
+                </div>
+
+
+                   <div class="form-group col-md-6">
+                    <label for="exampleSelect1">Estado</label>
+                    <select class="form-control" id="listaEstado" name="listaEstado" required="">
+                      <option value="1">Activo</option>
+                      <option value="0">Inactivo</option>
+                    </select>
+                </div>
+
 
              </div>
               <div class="tile-footer">

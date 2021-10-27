@@ -25,7 +25,7 @@
 		{
 	
 			//SELECCIONAR EmpleadoES
-			$sql = "SELECT e.idempleado, e.dui, e.nombre, e.apellido, e.nit, e.direccion, e.telefono, e.dia, e.mes,e.anio, e.estado, e.idcargo, c.nombre as nombrecargo FROM empleado e INNER JOIN cargo c on c.idcargo=e.idcargo";
+			$sql = "SELECT e.idempleado, e.dui, e.nombre, e.apellido, e.nit, e.direccion, e.telefono, e.dia, e.mes,e.anio, e.estado, e.idcargo, c.nombre as nombrecargo FROM empleado e INNER JOIN cargo c on c.idcargo=e.idcargo WHERE e.estado!=2";
 			$request = $this->select_all($sql);
 			return $request;
 		}
@@ -151,11 +151,7 @@
 		public function deleteEmpleado(int $idEmpleado,int $estado)
 		{
 			$this->intestado= $estado;
-			if($this->intestado==1){
-				$this->intestado=0;
-			}else{
-				$this->intestado=1;
-			}
+			
 			$this->intIdEmpleado = $idEmpleado;
 			$sql = "SELECT * FROM usuario WHERE idempleado = $this->intIdEmpleado";
 			$request = $this->select_all($sql);

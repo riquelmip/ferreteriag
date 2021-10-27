@@ -18,7 +18,8 @@
 
                 <div class="form-group">
                   <label class="control-label">Nombre</label>
-                  <input class="form-control"  autocomplete="off" id="txtNombre" name="txtNombre" type="text" placeholder="Nombre del proveedor" required="">
+                  <input class="form-control" maxlength="100"  autocomplete="off" id="txtNombre" name="txtNombre" type="text" placeholder="Nombre del proveedor" required="">
+                  <p style="font-size: 13px;"><span id="msje1"></span></p>
                 </div>
 
                 <div class="form-group">
@@ -26,23 +27,25 @@
                   <textarea class="form-control"  autocomplete="off" id="txtDescripcion" name="txtDescripcion" rows="2" placeholder="Dirección del proveedor" required=""></textarea>
                 </div>
 
-         
+
+                  <div class="form-group">
+                  <label class="control-label">Teléfono</label>
+                  <input class="form-control" autocomplete="off"  id="txtNumero" data-mask="0000-0000" name="txtNumero" type="tel" placeholder="0000-0000" required="">
+                </div>
+
+                   <div class="form-group">
+                  <label class="control-label">Contacto(Nombre)</label>
+                  <input class="form-control" maxlength="100" autocomplete="off"  id="txtContacto" name="txtContacto" type="text" placeholder="Nombre Completo" required="">
+                  <p style="font-size: 13px;"><span id="msje2"></span></p>
+                </div>
+
+
                   <div class="form-group">
                     <label for="exampleSelect1">Estado</label>
                     <select class="form-control" id="listaEstado" name="listaEstado" required="">
                       <option value="1">Activo</option>
-                      <option value="2">Inactivo</option>
+                      <option value="0">Inactivo</option>
                     </select>
-                </div>
-
-                  <div class="form-group">
-                  <label class="control-label">Teléfono</label>
-                  <input class="form-control" autocomplete="off"  id="txtNumero" data-mask="0000-0000" name="txtNumero" type="tel" placeholder="Número de teléfono" required="">
-                </div>
-
-                   <div class="form-group">
-                  <label class="control-label">Contacto</label>
-                  <input class="form-control" autocomplete="off"  id="txtContacto" name="txtContacto" type="text" placeholder="Contacto Proveedor" required="">
                 </div>
 
                 <div class="tile-footer">

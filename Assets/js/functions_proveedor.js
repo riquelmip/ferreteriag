@@ -20,9 +20,9 @@ document.addEventListener('DOMContentLoaded', function(){
         "columns":[
             {"data":"nombre"},
             {"data":"direccion"},
-            {"data":"estado"},
             {"data":"telefono"},
             {"data":"contacto_vendedor"},
+            {"data":"estado"},
             {"data":"opciones"}
         ],
         "resonsieve":"true",
@@ -36,6 +36,20 @@ document.addEventListener('DOMContentLoaded', function(){
    var formProveedor = document.querySelector("#formProveedor");
     formProveedor.onsubmit = function(e) {
         e.preventDefault();
+
+     var mensaje1 =  document.getElementById('msje1');
+        var mensaje2 =  document.getElementById('msje2');
+
+        if(mensaje1.textContent == '* Solo letras'){
+            swal("Atención", "Campo Nombre solo permite letras." , "error");
+            return false;
+        }else{
+            if(mensaje2.textContent == '* Solo letras'){
+                swal("Atención", "Campo Contacto solo permite letras." , "error");
+                return false;
+            }   
+        }
+
 
         var intIdProv = document.querySelector('#idProveedor').value;
         var strNombre = document.querySelector('#txtNombre').value;
@@ -82,6 +96,46 @@ $('#tableProveedor').DataTable();
 
 //ABRIR MODAL
 
+//SOLO LETRAS
+$(function(){
+
+    var mayus = new RegExp("^(?=.*[A-Z])");
+    var lower = new RegExp("^(?=.*[a-z])");
+     var numbers = new RegExp("^(?=.*[0-9])");
+    $("#txtNombre").on("keyup",function(){
+        var text = $("#txtNombre").val();
+
+        if(mayus.test(text) || lower.test(text)){
+            $("#msje1").text("");
+        }else{
+            $("#msje1").text("* Solo letras").css("color","red");
+        }
+
+        if(numbers.test(text)){
+            $("#msje1").text("* Solo letras").css("color","red");
+        }else{
+            $("#msje1").text("");
+        }
+    });
+
+    $("#txtContacto").on("keyup",function(){
+        var text = $("#txtContacto").val();
+
+        if(mayus.test(text) || lower.test(text)){
+            $("#msje2").text("");
+        }else{
+            $("#msje2").text("* Solo letras").css("color","red");
+        }
+
+        if(numbers.test(text)){
+            $("#msje2").text("* Solo letras").css("color","red");
+        }else{
+            $("#msje2").text("");
+        }
+    });
+
+});
+
 function openModal(){
     document.querySelector('#idProveedor').value ="";
     document.querySelector('.modal-header').classList.replace("headerUpdate", "headerRegister");
@@ -96,8 +150,8 @@ function openModal(){
 function fntDelproveedor(idprove){
     var idprove = idprove;
     swal({
-        title: "Eliminar Proveedor",
-        text: "¿Realmente quiere eliminar el Proveedor?",
+        title: "¿Desea dar de baja al Proveedor?",
+        text: "",
         type: "warning",
         showCancelButton: true,
         confirmButtonText: "Si!",
@@ -160,7 +214,7 @@ function fntEditproveedor(idproveedor){
                document.querySelector('#idProveedor').value=objData.data.idproveedor;
                document.querySelector('#txtNombre').value=objData.data.nombre;
                document.querySelector('#txtDescripcion').value=objData.data.direccion;
-               // document.querySelector('#listaEstado').value=objData.data.estado;   
+                document.querySelector('#listaEstado').value=objData.data.estado;   
                document.querySelector('#txtNumero').value=objData.data.telefono;
                document.querySelector('#txtContacto').value=objData.data.contacto_vendedor;
 
@@ -172,7 +226,7 @@ function fntEditproveedor(idproveedor){
                 }
                 var htmlSelect = `${optionSelect}
                                   <option value="1">Activo</option>
-                                  <option value="2">Inactivo</option>
+                                  <option value="0">Inactivo</option>
                                 `;
                 document.querySelector("#listaEstado").innerHTML = htmlSelect;
                 $('#modalFormProveedores').modal('show');
