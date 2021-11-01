@@ -317,6 +317,7 @@ function fntEditEmpleado(idEmpleado){
             if(objData.estado)
             {
 
+                console.log("jjjj");
                 // var ani = objData.data.anio;
                 // var n = ani.toString();
                 // var mes = objData.data.mes;
