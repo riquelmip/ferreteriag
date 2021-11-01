@@ -39,14 +39,9 @@ tableProductos = $('#tableProductos').dataTable( {
     'buttons': [
         {
             "extend": "copyHtml5",
-            "text": "<i class='far fa-copy'></i>  <style> .button1{background-color: purple;}</style>      Copiar",
+            "text": "<i class='far fa-copy'></i> Copiar",
             "titleAttr":"Copiar",
-<<<<<<< Updated upstream
             "className": "btn btn-primary",
-=======
-            "className": "btn button1",
-            "name": "btn1",
->>>>>>> Stashed changes
             "exportOptions": { 
                 "columns": [ 0, 1, 2, 3] 
             }
