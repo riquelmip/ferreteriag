@@ -27,7 +27,7 @@
 		public function getCompras()
 		{
 			if ($_SESSION['permisosMod']['leer']) {
-				$arrData = $this->model->selectCategorias();
+				$arrData = $this->model->selectCompras();
              
 				for ($i=0; $i < count($arrData); $i++) {
 					$btnView = "";
@@ -40,7 +40,17 @@
 					$arrData[$i]['credito'] = $datito;
 					$datito2="$".$arrData[$i]['monto'];
 					$arrData[$i]['monto'] = $datito2;
+					if ($arrData[$i]['credito']=='$0') {
+						$arrData[$i]['credito']="Pago al crédito";
+					}
+					if($arrData[$i]['fecha_credito']=='0000-00-00'){
+						$arrData[$i]['fecha_credito'] = "Pago al crédito";
+					}else{
+						$cambio = date_format(date_create_from_format('Y-m-d', $arrData[$i]['fecha_credito']), 'd/m/Y'); ;
 					
+						$arrData[$i]['fecha_credito'] = $cambio;
+					}
+
 					if ($_SESSION['permisosMod']['leer']) {
 						$btnView = '<button class="btn btn-info btn-sm btnViewEmpleado" onClick="fntViewEmpleado('.$arrData[$i]['idcompra'].')" title="Ver usuario"><i class="far fa-eye"></i></button>';
 					}

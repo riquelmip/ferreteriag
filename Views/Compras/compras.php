@@ -32,7 +32,6 @@
                           <th>Credito</th>
                           <th>Fecha de Credito</th>
                           <th>Detalles</th>
-
                         </tr>
                       </thead>
                       <tbody>
