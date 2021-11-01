@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function(){
                                 }, 
                                 function(){
                                         window.location.href = base_url+'/Usuarios';
-                                })
+                                });
                             }
                            
                             

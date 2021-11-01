@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function(){
                     formEmpleado.reset();
                  
                     swal("Empleado", objData.msg ,"success");
-                    tableEmpleado.api().ajax.reload();
+                    cargar_datos();
                 }else{
                     swal("Error", objData.msg , "error");
                 }              
@@ -219,9 +219,7 @@ function fntDelEmpleado(idempleado,estad){
                     if(objData.estado)
                     {
                         swal("Cambio Realizado", objData.msg , "success");
-                        tableEmpleado.api().ajax.reload(function(){
-
-                        });
+                        cargar_datos();
                     }else{
                         swal("Atención!", objData.msg , "error");
                     }
@@ -305,7 +303,7 @@ function fntEditEmpleado(idEmpleado){
 
 
 function cargar_datos(){
-    mostrar_mensaje("Cargando", "Obteniendo datos");
+    divLoading.style.display = "flex";
     var datos = {"consultar_info":"si_consultala"}
     $.ajax({
         dataType: "json",
@@ -318,45 +316,26 @@ function cargar_datos(){
         inicializar_tabla("tableEmpleado");
          document.querySelector('#listCargo').innerHTML = json.listacargos;
         $('#listCargo').selectpicker('render');
+
     }).fail(function(){
 
     }).always(function(){
-        Swal.close();
+        divLoading.style.display = "none";
     });
 }
 
-function mostrar_mensaje(titulo,mensaje=""){
-    Swal.fire({
-      title: titulo,
-      html: mensaje,
-      allowOutsideClick: false,
-      timerProgressBar: true,
-      didOpen: () => {
-        Swal.showLoading()
-         
-      },
-      willClose: () => {
-         
-      }
-    }).then((result) => {
-      
-       
-    })
-}
+
 
 
 function alerta_recargartabla(titulo, mensaje, tipo){
-    
-    Swal.fire({
-      title: titulo,
-      text: mensaje,
-      icon: tipo,
-      confirmButtonColor: '#3085d6',
-      confirmButtonText: 'Aceptar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        cargar_datos();
-      } //result confirm
+    swal({
+        title: titulo,
+        text: mensaje,
+        type: tipo,
+        //timer: 3000
+    }, 
+    function(){
+            cargar_datos();
     });
 
 }

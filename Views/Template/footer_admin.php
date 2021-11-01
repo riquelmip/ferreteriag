@@ -26,7 +26,7 @@
     <!-- The javascript plugin to display page loading on top-->
     <script src="<?= media(); ?>/js/plugins/pace.min.js"></script>
     <!-- Page specific javascripts-->
-    <script src="<?= media(); ?>/js/plugins/sweetalert2.all.min.js" aria-hidden="true"></script>
+    <script src="<?= media(); ?>/js/plugins/sweetalert.min.js" aria-hidden="true"></script>
 
     <!-- Data table plugin-->
     <script type="text/javascript" src="<?= media(); ?>/js/plugins/jquery.dataTables.min.js"></script>

@@ -13,7 +13,6 @@
     <link rel="stylesheet" type="text/css" href="<?= media(); ?>/css/main.css">
     <link rel="stylesheet" type="text/css" href="<?= media();?>/css/bootstrap-select.min.css"> 
     <link rel="stylesheet" type="text/css" href="<?= media(); ?>/css/style.css">
-    <link rel="stylesheet" type="text/css" href="<?= media(); ?>/css/sweetalert2.min.css">
   </head>
   <body class="app sidebar-mini">
     <div id="divLoading" >
