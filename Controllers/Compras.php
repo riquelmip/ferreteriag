@@ -52,7 +52,7 @@
 					}
 
 					if ($_SESSION['permisosMod']['leer']) {
-						$btnView = '<button class="btn btn-info btn-sm btnViewEmpleado" onClick="fntViewEmpleado('.$arrData[$i]['idcompra'].')" title="Ver usuario"><i class="far fa-eye"></i></button>';
+						$btnView = '<button class="btn btn-info btn-sm btnViewEmpleado" onClick="fntViewCadenaAv('.$arrData[$i]['idcompra'].')" title="Ver usuario"><i class="far fa-eye"></i></button>';
 					}
 					//si tiene permiso de editar se agrega el botn
 					//si tiene permiso de eliminar se agrega el boton
@@ -66,6 +66,34 @@
 			}
 			die();
 		}
+
+
+		public function getCadena($idcadena){
+			
+				$idCadena = intval($idcadena);
+				if($idCadena > 0)
+				{
+					$arrData = $this->model->selectCadena($idCadena);
+					for ($i=0; $i < count($arrData); $i++) {
+						$conver = round($arrData[$i]['precioventa'],2);
+
+						$datito="$".$conver;
+						$arrData[$i]['precioventa'] = $datito;
+
+					}
+
+					if(empty($arrData))
+					{
+						$arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
+					}else{
+						$arrResponse = array('status' => true, 'data' => $arrData);
+					}
+					echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+				}
+		
+			die();
+		}
+
         
 	}
     ?>

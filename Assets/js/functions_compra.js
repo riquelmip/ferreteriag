@@ -33,6 +33,12 @@ document.addEventListener('DOMContentLoaded', function(){
 
 $('#tableCompra').DataTable();
 
+
+
+
+
+
+
 function openModal(){
 
     document.querySelector('#idCategoria').value ="";
@@ -43,6 +49,38 @@ function openModal(){
     document.querySelector("#formCategoria").reset();
 	$('#modalFormCategoria').modal('show');
 }
+
+
+
+
+function fntViewCadenaAv(idcadena){
+
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    let ajaxUrl = base_url+'/Compras/getCadena/'+idcadena;
+    request.open("GET",ajaxUrl,true);
+    request.send();
+    request.onreadystatechange = function(){
+        if(request.readyState == 4 && request.status == 200){
+            let objData = JSON.parse(request.responseText);
+
+            if(objData.status)
+            {
+                document.querySelector("#titleModalV").innerHTML = "<div class='text-center'><b>"+"Compra #"+objData.data[0].idcompra+"</b></div>";
+                var srtCadenaCoros = "";
+                for (var i = 0; i < objData.data.length; i++) {
+                    srtCadenaCoros = srtCadenaCoros+ "<table class='table table-hover table-bordered'><thead><tr><th># de Compra</th><th># de Producto</th><th>Cantidad</th><th>Precio de Venta</th></tr> <tr><td>"+"000"+objData.data[i].iddetalle+"</td><td>"+"000"+objData.data[i].idproducto+"</td><td>"+objData.data[i].cantidad+"</td><td>"+objData.data[i].precioventa+"</td></tr></thead><tbody></tbody></table>";
+                  }
+                document.querySelector("#modalViewBody").innerHTML = "<div class='text-center'>"+srtCadenaCoros+"</div>";
+                
+                $('#modalViewCadenaAv').modal('show');
+            }else{
+                swal("Error", objData.msg , "error");
+            }
+        }
+    }
+}
+
+
 
 window.addEventListener('load', function() {
     /*fntEditRol();

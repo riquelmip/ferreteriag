@@ -4,7 +4,7 @@
 	{
 		public $intId;
 		public $strNombre;
-
+		private $intIdCadena;
 		public function __construct()
 		{
 			parent::__construct();
@@ -19,7 +19,12 @@
 		}
 		
 
-	
+		public function selectCadena(int $idcadena){
+			$this->intIdCadena = $idcadena;
+			$sql = "SELECT iddetalle,idcompra,idproducto,cantidad,precioventa FROM detallecompra WHERE idcompra= $idcadena";
+			$request = $this->select_all($sql);
+			return $request;
+		}
 
 
 

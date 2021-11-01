@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="modalViewCadenaAv" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog" >
+  <div class="modal-dialog modal-xl" >
     <div class="modal-content">
       <div class="modal-header header-primary">
         <h5 class="modal-title" id="titleModalV"></h5>
