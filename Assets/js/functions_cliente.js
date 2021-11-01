@@ -13,10 +13,12 @@ document.addEventListener('DOMContentLoaded', function(){
         "ajax":{
             "url": " "+base_url+"/Cliente/getClientes",
             "dataSrc":""
+
         },
         "columns":[
             {"data":"dui"},
             {"data":"nombre"},
+            {"data":"telefono"},
             {"data":"opciones"}
         ],
         'dom': 'lBfrtip',
@@ -58,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function(){
         var strDui = document.querySelector('#txtDui').value;
         var strNombre = document.querySelector('#txtNombre').value;
         var strApellido = document.querySelector('#txtApellido').value;
+        var strTelefono = document.querySelector('#txtTelefono').value;
         var intEstado = document.querySelector('#intEstado').value;
         //var intestadoMarca = document.querySelector('#marcaEstado').value;
         var mensaje1 =  document.getElementById('msje1');
@@ -96,8 +99,6 @@ document.addEventListener('DOMContentLoaded', function(){
             divLoading.style.display = "none";
             return false;
         }
-
-        
     }
 
 });
@@ -141,6 +142,7 @@ function fntEditCliente(idcliente){
                 document.querySelector("#txtDui").value = objData.data.dui;
                 document.querySelector("#txtNombre").value = objData.data.nombre;
                 document.querySelector("#txtApellido").value = objData.data.apellido;
+                document.querySelector("#txtTelefono").value = objData.data.telefono;
                 $('#modalFormCliente').modal('show');
             }else{
                 swal("Error", objData.msg , "error");

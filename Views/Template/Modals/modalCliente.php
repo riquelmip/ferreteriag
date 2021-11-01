@@ -27,7 +27,11 @@
                   <input type="text" class="form-control" id="txtApellido" name="txtApellido" type="text" placeholder="Apellido" required="">
                   <p style="font-size: 13px;"><span id="msje2"></span></p>
                 </div>
-                 <input type="hidden" id="intEstado" name="intEstado" value="1">
+                <div class="form-group">
+                  <label class="control-label">Telefóno</label>
+                  <input type="text" class="form-control" id="txtTelefono" name="txtTelefono" type="text" placeholder="0000-0000" data-mask="0000-0000"required="">
+                </div>
+                <input type="hidden" id="intEstado" name="intEstado" value="1">
                 <div class="tile-footer">
                   <button id="btnActionForm" class="btn btn-success" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i><span id="btnText">Guardar</span></button>&nbsp;&nbsp;&nbsp;<a class="btn btn-danger" href="#" data-dismiss="modal" ><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
                 </div>

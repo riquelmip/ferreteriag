@@ -123,19 +123,19 @@
 
             if ($_SESSION['permisosMod']['leer']) {
 				$intIdmarca = intval(strClean($idmarca));
-				if($intIdmarca > 0){
 
 					$arrData = $this->model->updateEstadoMarca($intIdmarca,0);
-					if(empty($arrData)){
-						$arrResponse = array('estado' => false, 'msg' => 'Datos no encontrados.');
+					if($arrData > 0){
+						$arrResponse = array('estado' => true, 'msg' => 'Se ha eliminado el Rol');
 					}else{
-						$arrResponse = array('estado' => true, 'data' => $arrData);
-					}
-					echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+					  $arrResponse = array('estado' => false, 'msg' => 'No es posible eliminar una Marca asociado a Producto.');
+					}	
 				}
-			}
-			die();
+				echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+				die();
 		}
+			
+		
 
         public function setEstadoMarca(int $idmarca){
 
