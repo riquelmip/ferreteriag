@@ -26,7 +26,7 @@
 			$data['page_tag'] = "Empleados";
 			$data['page_name'] = "Empleados";
 			$data['page_title'] = "Empleados";
-			$data['page_functions_js'] = "functions_empleado.js";
+			$data['page_functions_js'] = "functions_empleados.js";
 			$this->views->getView($this,"Empleado",$data);
 		}
 
@@ -59,7 +59,7 @@
 		{
 			if ($_SESSION['permisosMod']['leer']) {
 				$arrData = $this->model->selectEmpleados();
-
+				$htmlDatosTabla = "";
 				for ($i=0; $i < count($arrData); $i++) {
 					$btnView = "";
 					$btnEdit = "";
@@ -94,9 +94,18 @@
 					//agregamos los botones
 					$arrData[$i]['opciones'] = '<div class="text-center">'.$btnView.' ' .$btnEdit.' ' .$btnDelete.'</div>';
 
+					$htmlDatosTabla.='<tr>
+			                            <td>'.$arrData[$i]['dui'].'</td>
+			                            <td>'.$arrData[$i]['nombre'].'</td>
+			                            <td>'.$arrData[$i]['apellido'].'</td>
+			                            <td>'.$arrData[$i]['nombrecargo'].'</td>
+			                            <td>'.$arrData[$i]['estado'].'</td>
+			                            <td>'.$arrData[$i]['opciones'].'</td>
+			                         </tr>';
 				
 				}
-				echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
+				$arrayDatos = array('datosIndividuales' => $arrData,'htmlDatosTabla' => $htmlDatosTabla);
+				echo json_encode($arrayDatos,JSON_UNESCAPED_UNICODE);
 			}
 			die();
 		}
