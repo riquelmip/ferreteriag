@@ -67,20 +67,18 @@
 			$sql = "SELECT * FROM empleado WHERE dui = '{$this->strDui}'";
 			$request = $this->select_all($sql);
 
-			if(empty($request))
+			if(empty($request)) //Dui
 			{
 				$sql = "SELECT * FROM empleado WHERE nit = '{$this->strNit}'";
 			$request2 = $this->select_all($sql);
 
-				if(empty($request2))
+				if(empty($request2))//Nit
 			{
 				$sql = "SELECT * FROM empleado WHERE telefono = '{$this->telefono}'";
-			$request2 = $this->select_all($sql);
+			$request3 = $this->select_all($sql);
 
-					if(empty($request2))
-			{
-
-
+				if(empty($request3))//Telefono
+				{
 				$query_insert  = "INSERT INTO empleado(dui, nombre, apellido, nit, direccion, telefono, dia, mes, anio, estado, idcargo) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 
 	        	$arrData = array($this->strDui, $this->strNombre, $this ->strApellido, $this->strNit, $this ->strDireccion, $this ->telefono, $this ->dia, $this ->mes, $this ->anio, $this ->intestado, $this ->intCargo);
@@ -89,6 +87,7 @@
 	        	}else{
 				$return = "exist3";
 				}
+
 			}else{
 				$return = "exist2";
 			}
