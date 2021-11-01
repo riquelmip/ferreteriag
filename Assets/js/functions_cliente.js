@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function(){
         "order":[[0,"desc"]]  
     });
 
-    //NUEVO REGISTRO MARCA
+    //NUEVO REGISTRO CLIENTE
     var formCliente = document.querySelector("#formCliente");
     formCliente.onsubmit = function(e) {
         e.preventDefault();
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function(){
         var strApellido = document.querySelector('#txtApellido').value;
         var strTelefono = document.querySelector('#txtTelefono').value;
         var intEstado = document.querySelector('#intEstado').value;
-        //var intestadoMarca = document.querySelector('#marcaEstado').value;
+    
         var mensaje1 =  document.getElementById('msje1');
         var mensaje2 =  document.getElementById('msje2');
 
