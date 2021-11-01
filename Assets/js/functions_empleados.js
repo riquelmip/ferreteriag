@@ -3,7 +3,6 @@ var tableEmpleado;
 var divLoading = document.querySelector('#divLoading');
 document.addEventListener('DOMContentLoaded', function(){
     cargar_datos();
-    llenarselect_cargos();
 
     
     $.mask.definitions['~']='[2,6,7]';
@@ -85,34 +84,6 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 
-function fntSelects(){
-
-
-
-    if (document.querySelector('#listCargo')) {
-
-
-        let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-        let ajaxUrl = base_url+'/Empleado/getCargo';
-        request.open("GET",ajaxUrl,true);
-        request.send();
-        request.onreadystatechange = function(){
-            if(request.readyState == 4 && request.status == 200){
-        let objData = JSON.parse(request.responseText);//Lo que trae el JSON del select de NuevaCompra
-
-        
-        document.querySelector('#listCargo').innerHTML = objData.cargos;
-        $('#listCargo').selectpicker('render');
-
-      
-    }//if
-        }//funcion
-  
-    }//if arriba
-
-
-
-}//fin funcion
 
 // $('#tableEmpleado').DataTable(); //ESTO NO LO TIENE
 
@@ -331,23 +302,7 @@ function fntEditEmpleado(idEmpleado){
 
 }
 
-function llenarselect_cargos(){
-    mostrar_mensaje("Cargando", "Obteniendo datos");
-    $.ajax({
-        dataType: "json",
-        method: "POST",
-        url: base_url+"/Empleado/getCargo"
-    }).done(function(json) {
-        console.log("EL consultar",json);
-         document.querySelector('#listCargo').innerHTML = json.cargos;
-        $('#listCargo').selectpicker('render');
 
-    }).fail(function(){
-
-    }).always(function(){
-        Swal.close();
-    });
-}
 
 function cargar_datos(){
     mostrar_mensaje("Cargando", "Obteniendo datos");
@@ -361,6 +316,8 @@ function cargar_datos(){
         console.log("EL consultar",json);
         $("#datos_tabla").empty().html(json.htmlDatosTabla);
         inicializar_tabla("tableEmpleado");
+         document.querySelector('#listCargo').innerHTML = json.listacargos;
+        $('#listCargo').selectpicker('render');
     }).fail(function(){
 
     }).always(function(){

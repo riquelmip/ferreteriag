@@ -30,26 +30,7 @@
 			$this->views->getView($this,"Empleado",$data);
 		}
 
-		public function getCargo() 
-		{
-			$htmlCargo = "";
-			$cargo = $this->model->selectCargos();
-			if(count($cargo) > 0 ){
-				for ($i=0; $i < count($cargo); $i++) { 
-
-					$htmlCargo .= '<option value="'.$cargo[$i]['idcargo'].'">'.$cargo[$i]['nombre'].'</option>';
-					
-				
-				}
-			}
-
-
-			$arrResponse = array('cargos' => $htmlCargo);
-			echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
-			die();		
-		}
-
-
+		
 
 		//Para acceder a los Moddelos
 
@@ -102,9 +83,20 @@
 			                            <td>'.$arrData[$i]['estado'].'</td>
 			                            <td>'.$arrData[$i]['opciones'].'</td>
 			                         </tr>';
-				
+
 				}
-				$arrayDatos = array('datosIndividuales' => $arrData,'htmlDatosTabla' => $htmlDatosTabla);
+
+				$htmlOptions = "";
+				$arrDataCargos = $this->model->selectCargos();
+				if(count($arrDataCargos) > 0 ){
+					for ($y=0; $y < count($arrDataCargos); $y++) { 
+						
+						$htmlOptions .= '<option value="'.$arrDataCargos[$y]['idcargo'].'">'.$arrDataCargos[$y]['nombre'].'</option>';
+						
+					}
+				}
+
+				$arrayDatos = array('datosIndividuales' => $arrData,'htmlDatosTabla' => $htmlDatosTabla, 'listacargos' => $htmlOptions);
 				echo json_encode($arrayDatos,JSON_UNESCAPED_UNICODE);
 			}
 			die();
