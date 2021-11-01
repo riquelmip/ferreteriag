@@ -3,7 +3,7 @@ var tableEmpleado;
 var divLoading = document.querySelector('#divLoading');
 document.addEventListener('DOMContentLoaded', function(){
     cargar_datos();
-    
+    llenarselect_cargos();
 
     
     $.mask.definitions['~']='[2,6,7]';
@@ -84,9 +84,6 @@ document.addEventListener('DOMContentLoaded', function(){
     
 });
 
-window.addEventListener('load', function() {
-    fntSelects();
-}, false);
 
 function fntSelects(){
 
@@ -334,7 +331,23 @@ function fntEditEmpleado(idEmpleado){
 
 }
 
+function llenarselect_cargos(){
+    mostrar_mensaje("Cargando", "Obteniendo datos");
+    $.ajax({
+        dataType: "json",
+        method: "POST",
+        url: base_url+"/Empleado/getCargo"
+    }).done(function(json) {
+        console.log("EL consultar",json);
+         document.querySelector('#listCargo').innerHTML = json.cargos;
+        $('#listCargo').selectpicker('render');
 
+    }).fail(function(){
+
+    }).always(function(){
+        Swal.close();
+    });
+}
 
 function cargar_datos(){
     mostrar_mensaje("Cargando", "Obteniendo datos");
