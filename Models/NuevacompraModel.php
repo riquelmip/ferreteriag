@@ -40,7 +40,7 @@
 		{
 			
 			//EXTRAE ROLES
-			$sql = "SELECT producto.idproducto,producto.descripcion FROM producto";
+			$sql = "SELECT * FROM producto WHERE estado != 0 and estado !=2";
 			$request = $this->select_all($sql);
 			return $request;
 		}

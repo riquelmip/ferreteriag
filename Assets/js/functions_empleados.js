@@ -256,13 +256,7 @@ function fntEditEmpleado(idEmpleado){
             {
 
                 console.log("jjjj");
-                // var ani = objData.data.anio;
-                // var n = ani.toString();
-                // var mes = objData.data.mes;
-                // var m = mes.toString();
-                // var dia = objData.data.dia;
-                // var d= dia.toString();
-                // var da =""+objData.data.anio+"-"+objData.data.mes+"-"+objData.data.dia;
+
                 var mes="";
                 var dia="";
                 if(objData.data.mes>=1 && objData.data.mes<=9){

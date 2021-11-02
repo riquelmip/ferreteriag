@@ -85,7 +85,7 @@
                                   <th>Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="datos_tabla">
                             </tbody>
                           </table>
                         </div>
