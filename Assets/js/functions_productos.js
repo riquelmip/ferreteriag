@@ -224,6 +224,7 @@ function fntInputFile(){
                                 document.querySelector("#"+parentId+" .btnDeleteImage").setAttribute("imgname",objData.imgname);
                                 document.querySelector("#"+parentId+" .btnUploadfile").classList.add("notblock");
                                 document.querySelector("#"+parentId+" .btnDeleteImage").classList.remove("notblock");
+                                tableProductos.api().ajax.reload();
                             }else{
                                 swal("Error", objData.msg , "error");
                             }
