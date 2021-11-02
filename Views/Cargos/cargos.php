@@ -25,7 +25,7 @@
                     <table class="table table-hover table-bordered" id="tableCargo">
                       <thead>
                         <tr>
-                          <th>Id</th>
+                        
                           <th>Nombre</th>
                           <th>Acciones</th>
                         </tr>

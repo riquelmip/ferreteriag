@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function(){
             "dataSrc":""
         },
         "columns":[
-            {"data":"idcargo"},
+            
             {"data":"nombre"},
             {"data":"opciones"}
         ],
