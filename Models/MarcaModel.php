@@ -69,35 +69,24 @@
 		}
 
         public function updateEstadoMarca(int $idmarca, int $estado){
-			$this->intIdmarca = $idmarca;
+
+        	$this->intIdmarca = $idmarca;
 			$this->intmarcaEstado = $estado;
+
+        	$sql = "SELECT * FROM producto WHERE idmarca = $this->intIdmarca";
+			$request = $this->select_all($sql);
+
+			if(empty($request)){
 				$sql = "UPDATE marca SET estado = ? WHERE idmarca = $this->intIdmarca ";
 				$arrData = array($this->intmarcaEstado);
 				$request = $this->update($sql,$arrData);
+			}else{
+				$request="exist";
+			}
 			
-		    return $request;			
+			return $request;			
+		    
 		}
 
-		public function deleteRol(int $idrol)
-		{
-			$this->intIdrol = $idrol;
-			$sql = "SELECT * FROM usuario WHERE rolid = $this->intIdrol";
-			$request = $this->select_all($sql);
-			if(empty($request))
-			{
-				$sql = "UPDATE rol SET estado = ? WHERE idrol = $this->intIdrol ";
-				$arrData = array(0);
-				$request = $this->update($sql,$arrData);
-				if($request)
-				{
-					$request = 'ok';	
-				}else{
-					$request = 'error';
-				}
-			}else{
-				$request = 'exist';
-			}
-			return $request;
-		}
 	}
  ?>

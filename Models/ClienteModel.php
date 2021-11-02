@@ -6,6 +6,7 @@
 		public $strDui;
 		public $strNombre;
 		public $strApellido;
+		public $strCliente;
 	    public $intEstado;
 
 		public function __construct()
@@ -16,7 +17,7 @@
 		public function selectClientes(){
 			
 			//EXTRAE CLIENTES
-			$sql = "SELECT c.idcliente, c.dui, CONCAT(c.nombre,' ',c.apellido) as `nombre` FROM cliente as c WHERE estado = 1";
+			$sql = "SELECT c.idcliente, c.dui, CONCAT(c.nombre,' ',c.apellido) as `nombre`,c.telefono FROM cliente as c WHERE estado = 1";
 			$request = $this->select_all($sql);
 			return $request;
 		}
@@ -30,12 +31,13 @@
 			return $request;
 		}
 
-		public function insertCliente(string $dui, string $nombre, string $apellido,int $estado){
+		public function insertCliente(string $dui, string $nombre, string $apellido, string $telefono, int $estado){
 
 			$return = "";
 			$this->strDui = $dui;
 			$this->strNombre = $nombre;
 			$this->strApellido = $apellido;
+			$this->strTelefono = $telefono;
 			$this->intEstado = $estado;
 
 			$sql = "SELECT * FROM cliente WHERE dui = '{$this->strDui}'";
@@ -43,8 +45,8 @@
 
 			if(empty($request))
 			{
-				$query_insert  = "INSERT INTO cliente(dui,nombre,apellido,estado) VALUES(?,?,?,?)";
-	        	$arrData = array($this->strDui,$this->strNombre,$this->strApellido,$this->intEstado);
+				$query_insert  = "INSERT INTO cliente(dui,nombre,apellido,estado,telefono) VALUES(?,?,?,?,?)";
+	        	$arrData = array($this->strDui,$this->strNombre,$this->strApellido,$this->intEstado,$this->strTelefono);
 	        	$request_insert = $this->insert($query_insert,$arrData);
 	        	$return = $request_insert;
 			}else{
@@ -53,19 +55,20 @@
 			return $return;
 		}	
 
-		public function updateCliente(int $idcliente, string $dui, string $nombre, string $apellido,int $estado){
+		public function updateCliente(int $idcliente, string $dui, string $nombre, string $apellido,string $telefono, int $estado){
 			$this->intIdcliente = $idcliente;
 			$this->strDui = $dui;
 			$this->strNombre = $nombre;
 			$this->strApellido = $apellido;
+			$this->strTelefono = $telefono;
 			$this->intEstado = $estado;
 
 			$sql = "SELECT * FROM cliente WHERE dui = '{$this->strDui}' and idcliente!=$this->intIdcliente";
 			$request = $this->select_all($sql);
 
 			if(empty($request)){
-				$sql = "UPDATE cliente SET dui = ?, nombre = ?, apellido = ?, estado = ? WHERE idcliente = $this->intIdcliente ";
-				$arrData = array($this->strDui,$this->strNombre,$this->strApellido,$this->intEstado);
+				$sql = "UPDATE cliente SET dui = ?, nombre = ?, apellido = ?,telefono = ?, estado = ? WHERE idcliente = $this->intIdcliente ";
+				$arrData = array($this->strDui,$this->strNombre,$this->strApellido,$this->strTelefono,$this->intEstado);
 				$request = $this->update($sql,$arrData);
 			}else{
 				$request = "exist";

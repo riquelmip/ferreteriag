@@ -33,7 +33,6 @@
 
 				$arrData = $this->model->selectClientes();
 
-
 				for ($i=0; $i < count($arrData); $i++) {
 					$btnEdit = "";
 					$btnDelete = "";
@@ -90,19 +89,20 @@
 			$strDui =  strClean($_POST['txtDui']);
 			$strNombre =  strClean($_POST['txtNombre']);
 			$strApellido =  strClean($_POST['txtApellido']);
+			$strTelefono =  strClean($_POST['txtTelefono']);
            	$intEstado = intval($_POST['intEstado']);
 
 			if($intIdcliente == 0){
 				$option = 1;
 				if ($_SESSION['permisosMod']['escribir']) {
 					//Crear
-					$request_cliente = $this->model->insertCliente($strDui,$strNombre,$strApellido,$intEstado);
+					$request_cliente = $this->model->insertCliente($strDui,$strNombre,$strApellido,$strTelefono,$intEstado);
 				}
 			}else{
 				$option = 2;
 				if ($_SESSION['permisosMod']['actualizar']) {
 				//Actualizar
-				 $request_cliente= $this->model->updateCliente($intIdcliente,$strDui,$strNombre,$strApellido,$intEstado);
+				 $request_cliente= $this->model->updateCliente($intIdcliente,$strDui,$strNombre,$strApellido,$strTelefono,$intEstado);
 				}
 			}
 

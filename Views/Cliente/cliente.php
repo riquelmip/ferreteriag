@@ -28,6 +28,7 @@
                         <tr>
                           <th>Dui</th>
                           <th>Nombre</th>
+                          <th>Teléfono</th>
                           <th>Acciones</th>
                         </tr>
                       </thead>

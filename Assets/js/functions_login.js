@@ -32,7 +32,8 @@ document.addEventListener('DOMContentLoaded', function(){
                     if (request.status == 200) {
                         console.log(request.responseText);
                         var objData = JSON.parse(request.responseText);
-
+                        //quitando el loading
+                                    divLoading.style.display = "none";
                         if(objData.estado)
                         {
                             swal("Inicio de Sesión", objData.msg ,"success");
@@ -56,18 +57,25 @@ document.addEventListener('DOMContentLoaded', function(){
                                     if (request1.status == 200) {
                                          console.log(request1.responseText);
                                         var objData1 = JSON.parse(request1.responseText);
-                                         //mostrando loading
-                                divLoading.style.display = "flex";
+                                    
                                         if(objData1.estado)
                                         {
-                                            swal("Atención!", "Intento "+contadorLogin+": " +objData1.msg, "error");
-                                           
+                                              //quitando el loading
+                                    divLoading.style.display = "none";
+                                            swal({
+                                                title: "Atención!",
+                                                text: "Intento "+contadorLogin+": " +objData1.msg,
+                                                type: "error",
+                                                //timer: 3000
+                                            }, 
+                                            function(){
+                                                    window.location.href = base_url+'/Login';
+                                            });
                                         }
                                     } else{
                                         swal("Atención!", "Error en el proceso" , "error");
                                     } //fin el on ready 2 péticion
-                                    //quitando el loading
-                                    divLoading.style.display = "none";
+                                  
                                  }
                                
                             } //fin else intentos
