@@ -137,8 +137,9 @@
 					//agregamos los botones
 					$arrData[$i]['options'] = '<div class="text-center">'.$btnAdd.'</div>';
 					$htmlDatosTabla.='<tr>
-			                            <td>'.$arrData[$i]['idproducto'].'</td>
+			                            <td>'.$arrData[$i]['codigobarra'].'</td>
 			                            <td>'.$arrData[$i]['descripcion'].'</td>
+										<td>'.$arrData[$i]['stock'].'</td>
 			                            <td>'.$arrData[$i]['options'].'</td>
 			                         </tr>';
 				

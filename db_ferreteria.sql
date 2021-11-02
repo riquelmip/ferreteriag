@@ -1,800 +1,412 @@
--- phpMyAdmin SQL Dump
--- version 5.1.1
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 01-11-2021 a las 21:36:44
--- Versión del servidor: 10.4.21-MariaDB
--- Versión de PHP: 8.0.12
+/*
+ Navicat Premium Data Transfer
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+ Source Server         : mañana
+ Source Server Type    : MySQL
+ Source Server Version : 100411
+ Source Host           : localhost:3306
+ Source Schema         : db_ferreteria
 
+ Target Server Type    : MySQL
+ Target Server Version : 100411
+ File Encoding         : 65001
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+ Date: 02/11/2021 16:15:33
+*/
 
---
--- Base de datos: `db_ferreteria`
---
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Table structure for cargo
+-- ----------------------------
+DROP TABLE IF EXISTS `cargo`;
+CREATE TABLE `cargo`  (
+  `idcargo` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`idcargo`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
---
--- Estructura de tabla para la tabla `cargo`
---
+-- ----------------------------
+-- Records of cargo
+-- ----------------------------
+INSERT INTO `cargo` VALUES (1, 'Jefe');
+INSERT INTO `cargo` VALUES (5, 'Vendedor');
 
-CREATE TABLE `cargo` (
-  `idcargo` bigint(20) NOT NULL,
-  `nombre` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- ----------------------------
+-- Table structure for categoria
+-- ----------------------------
+DROP TABLE IF EXISTS `categoria`;
+CREATE TABLE `categoria`  (
+  `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`idcategoria`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
---
--- Volcado de datos para la tabla `cargo`
---
+-- ----------------------------
+-- Records of categoria
+-- ----------------------------
+INSERT INTO `categoria` VALUES (5, 'Vivienda');
 
-INSERT INTO `cargo` (`idcargo`, `nombre`) VALUES
-(1, 'Jefe de Vendedores'),
-(2, 'Vendedor'),
-(3, 'Jefe'),
-(4, 'OTROO');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `categoria`
---
-
-CREATE TABLE `categoria` (
-  `idcategoria` bigint(20) NOT NULL,
-  `nombre` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `categoria`
---
-
-INSERT INTO `categoria` (`idcategoria`, `nombre`) VALUES
-(2, 'CONSTRUCCION'),
-(3, 'CARPINTERIA'),
-(4, 'NUEVAA');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `cliente`
---
-
-CREATE TABLE `cliente` (
-  `idcliente` bigint(20) NOT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `apellido` varchar(100) NOT NULL,
-  `dui` varchar(10) NOT NULL,
+-- ----------------------------
+-- Table structure for cliente
+-- ----------------------------
+DROP TABLE IF EXISTS `cliente`;
+CREATE TABLE `cliente`  (
+  `idcliente` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `apellido` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `dui` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `estado` tinyint(4) NOT NULL,
-  `telefono` varchar(9) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `telefono` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`idcliente`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
---
--- Volcado de datos para la tabla `cliente`
---
+-- ----------------------------
+-- Records of cliente
+-- ----------------------------
+INSERT INTO `cliente` VALUES (5, 'Maria Carmen', 'Auxiliadora del Carmen', '01667222-3', 1, '7772-7777');
 
-INSERT INTO `cliente` (`idcliente`, `nombre`, `apellido`, `dui`, `estado`, `telefono`) VALUES
-(1, 'William Antonio', 'Del Cid Mejia', '01667216-6', 0, ''),
-(2, 'aerg', 'a', '13424523-4', 1, ''),
-(3, 'aet', 'at', '35353535-3', 1, ''),
-(4, 'Juann', 'Campos', '00909090-9', 1, '');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `compra`
---
-
-CREATE TABLE `compra` (
-  `idcompra` bigint(20) NOT NULL,
+-- ----------------------------
+-- Table structure for compra
+-- ----------------------------
+DROP TABLE IF EXISTS `compra`;
+CREATE TABLE `compra`  (
+  `idcompra` bigint(20) NOT NULL AUTO_INCREMENT,
   `dia` int(11) NOT NULL,
   `mes` int(11) NOT NULL,
   `anio` int(11) NOT NULL,
-  `credito` double DEFAULT NULL,
+  `credito` double NULL DEFAULT NULL,
   `estado` tinyint(4) NOT NULL,
   `monto` double NOT NULL,
   `idproveedor` bigint(20) NOT NULL,
   `idusuario` bigint(20) NOT NULL,
-  `fecha_credito` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `fecha_credito` date NULL DEFAULT NULL,
+  PRIMARY KEY (`idcompra`) USING BTREE,
+  INDEX `fk_compraprov`(`idproveedor`) USING BTREE,
+  INDEX `fk_usucompra`(`idusuario`) USING BTREE,
+  CONSTRAINT `fk_compraprov` FOREIGN KEY (`idproveedor`) REFERENCES `proveedor` (`idproveedor`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_usucompra` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
---
--- Volcado de datos para la tabla `compra`
---
+-- ----------------------------
+-- Records of compra
+-- ----------------------------
+INSERT INTO `compra` VALUES (7, 2, 11, 2021, 0, 0, 111.2, 4, 1, '0000-00-00');
+INSERT INTO `compra` VALUES (8, 2, 11, 2021, 0, 0, 2.18, 4, 1, '0000-00-00');
+INSERT INTO `compra` VALUES (9, 2, 11, 2021, 0, 0, 19.5, 4, 1, '0000-00-00');
 
-INSERT INTO `compra` (`idcompra`, `dia`, `mes`, `anio`, `credito`, `estado`, `monto`, `idproveedor`, `idusuario`, `fecha_credito`) VALUES
-(1, 27, 10, 2021, 0, 0, 8, 1, 1, '0000-00-00'),
-(2, 27, 10, 2021, 1.5, 0, 2.5, 3, 1, '2021-10-27');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `detallecompra`
---
-
-CREATE TABLE `detallecompra` (
-  `iddetalle` bigint(20) NOT NULL,
+-- ----------------------------
+-- Table structure for detallecompra
+-- ----------------------------
+DROP TABLE IF EXISTS `detallecompra`;
+CREATE TABLE `detallecompra`  (
+  `iddetalle` bigint(20) NOT NULL AUTO_INCREMENT,
   `idcompra` bigint(20) NOT NULL,
   `idproducto` bigint(20) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `preciocompra` double NOT NULL,
-  `precioventa` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `precioventa` double NOT NULL,
+  PRIMARY KEY (`iddetalle`) USING BTREE,
+  INDEX `fk_compra`(`idcompra`) USING BTREE,
+  INDEX `fk_productocompra`(`idproducto`) USING BTREE,
+  CONSTRAINT `fk_compra` FOREIGN KEY (`idcompra`) REFERENCES `compra` (`idcompra`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_compraprod` FOREIGN KEY (`idproducto`) REFERENCES `producto` (`idproducto`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
---
--- Volcado de datos para la tabla `detallecompra`
---
+-- ----------------------------
+-- Records of detallecompra
+-- ----------------------------
+INSERT INTO `detallecompra` VALUES (8, 7, 5, 20, 5.56, 6.116);
+INSERT INTO `detallecompra` VALUES (9, 8, 5, 2, 1.09, 1.199);
+INSERT INTO `detallecompra` VALUES (10, 9, 6, 15, 1.3, 1.43);
 
-INSERT INTO `detallecompra` (`iddetalle`, `idcompra`, `idproducto`, `cantidad`, `preciocompra`, `precioventa`) VALUES
-(1, 1, 1, 2, 4, 4.4),
-(2, 2, 1, 1, 2.5, 2.75);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `detalleventa`
---
-
-CREATE TABLE `detalleventa` (
-  `iddetalle` bigint(20) NOT NULL,
+-- ----------------------------
+-- Table structure for detalleventa
+-- ----------------------------
+DROP TABLE IF EXISTS `detalleventa`;
+CREATE TABLE `detalleventa`  (
+  `iddetalle` bigint(20) NOT NULL AUTO_INCREMENT,
   `idventa` bigint(20) NOT NULL,
   `idproducto` bigint(20) NOT NULL,
-  `cantidad` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `cantidad` int(11) NOT NULL,
+  PRIMARY KEY (`iddetalle`) USING BTREE,
+  INDEX `fk_productoventa`(`idventa`) USING BTREE,
+  INDEX `fk_ventaprod`(`idproducto`) USING BTREE,
+  CONSTRAINT `fk_venta` FOREIGN KEY (`idventa`) REFERENCES `venta` (`idventa`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_ventaprod` FOREIGN KEY (`idproducto`) REFERENCES `producto` (`idproducto`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `empleado`
---
-
-CREATE TABLE `empleado` (
-  `idempleado` bigint(20) NOT NULL,
-  `dui` varchar(10) NOT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `apellido` varchar(50) NOT NULL,
-  `nit` varchar(15) NOT NULL,
-  `direccion` text NOT NULL,
-  `telefono` varchar(9) NOT NULL,
+-- ----------------------------
+-- Table structure for empleado
+-- ----------------------------
+DROP TABLE IF EXISTS `empleado`;
+CREATE TABLE `empleado`  (
+  `idempleado` bigint(20) NOT NULL AUTO_INCREMENT,
+  `dui` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `apellido` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nit` varchar(19) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `direccion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `telefono` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `dia` int(11) NOT NULL,
   `mes` int(11) NOT NULL,
   `anio` int(11) NOT NULL,
   `estado` int(11) NOT NULL,
-  `idcargo` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `idcargo` bigint(20) NOT NULL,
+  PRIMARY KEY (`idempleado`) USING BTREE,
+  INDEX `fk_cargo`(`idcargo`) USING BTREE,
+  CONSTRAINT `fk_cargo` FOREIGN KEY (`idcargo`) REFERENCES `cargo` (`idcargo`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
---
--- Volcado de datos para la tabla `empleado`
---
+-- ----------------------------
+-- Records of empleado
+-- ----------------------------
+INSERT INTO `empleado` VALUES (1, '01667277-6', 'Super Admin', 'Ferreteria', '0000-010103-100-1', 'Calle El matadragon', '2333-3333', 10, 12, 2003, 1, 1);
+INSERT INTO `empleado` VALUES (19, '01777373-7', 'William Antonio', 'Del Cid Mejia', '0001-012781-300-2', 'Reparto Los Naranjos, #167 Calle El Naranjo', '2273-8330', 17, 12, 2003, 2, 5);
+INSERT INTO `empleado` VALUES (20, '01777374-7', 'William Antonio', 'Del Cid Mejia', '0001-012781-300-3', 'Reparto Las Naranjas', '2333-3223', 17, 12, 2003, 1, 5);
 
-INSERT INTO `empleado` (`idempleado`, `dui`, `nombre`, `apellido`, `nit`, `direccion`, `telefono`, `dia`, `mes`, `anio`, `estado`, `idcargo`) VALUES
-(2, '13543546-3', 'Administrador', 'Ferreteriaa', '2536-245645-666', 'San Vicente', '2345-3545', 11, 12, 2003, 1, 3),
-(3, '23456234-5', 'Jorge', 'Guevara', '2345-656243-562', 'San Vicente', '7735-7357', 24, 10, 2021, 1, 2),
-(4, '35673567-3', 'Wiiliam', 'Del Cid', '3367-356345-345', 'San Salvador', '7446-4674', 13, 2, 2019, 1, 2),
-(5, '34684578-4', 'Mishel', 'Rodriguez', '3673-567777-654', 'Cojutepeque', '6646-4666', 11, 12, 2003, 1, 1),
-(6, '52562546-2', 'Alfonso', 'Aguilar', '2456-425666-666', 'San Vicente', '6783-5245', 19, 12, 2003, 1, 2),
-(7, '34345624-3', 'sdfgb', 'sdgh', '2456-245734-673', 'sdgh', '6333-5634', 11, 12, 2003, 2, 1),
-(8, '33673563-4', 'DSGH', 'HSRTH', '5356-356345-635', 'AETH', '2452-4524', 26, 12, 2003, 2, 1),
-(9, '34562562-4', 'zdfgeet', 'szfgh', '2456-234575-783', 'adgh', '6234-5623', 6, 12, 2003, 1, 2);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `imagen`
---
-
-CREATE TABLE `imagen` (
-  `id` bigint(20) NOT NULL,
+-- ----------------------------
+-- Table structure for imagen
+-- ----------------------------
+DROP TABLE IF EXISTS `imagen`;
+CREATE TABLE `imagen`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `productoid` bigint(20) NOT NULL,
-  `img` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `img` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `fk_imagenprod`(`productoid`) USING BTREE,
+  CONSTRAINT `fk_imagenprod` FOREIGN KEY (`productoid`) REFERENCES `producto` (`idproducto`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
---
--- Volcado de datos para la tabla `imagen`
---
+-- ----------------------------
+-- Records of imagen
+-- ----------------------------
+INSERT INTO `imagen` VALUES (11, 5, 'pro_d6c8f21ede12c5e32b674724b9b842d2.jpg');
+INSERT INTO `imagen` VALUES (12, 6, 'pro_3ebd4fa666ce1ebe8ea366a523fb6ea8.jpg');
 
-INSERT INTO `imagen` (`id`, `productoid`, `img`) VALUES
-(1, 1, 'pro_d7bed65b5271df000c51e70c014e6f5f.jpg'),
-(2, 1, 'pro_e94d7bac49cd843a9ae46adf9a048b5c.jpg'),
-(5, 2, 'pro_7232b98f7f868325661cf69b5e43e4d5.jpg'),
-(6, 2, 'pro_857b2ff8c1cf479aafc65b32e9031459.jpg'),
-(7, 3, 'pro_4d063a837c7bdb11e42d7367a73020ba.jpg'),
-(8, 3, 'pro_923c5d8bfcb64c9447df4bdf45c99427.jpg');
+-- ----------------------------
+-- Table structure for marca
+-- ----------------------------
+DROP TABLE IF EXISTS `marca`;
+CREATE TABLE `marca`  (
+  `idmarca` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `estado` tinyint(4) NOT NULL,
+  PRIMARY KEY (`idmarca`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of marca
+-- ----------------------------
+INSERT INTO `marca` VALUES (7, 'HERMEX', 1);
 
---
--- Estructura de tabla para la tabla `marca`
---
+-- ----------------------------
+-- Table structure for modulo
+-- ----------------------------
+DROP TABLE IF EXISTS `modulo`;
+CREATE TABLE `modulo`  (
+  `idmodulo` bigint(20) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_swedish_ci NOT NULL,
+  `descripcion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_swedish_ci NOT NULL,
+  `estado` int(11) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`idmodulo`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_swedish_ci ROW_FORMAT = Dynamic;
 
-CREATE TABLE `marca` (
-  `idmarca` bigint(20) NOT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `estado` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- ----------------------------
+-- Records of modulo
+-- ----------------------------
+INSERT INTO `modulo` VALUES (1, 'Inicio', 'Pantalla Principal', 1);
+INSERT INTO `modulo` VALUES (2, 'Usuarios', 'Usuarios del sistema', 1);
+INSERT INTO `modulo` VALUES (3, 'Roles de Usuario', 'Roles de Usuario del Sistema', 1);
+INSERT INTO `modulo` VALUES (4, 'Empleados', 'Registrar, Editar y/o Eliminar empleados', 1);
+INSERT INTO `modulo` VALUES (5, 'Compras', 'Compras', 1);
+INSERT INTO `modulo` VALUES (6, 'Inventario', 'Inventario', 1);
+INSERT INTO `modulo` VALUES (7, 'Ventas', 'Ventas', 1);
+INSERT INTO `modulo` VALUES (8, 'Clientes', 'Clientes', 1);
+INSERT INTO `modulo` VALUES (9, 'Productos', 'Productos', 1);
+INSERT INTO `modulo` VALUES (10, 'Proveedores', 'Proveedores', 1);
+INSERT INTO `modulo` VALUES (11, 'Marca', 'Marca de los productos', 1);
+INSERT INTO `modulo` VALUES (12, 'Unidad de Medida', 'Unidad de Medida', 1);
+INSERT INTO `modulo` VALUES (13, 'Categoria', 'Cateoria', 1);
+INSERT INTO `modulo` VALUES (14, 'Cargos', 'Cargos', 1);
 
---
--- Volcado de datos para la tabla `marca`
---
-
-INSERT INTO `marca` (`idmarca`, `nombre`, `estado`) VALUES
-(1, 'Sherwim', 0),
-(2, 'YALE', 0),
-(3, 'TRUPPER', 0),
-(4, 'HUNTER', 1),
-(5, 'STANLEY', 1),
-(6, 'NUEVA MARCA', 0);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `modulo`
---
-
-CREATE TABLE `modulo` (
-  `idmodulo` bigint(20) NOT NULL,
-  `titulo` varchar(50) COLLATE utf8mb4_swedish_ci NOT NULL,
-  `descripcion` text COLLATE utf8mb4_swedish_ci NOT NULL,
-  `estado` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
-
---
--- Volcado de datos para la tabla `modulo`
---
-
-INSERT INTO `modulo` (`idmodulo`, `titulo`, `descripcion`, `estado`) VALUES
-(1, 'Inicio', 'Pantalla Principal', 1),
-(2, 'Usuarios', 'Usuarios del sistema', 1),
-(3, 'Roles de Usuario', 'Roles de Usuario del Sistema', 1),
-(4, 'Empleados', 'Registrar, Editar y/o Eliminar empleados', 1),
-(5, 'Compras', 'Compras', 1),
-(6, 'Inventario', 'Inventario', 1),
-(7, 'Ventas', 'Ventas', 1),
-(8, 'Clientes', 'Clientes', 1),
-(9, 'Productos', 'Productos', 1),
-(10, 'Proveedores', 'Proveedores', 1),
-(11, 'Marca', 'Marca de los productos', 1),
-(12, 'Unidad de Medida', 'Unidad de Medida', 1),
-(13, 'Categoria', 'Cateoria', 1),
-(14, 'Cargos', 'Cargos', 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `permisos`
---
-
-CREATE TABLE `permisos` (
-  `idpermiso` bigint(20) NOT NULL,
+-- ----------------------------
+-- Table structure for permisos
+-- ----------------------------
+DROP TABLE IF EXISTS `permisos`;
+CREATE TABLE `permisos`  (
+  `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT,
   `rolid` bigint(20) NOT NULL,
   `moduloid` bigint(20) NOT NULL,
   `leer` int(11) NOT NULL DEFAULT 0,
   `escribir` int(11) NOT NULL DEFAULT 0,
   `actualizar` int(11) NOT NULL DEFAULT 0,
-  `eliminar` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+  `eliminar` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`idpermiso`) USING BTREE,
+  INDEX `rolid`(`rolid`) USING BTREE,
+  INDEX `moduloid`(`moduloid`) USING BTREE,
+  CONSTRAINT `permisos_ibfk_1` FOREIGN KEY (`rolid`) REFERENCES `rol` (`idrol`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `permisos_ibfk_2` FOREIGN KEY (`moduloid`) REFERENCES `modulo` (`idmodulo`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 307 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_swedish_ci ROW_FORMAT = Dynamic;
 
---
--- Volcado de datos para la tabla `permisos`
---
+-- ----------------------------
+-- Records of permisos
+-- ----------------------------
+INSERT INTO `permisos` VALUES (181, 1, 1, 1, 1, 1, 1);
+INSERT INTO `permisos` VALUES (182, 1, 2, 1, 1, 1, 1);
+INSERT INTO `permisos` VALUES (183, 1, 3, 1, 1, 1, 1);
+INSERT INTO `permisos` VALUES (184, 1, 4, 1, 1, 1, 1);
+INSERT INTO `permisos` VALUES (185, 1, 5, 1, 1, 1, 1);
+INSERT INTO `permisos` VALUES (186, 1, 6, 1, 1, 1, 1);
+INSERT INTO `permisos` VALUES (187, 1, 7, 1, 1, 1, 1);
+INSERT INTO `permisos` VALUES (188, 1, 8, 1, 1, 1, 1);
+INSERT INTO `permisos` VALUES (189, 1, 9, 1, 1, 1, 1);
+INSERT INTO `permisos` VALUES (190, 1, 10, 1, 1, 1, 1);
+INSERT INTO `permisos` VALUES (191, 1, 11, 1, 1, 1, 1);
+INSERT INTO `permisos` VALUES (192, 1, 12, 1, 1, 1, 1);
+INSERT INTO `permisos` VALUES (193, 1, 13, 1, 1, 1, 1);
+INSERT INTO `permisos` VALUES (194, 1, 14, 1, 1, 1, 1);
+INSERT INTO `permisos` VALUES (293, 14, 1, 1, 0, 0, 0);
+INSERT INTO `permisos` VALUES (294, 14, 2, 0, 0, 0, 0);
+INSERT INTO `permisos` VALUES (295, 14, 3, 0, 0, 0, 0);
+INSERT INTO `permisos` VALUES (296, 14, 4, 1, 0, 0, 0);
+INSERT INTO `permisos` VALUES (297, 14, 5, 1, 0, 0, 0);
+INSERT INTO `permisos` VALUES (298, 14, 6, 0, 0, 0, 0);
+INSERT INTO `permisos` VALUES (299, 14, 7, 0, 0, 0, 0);
+INSERT INTO `permisos` VALUES (300, 14, 8, 1, 0, 0, 0);
+INSERT INTO `permisos` VALUES (301, 14, 9, 1, 0, 0, 0);
+INSERT INTO `permisos` VALUES (302, 14, 10, 1, 0, 0, 0);
+INSERT INTO `permisos` VALUES (303, 14, 11, 1, 0, 0, 0);
+INSERT INTO `permisos` VALUES (304, 14, 12, 1, 0, 0, 0);
+INSERT INTO `permisos` VALUES (305, 14, 13, 1, 0, 0, 0);
+INSERT INTO `permisos` VALUES (306, 14, 14, 1, 0, 0, 0);
 
-INSERT INTO `permisos` (`idpermiso`, `rolid`, `moduloid`, `leer`, `escribir`, `actualizar`, `eliminar`) VALUES
-(103, 8, 1, 1, 1, 0, 0),
-(104, 8, 2, 1, 0, 0, 0),
-(105, 8, 3, 0, 0, 0, 0),
-(106, 8, 4, 0, 0, 0, 0),
-(107, 8, 5, 0, 0, 0, 0),
-(108, 8, 6, 0, 0, 0, 0),
-(109, 8, 7, 0, 0, 0, 0),
-(110, 8, 8, 0, 0, 0, 0),
-(111, 8, 9, 0, 0, 0, 0),
-(112, 8, 10, 0, 0, 0, 0),
-(113, 8, 11, 0, 1, 0, 0),
-(114, 8, 12, 0, 0, 0, 0),
-(115, 8, 13, 0, 0, 0, 0),
-(181, 1, 1, 1, 1, 1, 1),
-(182, 1, 2, 1, 1, 1, 1),
-(183, 1, 3, 1, 1, 1, 1),
-(184, 1, 4, 1, 1, 1, 1),
-(185, 1, 5, 1, 1, 1, 1),
-(186, 1, 6, 1, 1, 1, 1),
-(187, 1, 7, 1, 1, 1, 1),
-(188, 1, 8, 1, 1, 1, 1),
-(189, 1, 9, 1, 1, 1, 1),
-(190, 1, 10, 1, 1, 1, 1),
-(191, 1, 11, 1, 1, 1, 1),
-(192, 1, 12, 1, 1, 1, 1),
-(193, 1, 13, 1, 1, 1, 1),
-(194, 1, 14, 1, 1, 1, 1),
-(223, 12, 1, 1, 0, 0, 0),
-(224, 12, 2, 0, 0, 0, 0),
-(225, 12, 3, 0, 0, 0, 0),
-(226, 12, 4, 0, 0, 0, 0),
-(227, 12, 5, 0, 0, 0, 0),
-(228, 12, 6, 0, 0, 0, 0),
-(229, 12, 7, 1, 0, 0, 0),
-(230, 12, 8, 0, 0, 0, 0),
-(231, 12, 9, 0, 0, 0, 0),
-(232, 12, 10, 0, 0, 0, 0),
-(233, 12, 11, 0, 0, 0, 0),
-(234, 12, 12, 0, 0, 0, 0),
-(235, 12, 13, 0, 0, 0, 0),
-(236, 12, 14, 0, 0, 0, 0),
-(279, 13, 1, 1, 0, 0, 0),
-(280, 13, 2, 1, 0, 0, 0),
-(281, 13, 3, 1, 1, 1, 1),
-(282, 13, 4, 1, 0, 0, 0),
-(283, 13, 5, 0, 0, 0, 0),
-(284, 13, 6, 0, 0, 0, 0),
-(285, 13, 7, 0, 0, 0, 0),
-(286, 13, 8, 0, 0, 0, 0),
-(287, 13, 9, 0, 0, 0, 0),
-(288, 13, 10, 0, 0, 0, 0),
-(289, 13, 11, 0, 0, 0, 0),
-(290, 13, 12, 0, 0, 0, 0),
-(291, 13, 13, 0, 0, 0, 0),
-(292, 13, 14, 0, 0, 0, 0);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `producto`
---
-
-CREATE TABLE `producto` (
-  `idproducto` bigint(20) NOT NULL,
-  `codigobarra` varchar(255) NOT NULL,
-  `descripcion` varchar(255) NOT NULL,
+-- ----------------------------
+-- Table structure for producto
+-- ----------------------------
+DROP TABLE IF EXISTS `producto`;
+CREATE TABLE `producto`  (
+  `idproducto` bigint(20) NOT NULL AUTO_INCREMENT,
+  `codigobarra` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `descripcion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `estado` tinyint(4) NOT NULL,
   `stock` int(11) NOT NULL,
-  `imagen` varchar(100) NOT NULL,
+  `imagen` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `idmarca` bigint(20) NOT NULL,
   `idcategoria` bigint(20) NOT NULL,
-  `idunidadmedida` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `idunidadmedida` bigint(20) NOT NULL,
+  PRIMARY KEY (`idproducto`) USING BTREE,
+  INDEX `fk_marcaprod`(`idmarca`) USING BTREE,
+  INDEX `fk_unidadmprod`(`idunidadmedida`) USING BTREE,
+  INDEX `fk_categoria`(`idcategoria`) USING BTREE,
+  CONSTRAINT `fk_categoria` FOREIGN KEY (`idcategoria`) REFERENCES `categoria` (`idcategoria`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_marcaprod` FOREIGN KEY (`idmarca`) REFERENCES `marca` (`idmarca`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_unidadmprod` FOREIGN KEY (`idunidadmedida`) REFERENCES `unidadmedida` (`idunidad`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
---
--- Volcado de datos para la tabla `producto`
---
+-- ----------------------------
+-- Records of producto
+-- ----------------------------
+INSERT INTO `producto` VALUES (5, '00001', 'GOLPEADOR PARA PUERTA T/LEON', 1, 24, '', 7, 5, 4);
+INSERT INTO `producto` VALUES (6, '00002', 'JALADERA PARA MUEBLE', 1, 15, '', 7, 5, 4);
 
-INSERT INTO `producto` (`idproducto`, `codigobarra`, `descripcion`, `estado`, `stock`, `imagen`, `idmarca`, `idcategoria`, `idunidadmedida`) VALUES
-(1, '123357', 'REPUESTO PARA RODILLO 4\"X3/4', 1, 3, '', 3, 2, 1),
-(2, '15628', 'LLAVE AJUSTABLE 26\"', 1, 0, '', 5, 2, 1),
-(3, '12239', 'CHAPA', 1, 0, '', 2, 2, 1),
-(4, '353535', 'eraaertg', 1, 0, '', 4, 2, 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `proveedor`
---
-
-CREATE TABLE `proveedor` (
-  `idproveedor` bigint(20) NOT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `direccion` text NOT NULL,
+-- ----------------------------
+-- Table structure for proveedor
+-- ----------------------------
+DROP TABLE IF EXISTS `proveedor`;
+CREATE TABLE `proveedor`  (
+  `idproveedor` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `direccion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `estado` tinyint(4) NOT NULL,
-  `telefono` varchar(9) NOT NULL,
-  `contacto_vendedor` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `telefono` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `contacto_vendedor` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`idproveedor`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
---
--- Volcado de datos para la tabla `proveedor`
---
+-- ----------------------------
+-- Records of proveedor
+-- ----------------------------
+INSERT INTO `proveedor` VALUES (4, 'ACACESPROMAC, DE R.L.', 'SAN SALVADOR, SAN SALVADOR', 1, '2521-0000', 'Alexander Fleming');
 
-INSERT INTO `proveedor` (`idproveedor`, `nombre`, `direccion`, `estado`, `telefono`, `contacto_vendedor`) VALUES
-(1, 'ACACESPROMAC, DE R.L.', 'SAN SALVADOR, SAN SALVADOR', 1, '2345-6325', 'Juan Salinas'),
-(2, 'ALMACENES BOU, S.A.DE C.V.', 'SANTA ANA, SANTA ANA', 1, '2452-4566', 'Maria Galdamez'),
-(3, 'ADIMACON', 'Cojutepeque', 1, '2433-5355', 'Emerson Jerez');
+-- ----------------------------
+-- Table structure for rol
+-- ----------------------------
+DROP TABLE IF EXISTS `rol`;
+CREATE TABLE `rol`  (
+  `idrol` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nombrerol` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_swedish_ci NOT NULL,
+  `descripcion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_swedish_ci NOT NULL,
+  `estado` int(11) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`idrol`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_swedish_ci ROW_FORMAT = Dynamic;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of rol
+-- ----------------------------
+INSERT INTO `rol` VALUES (1, 'Administrador', 'Administrador', 1);
+INSERT INTO `rol` VALUES (14, 'Vendedor', 'Este Rol sera para los vendedores de la Ferreteria Granadeño', 1);
 
---
--- Estructura de tabla para la tabla `rol`
---
+-- ----------------------------
+-- Table structure for unidadmedida
+-- ----------------------------
+DROP TABLE IF EXISTS `unidadmedida`;
+CREATE TABLE `unidadmedida`  (
+  `idunidad` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`idunidad`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
-CREATE TABLE `rol` (
-  `idrol` bigint(20) NOT NULL,
-  `nombrerol` varchar(50) COLLATE utf8mb4_swedish_ci NOT NULL,
-  `descripcion` text COLLATE utf8mb4_swedish_ci NOT NULL,
-  `estado` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+-- ----------------------------
+-- Records of unidadmedida
+-- ----------------------------
+INSERT INTO `unidadmedida` VALUES (4, 'UNIDAD');
 
---
--- Volcado de datos para la tabla `rol`
---
-
-INSERT INTO `rol` (`idrol`, `nombrerol`, `descripcion`, `estado`) VALUES
-(1, 'Administrador', 'Administrador', 1),
-(2, 'William Antonio', 'Del Cid Mejia', 0),
-(4, 'fff1', 'ff', 0),
-(5, 'wr', 'rr', 0),
-(6, 'ddd', 'dd', 0),
-(7, 'ew', 'we', 0),
-(8, 'sfge', 'sGeee', 0),
-(9, '33', '35', 0),
-(10, 'Riquelmie', 'e', 0),
-(11, 'ghdj', 'dghj', 0),
-(12, 'Vendedor', 'Solo tiene permiso para realizar ventas', 1),
-(13, 'Otro rol', 'Otro ejemplo mas', 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `unidadmedida`
---
-
-CREATE TABLE `unidadmedida` (
-  `idunidad` bigint(20) NOT NULL,
-  `nombre` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `unidadmedida`
---
-
-INSERT INTO `unidadmedida` (`idunidad`, `nombre`) VALUES
-(1, 'Unidad'),
-(2, 'METRO 2'),
-(3, 'LIBRAS');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuario`
---
-
-CREATE TABLE `usuario` (
-  `idusuario` bigint(20) NOT NULL,
-  `email_usuario` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
-  `contrasena` varchar(75) COLLATE utf8mb4_swedish_ci NOT NULL,
-  `idempleado` bigint(20) DEFAULT NULL,
-  `token` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
+-- ----------------------------
+-- Table structure for usuario
+-- ----------------------------
+DROP TABLE IF EXISTS `usuario`;
+CREATE TABLE `usuario`  (
+  `idusuario` bigint(20) NOT NULL AUTO_INCREMENT,
+  `email_usuario` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_swedish_ci NOT NULL,
+  `contrasena` varchar(75) CHARACTER SET utf8mb4 COLLATE utf8mb4_swedish_ci NOT NULL,
+  `idempleado` bigint(20) NULL DEFAULT NULL,
+  `token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_swedish_ci NOT NULL,
   `rolid` bigint(20) NOT NULL,
-  `datecreated` datetime NOT NULL DEFAULT current_timestamp(),
-  `estado` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+  `datecreated` datetime(0) NOT NULL DEFAULT current_timestamp(),
+  `estado` int(11) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`idusuario`) USING BTREE,
+  INDEX `rolid`(`rolid`) USING BTREE,
+  INDEX `fk_empleado`(`idempleado`) USING BTREE,
+  CONSTRAINT `fk_empleado` FOREIGN KEY (`idempleado`) REFERENCES `empleado` (`idempleado`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`rolid`) REFERENCES `rol` (`idrol`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_swedish_ci ROW_FORMAT = Dynamic;
 
---
--- Volcado de datos para la tabla `usuario`
---
+-- ----------------------------
+-- Records of usuario
+-- ----------------------------
+INSERT INTO `usuario` VALUES (1, 'ferreteriagradanenio12@gmail.com', '75b3897ea5239a738b3ba1061e19e052c6181043d248d0f099d5b09a8dee8ba7', 1, '', 1, '2021-08-11 16:22:35', 1);
+INSERT INTO `usuario` VALUES (17, 'dm18019@ues.edu.sv', '75b3897ea5239a738b3ba1061e19e052c6181043d248d0f099d5b09a8dee8ba7', 20, '', 14, '2021-11-02 15:42:21', 1);
 
-INSERT INTO `usuario` (`idusuario`, `email_usuario`, `contrasena`, `idempleado`, `token`, `rolid`, `datecreated`, `estado`) VALUES
-(1, 'riccieripalacios@gmail.com', 'b0aad50a487a562d3eed26bb582740883639c1e0fbcf723683fa773beab97c54', 2, '', 1, '2021-08-11 16:22:35', 1),
-(4, 'administrador@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 2, '', 1, '2021-08-22 19:35:29', 0),
-(6, 'palaciosbarreravladimir@gmail.com', 'bcbf8c1c5632fafed951be62bfa87114e716b3b225378d92df70ea05b624d01b', 3, '', 1, '2021-10-25 15:24:18', 1),
-(7, 'williamdelcid1@gmail.com', 'b0aad50a487a562d3eed26bb582740883639c1e0fbcf723683fa773beab97c54', 4, '', 1, '2021-10-25 15:24:40', 1),
-(8, 'mishel1@gmail.com', 'b0aad50a487a562d3eed26bb582740883639c1e0fbcf723683fa773beab97c54', 5, '', 1, '2021-10-25 15:25:10', 1),
-(9, 'admin@gmail.com', '1ca2bcbe87d5b195c15bd30d36ba7bdc45cd7edd0a50761f6ca6697b07def9d1', 2, '', 1, '2021-10-27 07:30:27', 0),
-(10, 'riquelmipalacios9@gmail.com', 'b0aad50a487a562d3eed26bb582740883639c1e0fbcf723683fa773beab97c54', 6, '', 13, '2021-10-27 08:07:50', 1),
-(11, 'jorge@gmail.com', '279166092699aec9349990915da8231351fbc687f2bb146f9955ae5c20677c03', 3, '', 1, '2021-10-27 09:16:28', 1),
-(12, 'vendedor@gmail.com', '624193b980023ba0a26276f68ed5b38db834c0ff86b2203290c6985bcd46d2b6', 2, '', 12, '2021-11-01 13:54:34', 1),
-(13, 'admin@gmail.com', 'eb266fb00263776464dd87692a860911a639b4f09cd0da196ebd06fbbe6d0cf2', 2, '', 1, '2021-11-01 13:57:03', 1),
-(14, 'admin1@gmail.com', '422d9157f2229510e6fb3b1e1096e80d30e51eeea9909bb0c540678f016aae82', 2, '', 1, '2021-11-01 14:01:41', 1),
-(15, 'admi4n@gmail.com', 'eed5a543f6421c3cb82069c027d5b6e7c4c87a743595dd25ba81a3532c6767ca', 2, '', 1, '2021-11-01 14:03:10', 1),
-(16, 'admin66@gmail.com', '509cba67282670a3c7e71f0478ed1d6342b6105445b6746243779fce86801440', 2, '', 1, '2021-11-01 14:06:00', 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `venta`
---
-
-CREATE TABLE `venta` (
-  `idventa` bigint(20) NOT NULL,
+-- ----------------------------
+-- Table structure for venta
+-- ----------------------------
+DROP TABLE IF EXISTS `venta`;
+CREATE TABLE `venta`  (
+  `idventa` bigint(20) NOT NULL AUTO_INCREMENT,
   `dia` int(11) NOT NULL,
   `mes` int(11) NOT NULL,
   `anio` int(11) NOT NULL,
   `monto` double NOT NULL,
   `estado` tinyint(4) NOT NULL,
   `idcliente` bigint(20) NOT NULL,
-  `idusuario` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `idusuario` bigint(20) NOT NULL,
+  PRIMARY KEY (`idventa`) USING BTREE,
+  INDEX `fk_clienteventa`(`idcliente`) USING BTREE,
+  INDEX `fk_usuventa`(`idusuario`) USING BTREE,
+  CONSTRAINT `fk_clienteventa` FOREIGN KEY (`idcliente`) REFERENCES `cliente` (`idcliente`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_usuventa` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `cargo`
---
-ALTER TABLE `cargo`
-  ADD PRIMARY KEY (`idcargo`);
-
---
--- Indices de la tabla `categoria`
---
-ALTER TABLE `categoria`
-  ADD PRIMARY KEY (`idcategoria`);
-
---
--- Indices de la tabla `cliente`
---
-ALTER TABLE `cliente`
-  ADD PRIMARY KEY (`idcliente`);
-
---
--- Indices de la tabla `compra`
---
-ALTER TABLE `compra`
-  ADD PRIMARY KEY (`idcompra`),
-  ADD KEY `fk_compraprov` (`idproveedor`),
-  ADD KEY `fk_usucompra` (`idusuario`);
-
---
--- Indices de la tabla `detallecompra`
---
-ALTER TABLE `detallecompra`
-  ADD PRIMARY KEY (`iddetalle`),
-  ADD KEY `fk_compra` (`idcompra`),
-  ADD KEY `fk_productocompra` (`idproducto`);
-
---
--- Indices de la tabla `detalleventa`
---
-ALTER TABLE `detalleventa`
-  ADD PRIMARY KEY (`iddetalle`),
-  ADD KEY `fk_productoventa` (`idventa`),
-  ADD KEY `fk_ventaprod` (`idproducto`);
-
---
--- Indices de la tabla `empleado`
---
-ALTER TABLE `empleado`
-  ADD PRIMARY KEY (`idempleado`),
-  ADD KEY `fk_cargo` (`idcargo`);
-
---
--- Indices de la tabla `imagen`
---
-ALTER TABLE `imagen`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_imagenprod` (`productoid`);
-
---
--- Indices de la tabla `marca`
---
-ALTER TABLE `marca`
-  ADD PRIMARY KEY (`idmarca`);
-
---
--- Indices de la tabla `modulo`
---
-ALTER TABLE `modulo`
-  ADD PRIMARY KEY (`idmodulo`);
-
---
--- Indices de la tabla `permisos`
---
-ALTER TABLE `permisos`
-  ADD PRIMARY KEY (`idpermiso`),
-  ADD KEY `rolid` (`rolid`),
-  ADD KEY `moduloid` (`moduloid`);
-
---
--- Indices de la tabla `producto`
---
-ALTER TABLE `producto`
-  ADD PRIMARY KEY (`idproducto`),
-  ADD KEY `fk_marcaprod` (`idmarca`),
-  ADD KEY `fk_unidadmprod` (`idunidadmedida`),
-  ADD KEY `fk_categoria` (`idcategoria`);
-
---
--- Indices de la tabla `proveedor`
---
-ALTER TABLE `proveedor`
-  ADD PRIMARY KEY (`idproveedor`);
-
---
--- Indices de la tabla `rol`
---
-ALTER TABLE `rol`
-  ADD PRIMARY KEY (`idrol`);
-
---
--- Indices de la tabla `unidadmedida`
---
-ALTER TABLE `unidadmedida`
-  ADD PRIMARY KEY (`idunidad`);
-
---
--- Indices de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`idusuario`),
-  ADD KEY `rolid` (`rolid`),
-  ADD KEY `fk_empleado` (`idempleado`);
-
---
--- Indices de la tabla `venta`
---
-ALTER TABLE `venta`
-  ADD PRIMARY KEY (`idventa`),
-  ADD KEY `fk_clienteventa` (`idcliente`),
-  ADD KEY `fk_usuventa` (`idusuario`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `cargo`
---
-ALTER TABLE `cargo`
-  MODIFY `idcargo` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de la tabla `categoria`
---
-ALTER TABLE `categoria`
-  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de la tabla `cliente`
---
-ALTER TABLE `cliente`
-  MODIFY `idcliente` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de la tabla `compra`
---
-ALTER TABLE `compra`
-  MODIFY `idcompra` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `detallecompra`
---
-ALTER TABLE `detallecompra`
-  MODIFY `iddetalle` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `detalleventa`
---
-ALTER TABLE `detalleventa`
-  MODIFY `iddetalle` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `empleado`
---
-ALTER TABLE `empleado`
-  MODIFY `idempleado` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT de la tabla `imagen`
---
-ALTER TABLE `imagen`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT de la tabla `marca`
---
-ALTER TABLE `marca`
-  MODIFY `idmarca` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT de la tabla `modulo`
---
-ALTER TABLE `modulo`
-  MODIFY `idmodulo` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT de la tabla `permisos`
---
-ALTER TABLE `permisos`
-  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=293;
-
---
--- AUTO_INCREMENT de la tabla `producto`
---
-ALTER TABLE `producto`
-  MODIFY `idproducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de la tabla `proveedor`
---
-ALTER TABLE `proveedor`
-  MODIFY `idproveedor` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de la tabla `rol`
---
-ALTER TABLE `rol`
-  MODIFY `idrol` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT de la tabla `unidadmedida`
---
-ALTER TABLE `unidadmedida`
-  MODIFY `idunidad` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `idusuario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT de la tabla `venta`
---
-ALTER TABLE `venta`
-  MODIFY `idventa` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `compra`
---
-ALTER TABLE `compra`
-  ADD CONSTRAINT `fk_compraprov` FOREIGN KEY (`idproveedor`) REFERENCES `proveedor` (`idproveedor`),
-  ADD CONSTRAINT `fk_usucompra` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`);
-
---
--- Filtros para la tabla `detallecompra`
---
-ALTER TABLE `detallecompra`
-  ADD CONSTRAINT `fk_compra` FOREIGN KEY (`idcompra`) REFERENCES `compra` (`idcompra`),
-  ADD CONSTRAINT `fk_compraprod` FOREIGN KEY (`idproducto`) REFERENCES `producto` (`idproducto`);
-
---
--- Filtros para la tabla `detalleventa`
---
-ALTER TABLE `detalleventa`
-  ADD CONSTRAINT `fk_venta` FOREIGN KEY (`idventa`) REFERENCES `venta` (`idventa`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_ventaprod` FOREIGN KEY (`idproducto`) REFERENCES `producto` (`idproducto`);
-
---
--- Filtros para la tabla `empleado`
---
-ALTER TABLE `empleado`
-  ADD CONSTRAINT `fk_cargo` FOREIGN KEY (`idcargo`) REFERENCES `cargo` (`idcargo`);
-
---
--- Filtros para la tabla `imagen`
---
-ALTER TABLE `imagen`
-  ADD CONSTRAINT `fk_imagenprod` FOREIGN KEY (`productoid`) REFERENCES `producto` (`idproducto`);
-
---
--- Filtros para la tabla `permisos`
---
-ALTER TABLE `permisos`
-  ADD CONSTRAINT `permisos_ibfk_1` FOREIGN KEY (`rolid`) REFERENCES `rol` (`idrol`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `permisos_ibfk_2` FOREIGN KEY (`moduloid`) REFERENCES `modulo` (`idmodulo`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `producto`
---
-ALTER TABLE `producto`
-  ADD CONSTRAINT `fk_categoria` FOREIGN KEY (`idcategoria`) REFERENCES `categoria` (`idcategoria`),
-  ADD CONSTRAINT `fk_marcaprod` FOREIGN KEY (`idmarca`) REFERENCES `marca` (`idmarca`),
-  ADD CONSTRAINT `fk_unidadmprod` FOREIGN KEY (`idunidadmedida`) REFERENCES `unidadmedida` (`idunidad`);
-
---
--- Filtros para la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD CONSTRAINT `fk_empleado` FOREIGN KEY (`idempleado`) REFERENCES `empleado` (`idempleado`),
-  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`rolid`) REFERENCES `rol` (`idrol`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `venta`
---
-ALTER TABLE `venta`
-  ADD CONSTRAINT `fk_clienteventa` FOREIGN KEY (`idcliente`) REFERENCES `cliente` (`idcliente`),
-  ADD CONSTRAINT `fk_usuventa` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+SET FOREIGN_KEY_CHECKS = 1;

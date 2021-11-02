@@ -25,7 +25,7 @@
                     <table class="table table-hover table-bordered" id="tableCategoria">
                       <thead>
                         <tr>
-                          <th>ID</th>
+                         
                           <th>Nombre</th>
                           <th>Acciones</th>
                         </tr>

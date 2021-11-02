@@ -223,8 +223,9 @@ function inicializar_tabla(tabla){
             }
         },
         "columns":[
-            {"data":"idproducto"},
+            {"data":"codigobarra"},
             {"data":"descripcion"},
+            {"data":"stock"},
             {"data":"options"}
         ],
        'dom': 'lBfrtip',
