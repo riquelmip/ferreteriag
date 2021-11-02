@@ -288,8 +288,13 @@ function fntEditEmpleado(idEmpleado){
             document.querySelector('#txtTelefono').value=objData.data.telefono;
              document.querySelector('#listaEstado').value=objData.data.estado;
             document.querySelector("#txtFecha").value = da;
+
             document.querySelector('#listCargo').value=objData.data.idcargo;
+
+            $('#listCargo').selectpicker('refresh');
+
               $('#listCargo').selectpicker('render');
+
 
                 $('#modalFormEmpleado').modal('show');
             }else{
@@ -314,8 +319,10 @@ function cargar_datos(){
         console.log("EL consultar",json);
         $("#datos_tabla").empty().html(json.htmlDatosTabla);
         inicializar_tabla("tableEmpleado");
+        
          document.querySelector('#listCargo').innerHTML = json.listacargos;
-        $('#listCargo').selectpicker('render');
+         $('#listCargo').selectpicker('render');
+         $('#listCargo').selectpicker('refresh');
 
     }).fail(function(){
 
