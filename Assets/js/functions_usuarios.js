@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 let intTipousuario = document.querySelector('#listRolid').value;
                 let intStatus = document.querySelector("#listEstado").value;
                 var mensaje =  document.getElementById('msje');
-                var btn =  document.getElementById('btnText');
+                
 
                 if(strEmail == '' || intTipousuario == '' || intEmpleado == '')
                 {
@@ -75,8 +75,8 @@ document.addEventListener('DOMContentLoaded', function(){
                     return false;
                 }
 
-                if(btn.textContent=="Actualizar"){
-
+                if(mensaje.textContent==''){
+                    
                 }else if(mensaje.textContent != '* Contraseña Segura'){
 
                     swal("Atención", "Contraseña Inválida" , "warning");
@@ -148,7 +148,6 @@ document.addEventListener('DOMContentLoaded', function(){
     //ACTUALIZAR PERFIL
     if (document.querySelector("#formPerfil")) {
         
-    
 
         let formPerfil = document.querySelector("#formPerfil");
         formPerfil.onsubmit = function(e) {
@@ -429,7 +428,7 @@ function fntDelUsuario(idusuario){
 
 function openModal()
 {
-    $("#msje").text("");
+    
     rowTable="";
     document.querySelector('#idUsuario').value ="";
     document.querySelector('.modal-header').classList.replace("headerUpdate", "headerRegister");
@@ -457,11 +456,10 @@ $(function(){
 
     $("#txtPassword").on("keyup",function(){
         var pass = $("#txtPassword").val();
-        var id =  $("#idUsuario").val();
-         
+         var btn =  document.getElementById('btnText'); 
 
-        if(id!=0){
-            $("#msje").text("");
+        if(btn.textContent=="Actualizar" && pass==''){
+           $("#msje").text("");
         }else if(!len.test(pass)){
             $("#msje").text("* Digite una contraseña mínima a 8 caracteres").css("color","red");
         }else{
