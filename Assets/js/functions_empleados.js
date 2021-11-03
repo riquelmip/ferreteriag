@@ -186,6 +186,42 @@ function openModal(){
     $('#modalFormEmpleado').modal('show');
 }
 
+
+
+window.addEventListener('load', function() {
+        fntSelects();
+}, false);
+
+
+
+
+function fntSelects(){
+    if (document.querySelector('#listCargo')) {
+        let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+        let ajaxUrl = base_url+'/Empleado/getSelects';
+        request.open("GET",ajaxUrl,true);
+        request.send();
+        request.onreadystatechange = function(){
+            if(request.readyState == 4 && request.status == 200){
+                let objData = JSON.parse(request.responseText);
+    
+           
+      document.querySelector('#listCargo').innerHTML = objData.listacargos;
+        $('#listCargo').selectpicker('refresh');
+         
+         $('#listCargo').selectpicker('render');
+
+
+              
+            }
+        }
+    }
+       
+}
+
+
+
+
 // //METODO BORRAR
 function fntDelEmpleado(idempleado,estad){
 
@@ -282,13 +318,10 @@ function fntEditEmpleado(idEmpleado){
             document.querySelector('#txtTelefono').value=objData.data.telefono;
              document.querySelector('#listaEstado').value=objData.data.estado;
             document.querySelector("#txtFecha").value = da;
-
             document.querySelector('#listCargo').value=objData.data.idcargo;
-
             $('#listCargo').selectpicker('refresh');
 
               $('#listCargo').selectpicker('render');
-
 
                 $('#modalFormEmpleado').modal('show');
             }else{
@@ -313,11 +346,7 @@ function cargar_datos(){
         console.log("EL consultar",json);
         $("#datos_tabla").empty().html(json.htmlDatosTabla);
         inicializar_tabla("tableEmpleado");
-        
-         document.querySelector('#listCargo').innerHTML = json.listacargos;
-         $('#listCargo').selectpicker('render');
-         $('#listCargo').selectpicker('refresh');
-
+   
     }).fail(function(){
 
     }).always(function(){

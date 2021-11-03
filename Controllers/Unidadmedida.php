@@ -121,6 +121,44 @@
 			die();
 		}
 
+		public function setUnidadProd(){
+			
+			
+			$strUnidad =  strClean($_POST['txtNombre']);
+
+			
+				if ($_SESSION['permisosMod']['escribir']) {
+				//Crear
+				$request_unidad = $this->model->insertunidad($strUnidad);
+				}
+			
+
+			if($request_unidad > 0 )
+			{
+				//OPTIONS SELECTS DE UNIDAD DE MEDIDA
+				$htmlUnidad = "";
+				$arrDataUnidad = $this->model->selectUnidades();
+				if(count($arrDataUnidad) > 0 ){
+					for ($i=0; $i < count($arrDataUnidad); $i++) { 
+					
+						$htmlUnidad .= '<option value="'.$arrDataUnidad[$i]['idunidad'].'">'.$arrDataUnidad[$i]['nombre'].'</option>';
+						
+					}
+				}
+
+				$arrResponse = array('estado' => true, 'msg' => 'Datos guardados correctamente.', 'id' => $request_unidad, 'listaUnidades' => $htmlUnidad);
+				
+			}else if($request_unidad == 'exist'){
+				
+				$arrResponse = array('estado' => false, 'msg' => '¡Atención! La Unidad de Medida ya existe.');
+			}else{
+				$arrResponse = array("estado" => false, "msg" => 'No es posible almacenar los datos.');
+			}
+			echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+			
+			die();
+		}
+
 		public function delUnidad()
 		{
 			if($_POST){
