@@ -184,43 +184,8 @@ function openModal(){
     document.querySelector('#titleModal').innerHTML = "Nuevo Empleado";
     document.querySelector("#formEmpleado").reset();
     $('#modalFormEmpleado').modal('show');
+    $('#listCargo').selectpicker('refresh');
 }
-
-
-
-window.addEventListener('load', function() {
-        fntSelects();
-}, false);
-
-
-
-
-function fntSelects(){
-    if (document.querySelector('#listCargo')) {
-        let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-        let ajaxUrl = base_url+'/Empleado/getSelects';
-        request.open("GET",ajaxUrl,true);
-        request.send();
-        request.onreadystatechange = function(){
-            if(request.readyState == 4 && request.status == 200){
-                let objData = JSON.parse(request.responseText);
-    
-           
-      document.querySelector('#listCargo').innerHTML = objData.listacargos;
-        $('#listCargo').selectpicker('refresh');
-         
-         $('#listCargo').selectpicker('render');
-
-
-              
-            }
-        }
-    }
-       
-}
-
-
-
 
 // //METODO BORRAR
 function fntDelEmpleado(idempleado,estad){
@@ -292,7 +257,13 @@ function fntEditEmpleado(idEmpleado){
             {
 
                 console.log("jjjj");
-
+                // var ani = objData.data.anio;
+                // var n = ani.toString();
+                // var mes = objData.data.mes;
+                // var m = mes.toString();
+                // var dia = objData.data.dia;
+                // var d= dia.toString();
+                // var da =""+objData.data.anio+"-"+objData.data.mes+"-"+objData.data.dia;
                 var mes="";
                 var dia="";
                 if(objData.data.mes>=1 && objData.data.mes<=9){
@@ -320,7 +291,6 @@ function fntEditEmpleado(idEmpleado){
             document.querySelector("#txtFecha").value = da;
             document.querySelector('#listCargo').value=objData.data.idcargo;
             $('#listCargo').selectpicker('refresh');
-
               $('#listCargo').selectpicker('render');
 
                 $('#modalFormEmpleado').modal('show');
@@ -346,7 +316,10 @@ function cargar_datos(){
         console.log("EL consultar",json);
         $("#datos_tabla").empty().html(json.htmlDatosTabla);
         inicializar_tabla("tableEmpleado");
-   
+         document.querySelector('#listCargo').innerHTML = json.listacargos;
+         $('#listCargo').selectpicker('refresh');
+        $('#listCargo').selectpicker('render');
+
     }).fail(function(){
 
     }).always(function(){
