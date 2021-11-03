@@ -86,28 +86,7 @@
 
 				}
 
-				// $htmlOptions = "";
-				// $arrDataCargos = $this->model->selectCargos();
-				// if(count($arrDataCargos) > 0 ){
-				// 	for ($y=0; $y < count($arrDataCargos); $y++) { 
-						
-				// 		$htmlOptions .= '<option value="'.$arrDataCargos[$y]['idcargo'].'">'.$arrDataCargos[$y]['nombre'].'</option>';
-						
-				// 	}
-				//}
-
-				// $arrayDatos = array('datosIndividuales' => $arrData,'htmlDatosTabla' => $htmlDatosTabla, 'listacargos' => $htmlOptions);
-				$arrayDatos = array('datosIndividuales' => $arrData,'htmlDatosTabla' => $htmlDatosTabla);
-				echo json_encode($arrayDatos,JSON_UNESCAPED_UNICODE);
-			}
-			die();
-		}
-
-//FUNCION SELECTSS
-			public function getSelects()
-		{
-
-					$htmlOptions = "";
+				$htmlOptions = "";
 				$arrDataCargos = $this->model->selectCargos();
 				if(count($arrDataCargos) > 0 ){
 					for ($y=0; $y < count($arrDataCargos); $y++) { 
@@ -115,14 +94,14 @@
 						$htmlOptions .= '<option value="'.$arrDataCargos[$y]['idcargo'].'">'.$arrDataCargos[$y]['nombre'].'</option>';
 						
 					}
-					$arrResponse = array('listacargos' => $htmlOptions);
-					echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
-						
+				}
+
+				$arrayDatos = array('datosIndividuales' => $arrData,'htmlDatosTabla' => $htmlDatosTabla, 'listacargos' => $htmlOptions);
+				echo json_encode($arrayDatos,JSON_UNESCAPED_UNICODE);
 			}
 			die();
 		}
 
-			//termina
 
 		public function getEmpleado(int $idEmpleado)
 		{
