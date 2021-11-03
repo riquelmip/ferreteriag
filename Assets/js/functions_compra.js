@@ -65,7 +65,7 @@ function fntViewCadenaAv(idcadena){
 
             if(objData.status)
             {
-                document.querySelector("#titleModalV").innerHTML = "<div class='text-center'><b>"+"Compra #"+objData.data[0].idcompra+"</b></div>";
+                document.querySelector("#titleModalV").innerHTML = "<div class='text-left'><b>"+"Compra #"+objData.data[0].idcompra+"<br>"+"Proveedor: "+objData.data[0].nombre+"</b></div>";
                 var srtCadenaCoros = "";
                 for (var i = 0; i < objData.data.length; i++) {
                     srtCadenaCoros = srtCadenaCoros+ "<table class='table table-hover table-bordered'><thead><tr><th># de Compra</th><th># de Producto</th><th>Cantidad</th><th>Precio de Venta</th></tr> <tr><td>"+"000"+objData.data[i].iddetalle+"</td><td>"+"000"+objData.data[i].idproducto+"</td><td>"+objData.data[i].cantidad+"</td><td>"+objData.data[i].precioventa+"</td></tr></thead><tbody></tbody></table>";

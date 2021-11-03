@@ -127,7 +127,7 @@
 		{
 			if ($_SESSION['permisosMod']['leer']) {
 				$arrData = $this->model->selectProducto();
-
+				$htmlDatosTabla = "";
 				for ($i=0; $i < count($arrData); $i++) {
 					$btnAdd = "";
 						
@@ -136,10 +136,27 @@
 				
 					//agregamos los botones
 					$arrData[$i]['options'] = '<div class="text-center">'.$btnAdd.'</div>';
-
+					$htmlDatosTabla.='<tr>
+			                            <td>'.$arrData[$i]['codigobarra'].'</td>
+			                            <td>'.$arrData[$i]['descripcion'].'</td>
+										<td>'.$arrData[$i]['stock'].'</td>
+			                            <td>'.$arrData[$i]['options'].'</td>
+			                         </tr>';
 				
 				}
-				echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
+				$htmlProvee = "";
+				$arrDataProvee = $this->model->selectProveedores();
+				if(count($arrDataProvee) > 0 ){
+					for ($i=0; $i < count($arrDataProvee); $i++) { 
+						if($arrDataProvee[$i]['estado'] == 1 ){
+						$htmlProvee .= '<option value="'.$arrDataProvee[$i]['idproveedor'].'">'.$arrDataProvee[$i]['nombre'].'</option>';
+						
+					}
+					}
+				}
+
+				$arrayDatos = array('datosIndividuales' => $arrData,'htmlDatosTabla' => $htmlDatosTabla, 'listaprov' => $htmlProvee);
+				echo json_encode($arrayDatos,JSON_UNESCAPED_UNICODE);
 			}
 			die();
 		}

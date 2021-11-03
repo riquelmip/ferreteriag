@@ -119,6 +119,45 @@
 			die();
 		}
 
+	public function setMarcaProd(){
+			
+			
+			$strMarca =  strClean($_POST['txtNombreMarca']);
+            $intestadoMarca =  intval($_POST['marcaEstado']);
+
+			
+			
+				if ($_SESSION['permisosMod']['escribir']) {
+				//Crear
+				$request_marca = $this->model->insertMarca($strMarca,$intestadoMarca);
+				}
+			
+			if($request_marca > 0 )
+			{
+				$htmlMarca = "";
+				$arrDataMarca = $this->model->selectMarcasProd();
+				if(count($arrDataMarca) > 0 ){
+					for ($i=0; $i < count($arrDataMarca); $i++) { 
+					
+						$htmlMarca .= '<option value="'.$arrDataMarca[$i]['idmarca'].'">'.$arrDataMarca[$i]['nombre'].'</option>';
+						
+					}
+				}
+
+				$arrResponse = array('estado' => true, 'msg' => 'Datos guardados correctamente.', 'id' => $request_marca, 'listaMarcas' => $htmlMarca);
+				
+			}else if($request_marca == 'exist'){
+				
+				$arrResponse = array('estado' => false, 'msg' => '¡Atención! ya existe Un registro con esos datos.');
+			}else{
+				$arrResponse = array("estado" => false, "msg" => 'No es posible almacenar los datos.');
+			}
+			echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+			
+			die();
+		}
+
+
 		public function delMarca(int $idmarca){
 
             if ($_SESSION['permisosMod']['leer']) {

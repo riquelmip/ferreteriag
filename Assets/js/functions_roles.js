@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function(){
             "dataSrc":""
         },
         "columns":[
-            {"data":"idrol"},
+            
             {"data":"nombrerol"},
             {"data":"descripcion"},
             {"data":"estado"},

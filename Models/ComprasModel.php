@@ -21,7 +21,7 @@
 
 		public function selectCadena(int $idcadena){
 			$this->intIdCadena = $idcadena;
-			$sql = "SELECT iddetalle,idcompra,idproducto,cantidad,precioventa FROM detallecompra WHERE idcompra= $idcadena";
+			$sql = "SELECT d.iddetalle,d.idcompra,d.idproducto,d.cantidad,d.precioventa,p.nombre FROM detallecompra d inner join compra c on c.idcompra=d.idcompra inner join proveedor p on p.idproveedor=c.idproveedor  WHERE c.idcompra= $idcadena";
 			$request = $this->select_all($sql);
 			return $request;
 		}

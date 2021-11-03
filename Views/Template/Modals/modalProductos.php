@@ -35,7 +35,7 @@
                               <select class="form-control" id="listMarca" name="listMarca"  data-live-search="true"  required=""></select>
                         </div>
                         <div class="form-group col-md-1"> 
-                            <button class="btnAdd btn btn-success btn-sm" type="button">
+                            <button class="btnAddMarca btn btn-success btn-sm" onclick="fntAñadirMarca();" type="button">
                               <i class="fas fa-plus"></i>
                             </button>
                         </div>
@@ -43,7 +43,7 @@
                             <select class="form-control" id="listCategoria" name="listCategoria"  data-live-search="true" required=""></select>
                         </div>
                         <div class="form-group col-md-1"> 
-                            <button class="btnAdd btn btn-success btn-sm" type="button">
+                            <button class="btnAddCategoria btn btn-success btn-sm" onclick="fntAñadirCategoria();" type="button">
                               <i class="fas fa-plus"></i>
                             </button>
                         </div>
@@ -65,7 +65,7 @@
                              <select class="form-control" id="listUnidad" name="listUnidad" data-live-search="true" required></select>
                         </div>
                           <div class="form-group col-md-1">
-                              <button class="btnAddMarca btn btn-success btn-sm" type="button">
+                              <button class="btnAddUnidad btn btn-success btn-sm" onclick="fntAñadirUnidad();" type="button">
                                 <i class="fas fa-plus"></i>
                               </button>
                           </div>

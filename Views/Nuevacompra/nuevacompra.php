@@ -80,12 +80,13 @@
                           <table class="table table-hover table-bordered" id="tableProducto">
                             <thead>
                                 <tr>
-                                <th >ID</th>
+                                <th style="width: 100px;">Codigo de Barra</th>
                                   <th>Nombre</th>
+                                  <th>Stock</th>
                                   <th>Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="datos_tabla">
                             </tbody>
                           </table>
                         </div>

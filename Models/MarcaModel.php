@@ -20,6 +20,12 @@
 			return $request;
 		}
 
+		public function selectMarcasProd(){
+			$sql = "SELECT * FROM marca WHERE estado != 0";
+					$request = $this->select_all($sql);
+			return $request;
+		}	
+
 		public function selectMarca(int $idmarca)
 		{
 			//BUSCAR MARCA

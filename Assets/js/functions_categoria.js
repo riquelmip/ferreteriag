@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function(){
             "dataSrc":""
         },
         "columns":[
-            {"data":"idcategoria"},
+            
             {"data":"nombre"},
             {"data":"opciones"}
         ],
