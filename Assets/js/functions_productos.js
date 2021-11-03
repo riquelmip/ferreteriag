@@ -158,6 +158,10 @@ window.addEventListener('load', function() {
     //$('.carousel').carousel();
     fntInputFile();
     fntSelects();
+    $('#modalFormProductos').on('shown.bs.modal', function() {
+        $(document).off('focusin.modal');
+    });
+
 }, false);
 
 if(document.querySelector("#txtCodigo")){
@@ -466,5 +470,178 @@ function fntCarousel(){
              elementos[i].removeClass('active');
         }
     } 
+                
+}
+
+function fntAñadirMarca(){
+  
+    swal({
+      title: "Nueva Marca!",
+      text: "Ingrese el nombre de la marca a agregar:",
+      type: "input",
+      showCancelButton: true,
+      closeOnConfirm: false,
+      animation: "slide-from-top",
+      inputPlaceholder: "Ingrese la marca"
+    },
+    function(inputValue){
+     if (inputValue===false) {
+        return false;
+    }else  if (inputValue === "" || inputValue === null) {
+        swal.showInputError("Por favor, llene el campo!");
+        return false;
+      }else{
+        divLoading.style.display = "flex";
+        var datos = {"txtNombreMarca": inputValue, "marcaEstado": 1};
+        $.ajax({
+            dataType: "json",
+            method: "POST",
+            url: base_url+"/Marca/setMarcaProd",
+            data : datos,
+        }).done(function(json) {
+            console.log("EL consultar",json);
+            
+            if (json.estado) {
+                $("#listMarca").empty().html(json.listaMarcas);
+                $('#listMarca').selectpicker('refresh');
+                document.querySelector("#listMarca").value = json.id;
+                $('#listMarca').selectpicker('render');
+                
+
+                swal("Marca!", json.msg, "success");
+            }else{
+                swal("Marca!", json.msg, "error");
+            }
+
+
+        }).fail(function(){
+
+        }).always(function(){
+            divLoading.style.display = "none";
+        });
+
+      }
+      
+        
+
+    });
+
+    
+                
+}
+
+
+function fntAñadirCategoria(){
+  
+    swal({
+      title: "Nueva Categoria!",
+      text: "Ingrese el nombre de la categoria a agregar:",
+      type: "input",
+      showCancelButton: true,
+      closeOnConfirm: false,
+      animation: "slide-from-top",
+      inputPlaceholder: "Ingrese la categoria"
+    },
+    function(inputValue){
+    if (inputValue===false) {
+        return false;
+    }else  if (inputValue === "" || inputValue === null) {
+        swal.showInputError("Por favor, llene el campo!");
+        return false;
+      }else{
+        divLoading.style.display = "flex";
+        var datos = {"txtNombre": inputValue};
+        $.ajax({
+            dataType: "json",
+            method: "POST",
+            url: base_url+"/Categoria/setCategoriaProd",
+            data : datos,
+        }).done(function(json) {
+            console.log("EL consultar",json);
+            
+            if (json.estado) {
+                $("#listCategoria").empty().html(json.listaCategorias);
+                $('#listCategoria').selectpicker('refresh');
+                document.querySelector("#listCategoria").value = json.id;
+                $('#listCategoria').selectpicker('render');
+                
+
+                swal("Categorias!", json.msg, "success");
+            }else{
+                swal("Categorias!", json.msg, "error");
+            }
+
+
+        }).fail(function(){
+
+        }).always(function(){
+            divLoading.style.display = "none";
+        });
+
+      }
+      
+        
+
+    });
+
+    
+                
+}
+
+
+function fntAñadirUnidad(){
+  
+    swal({
+      title: "Nueva Unidad de Medida!",
+      text: "Ingrese el nombre de la Unidad de Medida a agregar:",
+      type: "input",
+      showCancelButton: true,
+      closeOnConfirm: false,
+      animation: "slide-from-top",
+      inputPlaceholder: "Ingrese la Unidad de Medida"
+    },
+    function(inputValue){
+    if (inputValue===false) {
+        return false;
+    }else  if (inputValue === "" || inputValue === null) {
+        swal.showInputError("Por favor, llene el campo!");
+        return false;
+      }else{
+        divLoading.style.display = "flex";
+        var datos = {"txtNombre": inputValue};
+        $.ajax({
+            dataType: "json",
+            method: "POST",
+            url: base_url+"/Unidadmedida/setUnidadProd",
+            data : datos,
+        }).done(function(json) {
+            console.log("EL consultar",json);
+            
+            if (json.estado) {
+                $("#listUnidad").empty().html(json.listaUnidades);
+                $('#listUnidad').selectpicker('refresh');
+                document.querySelector("#listUnidad").value = json.id;
+                $('#listUnidad').selectpicker('render');
+                
+
+                swal("Unidad de Medida!", json.msg, "success");
+            }else{
+                swal("Unidad de Medida!", json.msg, "error");
+            }
+
+
+        }).fail(function(){
+
+        }).always(function(){
+            divLoading.style.display = "none";
+        });
+
+      }
+      
+        
+
+    });
+
+    
                 
 }

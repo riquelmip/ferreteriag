@@ -113,6 +113,46 @@
 			die();
 		}
 
+		public function setCategoriaProd(){ //Hace la insercion y edita
+			
+		
+			$strCat =  strClean($_POST['txtNombre']);
+
+			
+				if ($_SESSION['permisosMod']['escribir']) {
+				//Crear
+				$request_cat = $this->model->insertCategoria($strCat);
+				}
+			
+
+			if($request_cat > 0 )
+			{
+				
+				//OPTIONS SELECTS DE CATEGORIA
+				$htmlCategoria = "";
+				$arrDataCategoria = $this->model->selectCategorias();
+				if(count($arrDataCategoria) > 0 ){
+					for ($i=0; $i < count($arrDataCategoria); $i++) { 
+					
+						$htmlCategoria .= '<option value="'.$arrDataCategoria[$i]['idcategoria'].'">'.$arrDataCategoria[$i]['nombre'].'</option>';
+						
+					}
+				}
+
+				$arrResponse = array('estado' => true, 'msg' => 'Datos guardados correctamente.', 'id' => $request_cat, 'listaCategorias' => $htmlCategoria);
+					
+				
+			}else if($request_cat == 'exist'){
+				
+				$arrResponse = array('estado' => false, 'msg' => '¡Atención! La categoria ya existe.');
+			}else{
+				$arrResponse = array("estado" => false, "msg" => 'No es posible almacenar los datos.');
+			}
+			echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+			
+			die();
+		}
+
 		public function delCategoria() //Elimina la categoria
 		{
 			if($_POST){
