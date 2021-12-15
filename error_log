@@ -1,0 +1,120 @@
+[15-Nov-2021 14:28:18 America/El_Salvador] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php on line 7
+[15-Nov-2021 14:28:18 America/El_Salvador] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/comuesco/ferreteriagranadeno.comues.com/Libraries/Core/Mysql.php:69) in /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php on line 10
+[15-Nov-2021 14:28:18 America/El_Salvador] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to PermisosModel::permisosModulo() must be of the type int, null given, called in /home/comuesco/ferreteriagranadeno.comues.com/Helpers/Helpers.php on line 69 and defined in /home/comuesco/ferreteriagranadeno.comues.com/Models/PermisosModel.php:53
+Stack trace:
+#0 /home/comuesco/ferreteriagranadeno.comues.com/Helpers/Helpers.php(69): PermisosModel->permisosModulo(NULL)
+#1 /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php(12): getPermisos(2)
+#2 /home/comuesco/ferreteriagranadeno.comues.com/Libraries/Core/Load.php(7): Usuarios->__construct()
+#3 /home/comuesco/ferreteriagranadeno.comues.com/index.php(30): require_once('/home/comuesco/...')
+#4 {main}
+  thrown in /home/comuesco/ferreteriagranadeno.comues.com/Models/PermisosModel.php on line 53
+[15-Nov-2021 14:28:27 America/El_Salvador] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php on line 7
+[15-Nov-2021 14:28:27 America/El_Salvador] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/comuesco/ferreteriagranadeno.comues.com/Libraries/Core/Mysql.php:69) in /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php on line 10
+[15-Nov-2021 14:28:27 America/El_Salvador] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to PermisosModel::permisosModulo() must be of the type int, null given, called in /home/comuesco/ferreteriagranadeno.comues.com/Helpers/Helpers.php on line 69 and defined in /home/comuesco/ferreteriagranadeno.comues.com/Models/PermisosModel.php:53
+Stack trace:
+#0 /home/comuesco/ferreteriagranadeno.comues.com/Helpers/Helpers.php(69): PermisosModel->permisosModulo(NULL)
+#1 /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php(12): getPermisos(2)
+#2 /home/comuesco/ferreteriagranadeno.comues.com/Libraries/Core/Load.php(7): Usuarios->__construct()
+#3 /home/comuesco/ferreteriagranadeno.comues.com/index.php(30): require_once('/home/comuesco/...')
+#4 {main}
+  thrown in /home/comuesco/ferreteriagranadeno.comues.com/Models/PermisosModel.php on line 53
+[15-Nov-2021 14:28:31 America/El_Salvador] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php on line 7
+[15-Nov-2021 14:28:31 America/El_Salvador] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/comuesco/ferreteriagranadeno.comues.com/Libraries/Core/Mysql.php:69) in /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php on line 10
+[15-Nov-2021 14:28:31 America/El_Salvador] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to PermisosModel::permisosModulo() must be of the type int, null given, called in /home/comuesco/ferreteriagranadeno.comues.com/Helpers/Helpers.php on line 69 and defined in /home/comuesco/ferreteriagranadeno.comues.com/Models/PermisosModel.php:53
+Stack trace:
+#0 /home/comuesco/ferreteriagranadeno.comues.com/Helpers/Helpers.php(69): PermisosModel->permisosModulo(NULL)
+#1 /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php(12): getPermisos(2)
+#2 /home/comuesco/ferreteriagranadeno.comues.com/Libraries/Core/Load.php(7): Usuarios->__construct()
+#3 /home/comuesco/ferreteriagranadeno.comues.com/index.php(30): require_once('/home/comuesco/...')
+#4 {main}
+  thrown in /home/comuesco/ferreteriagranadeno.comues.com/Models/PermisosModel.php on line 53
+[15-Nov-2021 14:28:34 America/El_Salvador] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php on line 7
+[15-Nov-2021 14:28:34 America/El_Salvador] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/comuesco/ferreteriagranadeno.comues.com/Libraries/Core/Mysql.php:69) in /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php on line 10
+[15-Nov-2021 14:28:34 America/El_Salvador] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to PermisosModel::permisosModulo() must be of the type int, null given, called in /home/comuesco/ferreteriagranadeno.comues.com/Helpers/Helpers.php on line 69 and defined in /home/comuesco/ferreteriagranadeno.comues.com/Models/PermisosModel.php:53
+Stack trace:
+#0 /home/comuesco/ferreteriagranadeno.comues.com/Helpers/Helpers.php(69): PermisosModel->permisosModulo(NULL)
+#1 /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php(12): getPermisos(2)
+#2 /home/comuesco/ferreteriagranadeno.comues.com/Libraries/Core/Load.php(7): Usuarios->__construct()
+#3 /home/comuesco/ferreteriagranadeno.comues.com/index.php(30): require_once('/home/comuesco/...')
+#4 {main}
+  thrown in /home/comuesco/ferreteriagranadeno.comues.com/Models/PermisosModel.php on line 53
+[15-Nov-2021 14:28:35 America/El_Salvador] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php on line 7
+[15-Nov-2021 14:28:35 America/El_Salvador] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/comuesco/ferreteriagranadeno.comues.com/Libraries/Core/Mysql.php:69) in /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php on line 10
+[15-Nov-2021 14:28:35 America/El_Salvador] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to PermisosModel::permisosModulo() must be of the type int, null given, called in /home/comuesco/ferreteriagranadeno.comues.com/Helpers/Helpers.php on line 69 and defined in /home/comuesco/ferreteriagranadeno.comues.com/Models/PermisosModel.php:53
+Stack trace:
+#0 /home/comuesco/ferreteriagranadeno.comues.com/Helpers/Helpers.php(69): PermisosModel->permisosModulo(NULL)
+#1 /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php(12): getPermisos(2)
+#2 /home/comuesco/ferreteriagranadeno.comues.com/Libraries/Core/Load.php(7): Usuarios->__construct()
+#3 /home/comuesco/ferreteriagranadeno.comues.com/index.php(30): require_once('/home/comuesco/...')
+#4 {main}
+  thrown in /home/comuesco/ferreteriagranadeno.comues.com/Models/PermisosModel.php on line 53
+[15-Nov-2021 14:28:36 America/El_Salvador] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php on line 7
+[15-Nov-2021 14:28:36 America/El_Salvador] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/comuesco/ferreteriagranadeno.comues.com/Libraries/Core/Mysql.php:69) in /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php on line 10
+[15-Nov-2021 14:28:36 America/El_Salvador] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to PermisosModel::permisosModulo() must be of the type int, null given, called in /home/comuesco/ferreteriagranadeno.comues.com/Helpers/Helpers.php on line 69 and defined in /home/comuesco/ferreteriagranadeno.comues.com/Models/PermisosModel.php:53
+Stack trace:
+#0 /home/comuesco/ferreteriagranadeno.comues.com/Helpers/Helpers.php(69): PermisosModel->permisosModulo(NULL)
+#1 /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php(12): getPermisos(2)
+#2 /home/comuesco/ferreteriagranadeno.comues.com/Libraries/Core/Load.php(7): Usuarios->__construct()
+#3 /home/comuesco/ferreteriagranadeno.comues.com/index.php(30): require_once('/home/comuesco/...')
+#4 {main}
+  thrown in /home/comuesco/ferreteriagranadeno.comues.com/Models/PermisosModel.php on line 53
+[15-Nov-2021 14:28:37 America/El_Salvador] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php on line 7
+[15-Nov-2021 14:28:37 America/El_Salvador] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/comuesco/ferreteriagranadeno.comues.com/Libraries/Core/Mysql.php:69) in /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php on line 10
+[15-Nov-2021 14:28:37 America/El_Salvador] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to PermisosModel::permisosModulo() must be of the type int, null given, called in /home/comuesco/ferreteriagranadeno.comues.com/Helpers/Helpers.php on line 69 and defined in /home/comuesco/ferreteriagranadeno.comues.com/Models/PermisosModel.php:53
+Stack trace:
+#0 /home/comuesco/ferreteriagranadeno.comues.com/Helpers/Helpers.php(69): PermisosModel->permisosModulo(NULL)
+#1 /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php(12): getPermisos(2)
+#2 /home/comuesco/ferreteriagranadeno.comues.com/Libraries/Core/Load.php(7): Usuarios->__construct()
+#3 /home/comuesco/ferreteriagranadeno.comues.com/index.php(30): require_once('/home/comuesco/...')
+#4 {main}
+  thrown in /home/comuesco/ferreteriagranadeno.comues.com/Models/PermisosModel.php on line 53
+[15-Nov-2021 14:28:38 America/El_Salvador] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php on line 7
+[15-Nov-2021 14:28:38 America/El_Salvador] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/comuesco/ferreteriagranadeno.comues.com/Libraries/Core/Mysql.php:69) in /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php on line 10
+[15-Nov-2021 14:28:38 America/El_Salvador] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to PermisosModel::permisosModulo() must be of the type int, null given, called in /home/comuesco/ferreteriagranadeno.comues.com/Helpers/Helpers.php on line 69 and defined in /home/comuesco/ferreteriagranadeno.comues.com/Models/PermisosModel.php:53
+Stack trace:
+#0 /home/comuesco/ferreteriagranadeno.comues.com/Helpers/Helpers.php(69): PermisosModel->permisosModulo(NULL)
+#1 /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php(12): getPermisos(2)
+#2 /home/comuesco/ferreteriagranadeno.comues.com/Libraries/Core/Load.php(7): Usuarios->__construct()
+#3 /home/comuesco/ferreteriagranadeno.comues.com/index.php(30): require_once('/home/comuesco/...')
+#4 {main}
+  thrown in /home/comuesco/ferreteriagranadeno.comues.com/Models/PermisosModel.php on line 53
+[15-Nov-2021 14:28:39 America/El_Salvador] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php on line 7
+[15-Nov-2021 14:28:39 America/El_Salvador] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/comuesco/ferreteriagranadeno.comues.com/Libraries/Core/Mysql.php:69) in /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php on line 10
+[15-Nov-2021 14:28:39 America/El_Salvador] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to PermisosModel::permisosModulo() must be of the type int, null given, called in /home/comuesco/ferreteriagranadeno.comues.com/Helpers/Helpers.php on line 69 and defined in /home/comuesco/ferreteriagranadeno.comues.com/Models/PermisosModel.php:53
+Stack trace:
+#0 /home/comuesco/ferreteriagranadeno.comues.com/Helpers/Helpers.php(69): PermisosModel->permisosModulo(NULL)
+#1 /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php(12): getPermisos(2)
+#2 /home/comuesco/ferreteriagranadeno.comues.com/Libraries/Core/Load.php(7): Usuarios->__construct()
+#3 /home/comuesco/ferreteriagranadeno.comues.com/index.php(30): require_once('/home/comuesco/...')
+#4 {main}
+  thrown in /home/comuesco/ferreteriagranadeno.comues.com/Models/PermisosModel.php on line 53
+[15-Nov-2021 14:28:43 America/El_Salvador] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php on line 7
+[15-Nov-2021 14:28:43 America/El_Salvador] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/comuesco/ferreteriagranadeno.comues.com/Libraries/Core/Mysql.php:69) in /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php on line 10
+[15-Nov-2021 14:28:43 America/El_Salvador] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to PermisosModel::permisosModulo() must be of the type int, null given, called in /home/comuesco/ferreteriagranadeno.comues.com/Helpers/Helpers.php on line 69 and defined in /home/comuesco/ferreteriagranadeno.comues.com/Models/PermisosModel.php:53
+Stack trace:
+#0 /home/comuesco/ferreteriagranadeno.comues.com/Helpers/Helpers.php(69): PermisosModel->permisosModulo(NULL)
+#1 /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php(12): getPermisos(2)
+#2 /home/comuesco/ferreteriagranadeno.comues.com/Libraries/Core/Load.php(7): Usuarios->__construct()
+#3 /home/comuesco/ferreteriagranadeno.comues.com/index.php(30): require_once('/home/comuesco/...')
+#4 {main}
+  thrown in /home/comuesco/ferreteriagranadeno.comues.com/Models/PermisosModel.php on line 53
+[15-Nov-2021 14:28:52 America/El_Salvador] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php on line 7
+[15-Nov-2021 14:28:52 America/El_Salvador] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/comuesco/ferreteriagranadeno.comues.com/Libraries/Core/Mysql.php:69) in /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php on line 10
+[15-Nov-2021 14:28:53 America/El_Salvador] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to PermisosModel::permisosModulo() must be of the type int, null given, called in /home/comuesco/ferreteriagranadeno.comues.com/Helpers/Helpers.php on line 69 and defined in /home/comuesco/ferreteriagranadeno.comues.com/Models/PermisosModel.php:53
+Stack trace:
+#0 /home/comuesco/ferreteriagranadeno.comues.com/Helpers/Helpers.php(69): PermisosModel->permisosModulo(NULL)
+#1 /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php(12): getPermisos(2)
+#2 /home/comuesco/ferreteriagranadeno.comues.com/Libraries/Core/Load.php(7): Usuarios->__construct()
+#3 /home/comuesco/ferreteriagranadeno.comues.com/index.php(30): require_once('/home/comuesco/...')
+#4 {main}
+  thrown in /home/comuesco/ferreteriagranadeno.comues.com/Models/PermisosModel.php on line 53
+[15-Nov-2021 14:30:02 America/El_Salvador] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php on line 7
+[15-Nov-2021 14:30:02 America/El_Salvador] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/comuesco/ferreteriagranadeno.comues.com/Libraries/Core/Mysql.php:69) in /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php on line 10
+[15-Nov-2021 14:30:02 America/El_Salvador] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to PermisosModel::permisosModulo() must be of the type int, null given, called in /home/comuesco/ferreteriagranadeno.comues.com/Helpers/Helpers.php on line 69 and defined in /home/comuesco/ferreteriagranadeno.comues.com/Models/PermisosModel.php:53
+Stack trace:
+#0 /home/comuesco/ferreteriagranadeno.comues.com/Helpers/Helpers.php(69): PermisosModel->permisosModulo(NULL)
+#1 /home/comuesco/ferreteriagranadeno.comues.com/Controllers/Usuarios.php(12): getPermisos(2)
+#2 /home/comuesco/ferreteriagranadeno.comues.com/Libraries/Core/Load.php(7): Usuarios->__construct()
+#3 /home/comuesco/ferreteriagranadeno.comues.com/index.php(30): require_once('/home/comuesco/...')
+#4 {main}
+  thrown in /home/comuesco/ferreteriagranadeno.comues.com/Models/PermisosModel.php on line 53
