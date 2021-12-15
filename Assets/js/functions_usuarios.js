@@ -67,15 +67,20 @@ document.addEventListener('DOMContentLoaded', function(){
                 let intTipousuario = document.querySelector('#listRolid').value;
                 let intStatus = document.querySelector("#listEstado").value;
                 var mensaje =  document.getElementById('msje');
+                var btn =  document.getElementById('btnText');
+                
+                if(btn.textContent=="Guardar"){
+                    if(strEmail == '' || intTipousuario == '' || intEmpleado == '' || strPassword == ''){
+                        swal("Atención", "Todos los campos son obligatorios." , "error");
+                        return false;
+                    }
+                }else if(strEmail == '' || intTipousuario == '' || intEmpleado == ''){
+                        swal("Atención", "Todos los campos son obligatorios." , "error");
+                        return false;
+                    }
                 
 
-                if(strEmail == '' || intTipousuario == '' || intEmpleado == '')
-                {
-                    swal("Atención", "Todos los campos son obligatorios." , "error");
-                    return false;
-                }
-
-                if(mensaje.textContent==''){
+                if(mensaje.textContent=='' ){
                     
                 }else if(mensaje.textContent != '* Contraseña Segura'){
 
@@ -428,7 +433,7 @@ function fntDelUsuario(idusuario){
 
 function openModal()
 {
-    
+    $("#msje").text("");
     rowTable="";
     document.querySelector('#idUsuario').value ="";
     document.querySelector('.modal-header').classList.replace("headerUpdate", "headerRegister");
