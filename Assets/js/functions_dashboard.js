@@ -29,6 +29,68 @@ document.addEventListener('DOMContentLoaded', function(){
     fntGraficoBarra();
 });
 
+function funcionvendidos(){
+
+      mostrar_mensaje("Cargando", "Obteniendo datos");
+  var datos = {"consultar_info":"si_consultala"}
+  $.ajax({
+      dataType: "json",
+      method: "POST",
+      url: base_url+'/Dashboard/getDisPuesto/',
+      data : datos,
+  }).done(function(json) {
+       
+       //[23,34]
+
+
+       var femenino=parseInt(json.femenino);
+
+    
+
+         let optionsVisitorsProfile  = {
+          series: [femenino,masculino],
+          labels: ["Femenino","Masculino"],
+          colors: ['#ea553d','#3bc3e9'],
+          chart: {
+              type: 'donut',
+              width: '100%',
+              height:'300px'
+          },
+          legend: {
+              position: 'bottom'
+          },
+          plotOptions: {
+              pie: {
+                  donut: {
+                      size: '30%'
+                  }
+              }
+          }
+      }
+     $('#chart-visitors-profile').empty();
+      var chartVisitorsProfile = new ApexCharts(document.getElementById('chart-visitors-profile'), optionsVisitorsProfile)
+      chartVisitorsProfile.render();
+
+       $("#hombre").empty();
+$("#hombre").append(masculino);
+
+$("#mujer").empty();
+$("#mujer").append(femenino);
+
+  }).fail(function(){
+
+  }).always(function(){
+      Swal.close();
+  });
+  
+  
+
+     
+     };
+
+
+
+
 function fntGraficoPastel(){
 
 google.charts.load('current', {'packages':['corechart']});
