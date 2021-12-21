@@ -26,6 +26,20 @@
 			$this->views->getView($this,"consultas",$data);
 		}
 
+        public function Reportes()
+		{
+			//si no tiene permiso de usuarios, lo rediccionara
+		if (empty($_SESSION['permisosMod']['leer'])) {
+			header('location: '.base_url().'/dashboard');
+		}
+		$data['page_id'] = 3;
+		$data['page_tag'] = "Productos sin stock";
+		$data['page_name'] = "consulta_1";
+		$data['page_title'] = "Parámetros: ";
+		 $data['page_functions_js'] = "functions_consulta.js";
+			$this->views->getView($this,"ferreteria",$data);
+		}
+
 		public function getRoles()
 		{
 			if ($_SESSION['permisosMod']['leer']) {

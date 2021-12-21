@@ -32,36 +32,6 @@ document.addEventListener('DOMContentLoaded', function(){
 
 $('#tableConsul').DataTable();
 
-function prueba(){
-
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'AAAA'],
-          ['XXX1',     11],
-          ['XXX2',      8],
-          ['XXX3',  6],
-          ['XXX4', 2],
-          ['XXX5',    7]
-        ]);
-
-        var options = {
-          title: 'Titulo',
-          is3D: true,
-        };
-        var chart_area = document.getElementById('grafico');
-        var chart = new google.visualization.LineChart(chart_area);
-    
-        var chart = new google.visualization.PieChart(document.getElementById('grafico'));
-        google.visualization.events.addListener(chart, 'ready', function(){
-          chart_area.innerHTML = '<img src="' + chart.getImageURI() + '" class="img-responsive">';
-         });
-         chart.draw(data, options);
-      }
-}
 
 function pruebin() {
      google.charts.load("current", {packages:["corechart"]});
@@ -87,44 +57,49 @@ function pruebin() {
 }
 
 
- $('#create_pdf').click(function(){
-   document.getElementById('testing').classList.remove("ax");
- document.getElementById('graficoo').style.display = 'none';
+//  $('#create_pdf').click(function(){
+//    document.getElementById('testing').classList.remove("ax");
+//  document.getElementById('graficoo').style.display = 'none';
 
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+//       google.charts.load('current', {'packages':['corechart']});
+//       google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
+//       function drawChart() {
 
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'AAAA'],
-          ['XXX1',     11],
-          ['XXX2',      8],
-          ['XXX3',  6],
-          ['XXX4', 2],
-          ['XXX5',    7]
-        ]);
+//         var data = google.visualization.arrayToDataTable([
+//           ['Task', 'AAAA'],
+//           ['XXX1',     11],
+//           ['XXX2',      8],
+//           ['XXX3',  6],
+//           ['XXX4', 2],
+//           ['XXX5',    7]
+//         ]);
 
-        var options = {
-          title: 'Titulo de el grafico de ejemplo ',
-          is3D: true,
-        };
-        var chart_area = document.getElementById('grafico');
-        var chart = new google.visualization.LineChart(chart_area);
+//         var options = {
+//           title: 'Titulo de el grafico de ejemplo ',
+//           is3D: true,
+//         };
+//         var chart_area = document.getElementById('grafico');
+//         var chart = new google.visualization.LineChart(chart_area);
     
-        var chart = new google.visualization.PieChart(document.getElementById('grafico'));
-        google.visualization.events.addListener(chart, 'ready', function(){
-          chart_area.innerHTML = '<img src="' + chart.getImageURI() + '" class="img-responsive">';
-         });
-         chart.draw(data, options);
-           $('#hidden_html').val($(chart_area).html());
-  //para cuando se filtre en el combo mandar los parametros tambien
-$('#parametros').val('filtralo');
+//         var chart = new google.visualization.PieChart(document.getElementById('grafico'));
+//         google.visualization.events.addListener(chart, 'ready', function(){
+//           chart_area.innerHTML = '<img src="' + chart.getImageURI() + '" class="img-responsive">';
+//          });
+//          chart.draw(data, options);
+//            $('#hidden_html').val($(chart_area).html());
+//   //para cuando se filtre en el combo mandar los parametros tambien
+// $('#parametros').val('filtralo');
+//   $('#make_pdf').submit();
+//       }
+
+//  });
+
+ $('#create_pdf').click(function(){
+  // console.log("entro");
+  $('#hidden_html').val($('#testing').html());
   $('#make_pdf').submit();
-      }
-
  });
-
 
  $('#noTabla').click(function(){
   var llave=document.getElementById('llave').value;
