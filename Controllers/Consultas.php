@@ -26,20 +26,11 @@
 			$this->views->getView($this,"consultas",$data);
 		}
 
-		public function getValores()
+		public function getRoles()
 		{
 			if ($_SESSION['permisosMod']['leer']) {
-				
-			
-					$arrData = $this->model->selectConsulta();
-					if(empty($arrData))
-					{
-						$arrResponse = array('estado' => false, 'msg' => 'Datos no encontrados.');
-					}else{
-						$arrResponse = array('estado' => true, 'data' => $arrData);
-					}
-					echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
-				
+				$arrData = $this->model->selectConsulta();
+				echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
 			}
 			die();
 		}

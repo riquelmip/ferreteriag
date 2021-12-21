@@ -51,9 +51,7 @@
                         <tr>
                           <th>ID</th>
                           <th>Nombres</th>
-                          <th>Apellidos</th>
-                          <th>Email</th>
-                          <th>Teléfono</th>
+
                          
                         </tr>
                       </thead>

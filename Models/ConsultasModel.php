@@ -13,7 +13,7 @@
 		public function selectConsulta()
 		{
 
-			$sql = "SELECT * FROM rol where idrol>3 and idrol<10 order by idrol";
+			$sql = "SELECT p.descripcion,SUM(dv.cantidad) as canti from detalleventa dv INNER JOIN producto p on p.idproducto=dv.idproducto GROUP BY p.descripcion order by SUM(dv.cantidad) desc LIMIT 10";
 			$request = $this->select_all($sql);
 			return $request;
 		}
