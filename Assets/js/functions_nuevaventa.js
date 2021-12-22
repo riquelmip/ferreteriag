@@ -298,8 +298,8 @@ document.addEventListener('DOMContentLoaded', function(){
                                 confirmButtonText: 'Ok!'
                               }, 
                               function(){
-                                window.open(base_url+"/Nuevaventa/imprimirticket/"+objData.idventa);
-                                   window.location.href = base_url+"/Ventas";
+                                window.open(base_url+"/Consultas/imprimirticket/"+objData.idventa);
+                                   //window.location.href = base_url+"/Ventas";
 
                               });
                            

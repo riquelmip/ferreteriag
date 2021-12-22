@@ -180,7 +180,7 @@
 						$data['total'] = $arrData[0]['monto'];
 						$data['cliente'] = $arrData[0]['cliente'];
 						$data['vendedor'] = $_SESSION['userData']['nombre'].' '.$_SESSION['userData']['apellido'] ;
-						$this->views->getViewSinController(base_url()."/Libraries/tcpdf/pdf/ticket.php",$data);
+						$this->views->getView(data);
 					}
 					echo json_encode($data,JSON_UNESCAPED_UNICODE);
 				}
