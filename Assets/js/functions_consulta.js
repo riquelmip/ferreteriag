@@ -76,7 +76,7 @@ function pruebin() {
         ]);
 
         var options = {
-          title: '',
+          title: 'My Daily Activities',
           is3D: true,
         };
         var chart_area = document.getElementById('graficoo');
