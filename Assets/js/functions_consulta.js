@@ -97,7 +97,7 @@ function pruebin() {
 
  // $('#create_pdf').click(function(){
  //  // console.log("entro");
- //  $('#hidden_html').val($('#testing').html());
+ //  // $('#hidden_html').val($('#testing').html());
  //  $('#make_pdf').submit();
  // });
 
