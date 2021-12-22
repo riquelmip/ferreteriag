@@ -37,7 +37,7 @@
 		$data['page_name'] = "consulta_1";
 		$data['page_title'] = "Parámetros: ";
 		 $data['page_functions_js'] = "functions_consulta.js";
-			$this->views->getView($this,"ferreteria",$data);
+			$this->views->getView($this,"reportes/ferreteria",$data);
 		}
 
 		 public function ProductoMenosVendido()
@@ -50,7 +50,7 @@
 		$data['page_tag'] = "Productos sin stock";
 		$data['page_name'] = "consulta_1";
 		$data['page_title'] = "Parámetros: ";
-			$this->views->getView($this,"productomenosvendido",$data);
+			$this->views->getView($this,"reportes/productomenosvendido",$data);
 		}
 
 		public function getRoles()

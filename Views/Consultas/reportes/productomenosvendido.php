@@ -3,21 +3,7 @@ require('Views/Consultas/fpdf/fpdf.php');
 date_default_timezone_set('America/El_Salvador');
 class PDF extends FPDF
 {
-// Cabecera de página
-//Numeros de paginas
-//SetTextColor(255,255,255);es RGB extraer colores con GIMP
-//SetFillColor()
-//SetDrawColor()
-//Line(derecha-izquierda, arriba-abajo,ancho,arriba-abajo)
-//Color line setDrawColor(61,174,233)
-//GetX() || GetY() posiciones en cm
-//Grosor SetLineWidth(1)
-// SetFont(tipo{COURIER, HELVETICA,ARIAL,TIMES,SYMBOL, ZAPDINGBATS}, estilo[normal,B,I ,A], tamaño)
-// Cell(ancho , alto,texto,borde,salto(0/1),alineacion,rellenar, link)
-//AddPage(orientacion[PORTRAIT, LANDSCAPE], tamño[A3.A4.A5.LETTER,LEGAL],rotacion)
-//Image(ruta, poscisionx,pocisiony,alto,ancho,tipo,link)
-//SetMargins(10,30,20,20) luego de addpage
-  
+
 function Header()
 {
 
@@ -189,7 +175,7 @@ $pdf->SetLeftMargin(10);
 $pdf->SetRightMargin(10);
 
 
-$pdf->SetX(30);
+
 $pdf->SetFont('Arial','B',12);
 
 $pdf->Ln();
@@ -198,7 +184,7 @@ $pdf->Ln();
 $pdf->Ln(30);
 $pdf->SetFont('', 'B', 12);
 
-$pdf->Text(80, 45,utf8_decode( 'LOS 10 PRODUCTOS MÁS VENDIDO'));
+$pdf->Text(70, 45,'LOS 10 PRODUCTOS MENOS VENDIDOS');
 
 $pdf->Ln(16);
 /* ---Titulo de Tabla --- */
