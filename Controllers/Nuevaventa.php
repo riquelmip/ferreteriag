@@ -121,7 +121,7 @@
 					$iva =  strClean($_POST['inputiva']);
 					$total =  strClean($_POST['inputtotal']);
 
-					$request = $this->model->insertarVenta($total, 1, $intCliente, $_SESSION['userData']['idusuario']);
+					$request = $this->model->insertarVenta($total, 1, $intCliente, $_SESSION['userData']['idusuario'], $subtotal, $iva);
 					
 					
 						
@@ -149,7 +149,7 @@
 								
 							}
 						}
-						$arrResponse = array('estado' => true, 'msg' => 'Datos guardados correctamente.');
+						$arrResponse = array('estado' => true, 'msg' => 'Datos guardados correctamente.', 'idventa' => $request);
 					
 					}else{
 						$arrResponse = array("estado" => false, "msg" => 'No es posible almacenar los datos.');
@@ -163,7 +163,30 @@
 		}
 
 		
-			
+		public function imprimirticket($idventa){
+			//if($_SESSION['permisosMod']['leer']){
+				$id = $idventa;
+				if($id > 0){
+					$arrData = $this->model->selectVenta($id);
+					if(empty($arrData)){
+						$this->views->getView("Errors","error");
+					}else{
+						
+						$data['productos'] = $arrData;
+						$data['idventa'] = $arrData[0]['idventa'];
+						$data['fecha'] = $arrData[0]['dia']."/".$arrData[0]['mes']."/".$arrData[0]['anio'];
+						$data['subtotal'] = $arrData[0]['subtotal'];
+						$data['iva'] = $arrData[0]['iva'];
+						$data['total'] = $arrData[0]['monto'];
+						$data['cliente'] = $arrData[0]['cliente'];
+						$data['vendedor'] = $_SESSION['userData']['nombre'].' '.$_SESSION['userData']['apellido'] ;
+						$this->views->getViewSinController(base_url()."/Libraries/tcpdf/pdf/ticket.php",$data);
+					}
+					echo json_encode($data,JSON_UNESCAPED_UNICODE);
+				}
+			//}
+			die();
+		}
 
 		public function getProductos()
 		{

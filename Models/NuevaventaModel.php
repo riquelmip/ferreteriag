@@ -10,6 +10,33 @@
 			parent::__construct();
 		}
 
+		public function selectVenta(int $idventa) 
+		{
+
+			$sql = "SELECT 
+					v.idventa,
+					v.dia,
+					v.mes,
+					v.anio,
+					v.monto,
+					v.estado,
+					v.subtotal,
+					v.iva,
+					CONCAT(c.nombre,' ',c.apellido)  AS cliente,
+					dv.iddetalle,
+					dv.idproducto,
+					p.descripcion as producto,
+					dv.cantidad,
+					p.precio
+					FROM detalleventa dv
+					INNER JOIN venta v ON dv.idventa = v.idventa
+					INNER JOIN producto p ON p.idproducto= dv.idproducto
+					INNER JOIN cliente c ON v.idcliente = c.idcliente
+					WHERE v.idventa = $idventa";
+			$request = $this->select_all($sql);
+			return $request;
+		}
+		
 
 		public function selectClientes()
 		{
@@ -105,7 +132,7 @@
 
 
 
-		public function insertarVenta(string $monto,int $estado, int $cliente, int $usuario){
+		public function insertarVenta(string $monto,int $estado, int $cliente, int $usuario, string $subtotal, string $iva){
 
 			
 
@@ -116,8 +143,8 @@
 
 		
 			
-			$query_insert  = "INSERT INTO venta(dia,mes,anio,monto,estado,idcliente,idusuario) VALUES(?,?,?,?,?,?,?)";
-        	$arrData = array($dia,$mes,$anio,$monto,$estado,$cliente,$usuario);
+			$query_insert  = "INSERT INTO venta(dia,mes,anio,monto,estado,idcliente,idusuario, subtotal, iva) VALUES(?,?,?,?,?,?,?,?,?)";
+        	$arrData = array($dia,$mes,$anio,$monto,$estado,$cliente,$usuario,$subtotal, $iva);
         	$request_insert = $this->insert($query_insert,$arrData);
         	$return = $request_insert;
 		

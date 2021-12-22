@@ -12,6 +12,8 @@
 			}
 			require_once ($view);
 		}
+
+		
 	}
 
  ?>
