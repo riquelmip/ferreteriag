@@ -1,5 +1,5 @@
 <?php
-require('fpdf/fpdf.php');
+require('../fpdf/fpdf.php');
 date_default_timezone_set('America/El_Salvador');
 class PDF extends FPDF
 {
