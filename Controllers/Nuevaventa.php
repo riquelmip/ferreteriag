@@ -107,53 +107,50 @@
 			die();
 		}
 
-		public function setCompra(){
+		public function setVenta(){
 			//dep($_POST);
 			//die();
 
 			if($_POST){
 
-					//$intIdCadena = intval($_POST['idCadena']);//id compra
+					
 	                 
-					$strArrayCoros = json_decode($_POST["listaProducto"], true);//detalles
-					$subtotalll = json_decode($_POST["listsub"], true);
-					$sum = 0;
-					foreach ($subtotalll as $key => $value2) {
-						$idproducto = $value2["subtotal"];
-						$sum += floatval($idproducto);
-					}
-					$date = strClean($_POST['fechacredito']);
-					
-					$pruee =  floatval(strClean($_POST['credito']));
-					$intProve =  intval(strClean($_POST['listProve']));
+					$strArray = json_decode($_POST["listaDetalles"], true);//detalles
+					$intCliente =  intval(strClean($_POST['listCliente']));
+					$subtotal =  strClean($_POST['inputsubtotal']);
+					$iva =  strClean($_POST['inputiva']);
+					$total =  strClean($_POST['inputtotal']);
 
-						$request_rol = $this->model->insertarCompra($intProve,$sum,$pruee,$date);//Insertar la compra 1 
+					$request = $this->model->insertarVenta($total, 1, $intCliente, $_SESSION['userData']['idusuario']);
 					
-					//obtenemos el id de la cadena que se inserto
 					
 						
-					if($request_rol > 0 )
+					if($request > 0 )
 					{
-						foreach ($strArrayCoros as $key => $value) {
+						foreach ($strArray as $key => $value) {
 
 							
 
-							$idcompra = $request_rol;//El id de compra
-							$idproducto = $value["id"];// El idproducto de la tabla detallecompra
-							$cantidad = $value["cantidad"];
-							$preciocompra = $value["preciocompra"];
-							$precioventa = $value["precioventa"];
+							$idventa = $request;
+							$idproducto = $value["id"];
+							$cantidad = intval($value["cantidad"]);
+							$codigo = $value["codigobarra"];
+							
 			
 							if ($_SESSION['permisosMod']['escribir']) {
-								$request_rol1 = $this->model->insertDetalleCadena($idcompra, $idproducto,$cantidad,$preciocompra,$precioventa);
+								$request_detalle = $this->model->insertDetalle($idventa, $idproducto,$cantidad);
+								
+							}
+
+							if ($_SESSION['permisosMod']['actualizar']) {
+								$prod = $this->model->selectProducto($codigo);
+								$nuevacantidad = intval($prod['stock']) - $cantidad;
+								$request_stock = $this->model->actualizarstock($idproducto,$nuevacantidad);
 								
 							}
 						}
 						$arrResponse = array('estado' => true, 'msg' => 'Datos guardados correctamente.');
 					
-					}else if($request_rol == 'exist'){
-						
-						$arrResponse = array('estado' => false, 'msg' => '¡Atención! La Cadena ya existe.');
 					}else{
 						$arrResponse = array("estado" => false, "msg" => 'No es posible almacenar los datos.');
 					}

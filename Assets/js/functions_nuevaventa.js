@@ -104,6 +104,7 @@ document.addEventListener('DOMContentLoaded', function(){
                     $("#precio").empty();
                     $("#preciot").empty();
                     $("#cantidad").val("");
+                    $("#btnAgregarDetalle").prop('disabled', true);
                 }
                  
                    
@@ -118,6 +119,7 @@ document.addEventListener('DOMContentLoaded', function(){
             $("#precio").empty();
             $("#preciot").empty();
             $("#cantidad").val("");
+             $("#btnAgregarDetalle").prop('disabled', true);
         }
        
       
@@ -256,9 +258,9 @@ document.addEventListener('DOMContentLoaded', function(){
         let formProducto = document.querySelector("#formProducto");
             formProducto.onsubmit = function(e) {
                 e.preventDefault();
-                $("#listaProducto").val(JSON.stringify(arrayIdProductos)); 
-                $("#listsub").val(JSON.stringify(arreglo)); 
-              let intProve = document.querySelector("#listProve").value;
+                $("#listaDetalles").val(JSON.stringify(arrayIdProductos)); 
+               // $("#listsub").val(JSON.stringify(arreglo)); 
+              let intCliente = document.querySelector("#listCliente").value;
                 if(arrayIdProductos.length==0)
                 {
                     swal("Atención", "Todos los campos son obligatorios." , "error");
@@ -274,7 +276,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 }          
                 divLoading.style.display = "flex";
                 let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-                let ajaxUrl = base_url+'/Nuevacompra/setCompra'; 
+                let ajaxUrl = base_url+'/Nuevaventa/setVenta'; 
                 let formData = new FormData(formProducto);
                 request.open("POST",ajaxUrl,true);
                 request.send(formData);
@@ -288,7 +290,7 @@ document.addEventListener('DOMContentLoaded', function(){
                             formProducto.reset();
 
                             swal({
-                                title: 'Compra Realizada',
+                                title: 'Venta Realizada',
                                 text: objData.msg,
                                 type: 'success',
                                 showCancelButton: false,
@@ -296,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function(){
                                 confirmButtonText: 'Ok!'
                               }, 
                               function(){
-                                   window.location.href = base_url+"/compras";
+                                   window.location.href = base_url+"/Ventas";
                               });
                            
                         }else{
@@ -404,10 +406,13 @@ function calcularTotal(){
       }
 
       $("#subtotal").empty().html(subtotal.toFixed(2));
+      $("#inputsubtotal").val(subtotal.toFixed(2));
 
       iva = subtotal * porcentajeiva;
       total = iva + subtotal;
 
       $("#iva").empty().html(iva.toFixed(2));
+      $("#inputiva").val(iva.toFixed(2));
       $("#total").empty().html(total.toFixed(2));
+      $("#inputtotal").val(total.toFixed(2));
 }

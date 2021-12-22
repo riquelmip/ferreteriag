@@ -33,6 +33,14 @@
 					$btnView = "";
 					$btnEdit = "";
 					$btnDelete = "";
+
+					if($arrData[$i]['estado'] == 1)
+					{
+						$arrData[$i]['estado'] = '<span class="badge badge-success">Realizada</span>';
+					}else{
+						$arrData[$i]['estado'] = '<span class="badge badge-danger">Anulada</span>';
+					}
+
 					//concatenamos la fecha XD
 					$fecha= $arrData[$i]['dia'] ."/". $arrData[$i]['mes'] ."/". $arrData[$i]['anio'];
 					$arrData[$i]['fecha']=$fecha;
