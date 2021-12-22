@@ -198,7 +198,7 @@ $pdf->Ln();
 $pdf->Ln(30);
 $pdf->SetFont('', 'B', 12);
 
-$pdf->Text(80, 45,utf8_decode( 'PRODUCTO MÁS VENDIDO'));
+$pdf->Text(80, 45,utf8_decode( 'LOS 10 PRODUCTOS MÁS VENDIDO'));
 
 $pdf->Ln(16);
 /* ---Titulo de Tabla --- */

@@ -68,11 +68,11 @@ function pruebin() {
 
         var data = google.visualization.arrayToDataTable([
           ['Task', 'AAAA'],
-          ['XXX1',     11],
-          ['XXX2',      8],
-          ['XXX3',  6],
-          ['XXX4', 2],
-          ['XXX5',    7]
+          ['Chapa',     11],
+          ['Tubo PBC',      8],
+          ['Alambre',  6],
+          ['Pintura Azul', 2],
+          ['Cerradura',    7]
         ]);
 
         var options = {
