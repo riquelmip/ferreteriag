@@ -57,49 +57,49 @@ function pruebin() {
 }
 
 
-//  $('#create_pdf').click(function(){
-//    document.getElementById('testing').classList.remove("ax");
-//  document.getElementById('graficoo').style.display = 'none';
-
-//       google.charts.load('current', {'packages':['corechart']});
-//       google.charts.setOnLoadCallback(drawChart);
-
-//       function drawChart() {
-
-//         var data = google.visualization.arrayToDataTable([
-//           ['Task', 'AAAA'],
-//           ['XXX1',     11],
-//           ['XXX2',      8],
-//           ['XXX3',  6],
-//           ['XXX4', 2],
-//           ['XXX5',    7]
-//         ]);
-
-//         var options = {
-//           title: 'Titulo de el grafico de ejemplo ',
-//           is3D: true,
-//         };
-//         var chart_area = document.getElementById('grafico');
-//         var chart = new google.visualization.LineChart(chart_area);
-    
-//         var chart = new google.visualization.PieChart(document.getElementById('grafico'));
-//         google.visualization.events.addListener(chart, 'ready', function(){
-//           chart_area.innerHTML = '<img src="' + chart.getImageURI() + '" class="img-responsive">';
-//          });
-//          chart.draw(data, options);
-//            $('#hidden_html').val($(chart_area).html());
-//   //para cuando se filtre en el combo mandar los parametros tambien
-// $('#parametros').val('filtralo');
-//   $('#make_pdf').submit();
-//       }
-
-//  });
-
  $('#create_pdf').click(function(){
-  // console.log("entro");
-  $('#hidden_html').val($('#testing').html());
+ //   document.getElementById('testing').classList.remove("ax");
+ // document.getElementById('graficoo').style.display = 'none';
+
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'AAAA'],
+          ['XXX1',     11],
+          ['XXX2',      8],
+          ['XXX3',  6],
+          ['XXX4', 2],
+          ['XXX5',    7]
+        ]);
+
+        var options = {
+          title: '',
+          is3D: true,
+        };
+        var chart_area = document.getElementById('graficoo');
+        var chart = new google.visualization.PieChart(chart_area);
+    
+          google.visualization.events.addListener(chart, 'ready', function(){
+     chart_area.innerHTML = '<img src="' + chart.getImageURI() + '" class="img-responsive">';
+       document.getElementById('algo').value=chart.getImageURI();
+         });
+         chart.draw(data, options);
+         
+  //para cuando se filtre en el combo mandar los parametros tambien
+// $('#parametros').val('filtralo');
   $('#make_pdf').submit();
+      }
+
  });
+
+ // $('#create_pdf').click(function(){
+ //  // console.log("entro");
+ //  $('#hidden_html').val($('#testing').html());
+ //  $('#make_pdf').submit();
+ // });
 
  $('#noTabla').click(function(){
   var llave=document.getElementById('llave').value;

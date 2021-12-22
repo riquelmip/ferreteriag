@@ -32,7 +32,7 @@
             <!-- para ver o no la tabla -->
             <input type="hidden" name="llave" id="llave" value=0>
             <input type="hidden" name="llavo" id="llavo" value=0>
-
+              <input type="hidden" id="algo" name="algo" value="1" >
     <input type="hidden" name="hidden_html" id="hidden_html" />
     <input type="hidden" name="parametros" id="parametros" />
     <button type="button" name="create_pdf" id="create_pdf" class=" dt-button buttons-pdf buttons-html5 btn btn-danger "title="Generar Reporte" ><i class='fas fa-file-pdf' id="pdf"></i> PDF</button>
@@ -67,7 +67,7 @@
 <!-- --------------------------------------------------------------------------- -->
          <div id="graficoo"  style="width: 100%; height: 350px; margin: auto; display: flex; align-items: center; justify-content: center; margin-top: 20px;"></div>
 
-        
+       
         <div class="container ax" id="testing"> 
         <div id="grafico" style="width: 100%; height: 350px; margin: auto; display: flex; align-items: center; justify-content: center; margin-top: 20px;"></div>
       

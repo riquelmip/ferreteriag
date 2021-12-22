@@ -21,7 +21,7 @@ class PDF extends FPDF
 function Header()
 {
 
-    $this->Image('img/logo.png',25,10,33);
+    $this->Image('Views/Consultas/img/logo.png',25,10,33);
 
     $this->SetFont('times', 'B', 13);
     // Movernos a la derecha
@@ -33,7 +33,7 @@ function Header()
   $this->Text(77, 21, utf8_decode('6ª av. Jiquilisco,Usulután'));
     $this->Text(88,27, utf8_decode('Tel: 7245 8620'));
 
-    $this->Image('img/logoosis.png',160,5,33);
+    $this->Image('Views/Consultas/img/logoosis.png',160,5,33);
     $this->SetFont('courier', 'B', 10);
     $this->Text(165,42,date('d/m/Y'));
 }
@@ -53,14 +53,131 @@ function Footer()
 
 
 
+// ------------------------------------------------------------
+var $widths;
+var $aligns;
+
+function SetWidths($w)
+{
+    //Set the array of column widths
+    $this->widths=$w;
 }
+
+function SetAligns($a)
+{
+    //Set the array of column alignments
+    $this->aligns=$a;
+}
+
+function Row($data,$setX)
+{
+    //Calculate the height of the row
+    $nb=0;
+    for($i=0;$i<count($data);$i++)
+        $nb=max($nb,$this->NbLines($this->widths[$i],$data[$i]));
+    $h=5*$nb;
+    //Issue a page break first if needed
+    $this->CheckPageBreak($h,$setX);
+    //Draw the cells of the row
+    for($i=0;$i<count($data);$i++)
+    {
+        $w=$this->widths[$i];
+        $a=isset($this->aligns[$i]) ? $this->aligns[$i] : 'C';
+        //Save the current position
+        $x=$this->GetX();
+        $y=$this->GetY();
+        //Draw the border
+        $this->Rect($x,$y,$w,$h,'DF');
+        //Print the text
+        $this->MultiCell($w,5,$data[$i],0,$a);
+        //Put the position to the right of the cell
+        $this->SetXY($x+$w,$y);
+    }
+    //Go to the next line
+    $this->Ln($h);
+}
+
+function CheckPageBreak($h,$setX)
+{
+    //If the height h would cause an overflow, add a new page immediately
+    if($this->GetY()+$h>$this->PageBreakTrigger){
+        $this->AddPage($this->CurOrientation);
+
+         }
+
+
+             if($setX==100){
+            $this->SetX(100);
+             }else{
+                $this->SetX($setX);
+             }
+
+}
+
+function NbLines($w,$txt)
+{
+    //Computes the number of lines a MultiCell of width w will take
+    $cw=&$this->CurrentFont['cw'];
+    if($w==0)
+        $w=$this->w-$this->rMargin-$this->x;
+    $wmax=($w-2*$this->cMargin)*1000/$this->FontSize;
+    $s=str_replace("\r",'',$txt);
+    $nb=strlen($s);
+    if($nb>0 and $s[$nb-1]=="\n")
+        $nb--;
+    $sep=-1;
+    $i=0;
+    $j=0;
+    $l=0;
+    $nl=1;
+    while($i<$nb)
+    {
+        $c=$s[$i];
+        if($c=="\n")
+        {
+            $i++;
+            $sep=-1;
+            $j=$i;
+            $l=0;
+            $nl++;
+            continue;
+        }
+        if($c==' ')
+            $sep=$i;
+        $l+=$cw[$c];
+        if($l>$wmax)
+        {
+            if($sep==-1)
+            {
+                if($i==$j)
+                    $i++;
+            }
+            else
+                $i=$sep+1;
+            $sep=-1;
+            $j=$i;
+            $l=0;
+            $nl++;
+        }
+        else
+            $i++;
+    }
+    return $nl;
+}
+// ----------------------------------------------------------------
+
+}
+
+
+$a = new ConsultasModel();
+$array=$a->selectConsulta();
 
 // Creación del objeto de la clase heredada
 
 $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
-$pdf->SetAutoPageBreak(true, 20);//el 10 es el espacio antes que dara para el espacio jaja osea que entre mas grande mas es lo que el se hace grande
+$pdf->SetAutoPageBreak(true, 20);
 $pdf->SetTopMargin(44);
 $pdf->SetLeftMargin(10);
 $pdf->SetRightMargin(10);
@@ -75,7 +192,7 @@ $pdf->Ln();
 $pdf->Ln(20);
 $pdf->SetFont('', 'B', 12);
 
-$pdf->Text(80, 45,utf8_decode( 'NOMBRE REPORTE'));
+$pdf->Text(80, 45,utf8_decode( 'PRODUCTO MÁS VENDIDO'));
 
 $pdf->Ln(-10);
 /* ---Titulo de Tabla --- */
@@ -84,14 +201,13 @@ $pdf->SetX(30);
 $pdf->SetFillColor(93, 155, 155);
 $pdf->SetDrawColor(44, 62, 80);
 
-$pdf->Cell(54, 10, 'Tipo', 1, 0, 'C', 1);
-$pdf->Cell(20, 10, 'C', 1, 0, 'C', 1);
-$pdf->Cell(20, 10, 'T', 1, 0, 'C', 1);
-$pdf->Cell(54, 10, utf8_decode('Códigos'), 1, 1, 'C', 1);
+$pdf->Cell(80, 10, 'Producto', 1, 0, 'C', 1);
+$pdf->Cell(80, 10, 'Cantidad', 1, 1, 'C', 1);
 
 /* --- Datos de la tabla --- */
 //prueba con 32
-for ($i = 0; $i <30 ; $i++) {
+$pdf->SetWidths(array(80,80));
+for ($i = 0; $i <count($array) ; $i++) {
 if($i%2==0){
 //240,240,240
 $pdf->SetFillColor(255,255,255);
@@ -102,28 +218,8 @@ $pdf->SetFillColor(197, 226, 246);
 // $pdf->SetDrawColor(44, 62, 80);
 $pdf->SetDrawColor(0, 0, 0);
 }
-    $pdf->SetX(30);
 
-$a=$pdf->Gety();
-
-$pdf->SetFont('Arial','',12);
-$pdf->Cell(54, 10, 'Camisa Tactica Azul', 1, 0, 'C', 1);
-$pdf->Cell(20, 10, '20', 1, 0, 'C', 1);
-$pdf->Cell(20, 10, $a, 1, 0, 'C', 1);
-$pdf->Cell(54, 10, utf8_decode('4565645121545'), 1, 1, 'C', 1);
-
-$aqui=$pdf->Gety();
-if($aqui>=257){
-$pdf->AddPage();
-$pdf->SetX(30);
-$pdf->SetFillColor(93, 155, 155);
-$pdf->SetDrawColor(44, 62, 80);
-
-$pdf->Cell(54, 10, 'Tipo', 1, 0, 'C', 1);
-$pdf->Cell(20, 10, 'C', 1, 0, 'C', 1);
-$pdf->Cell(20, 10, 'T', 1, 0, 'C', 1);
-$pdf->Cell(54, 10, utf8_decode('Códigos'), 1, 1, 'C', 1);
-}
+$pdf->Row(array($array[$i]['descripcion'],$array[$i]['canti']),30);
 
 }
 
@@ -136,25 +232,29 @@ $pdf->Ln(5);
 
 
 //ESTAS LINEAS SON PARA IMPRIMIR LA IMAGEN
-//   $html = $_POST["algo"];
-// $aqui=$pdf->Gety();
-// //if($aqui>=257){
-//    if($aqui>=165){
-// $pdf->AddPage();
-// //$pdf->AddPage('LANDSCAPE', 'A4');
-// $dataURI = $html;
+$html = $_POST["algo"];
+$aqui=$pdf->Gety();
+//if($aqui>=257){
 
-// $img = explode(',',$dataURI,2)[1];
-// $pic = 'data://text/plain;base64,'. $img;
-// $pdf->image($pic, -20,50,0,0,'png');
-// }else{
+if($aqui>=165){
 
-// $dataURI = $html;
+$pdf->AddPage();
+//$pdf->AddPage('LANDSCAPE', 'A4');
+$dataURI = $html;
 
-// $img = explode(',',$dataURI,2)[1];
-// $pic = 'data://text/plain;base64,'. $img;
-// $pdf->image($pic, -20,$aqui,0,0,'png'); 
-// }
+$img = explode(',',$dataURI,2)[1];
+$pic = 'data://text/plain;base64,'. $img;
+$pdf->image($pic, -20,50,0,0,'png');
+}else{
+
+$dataURI = $html;
+
+$img = explode(',',$dataURI,2)[1];
+$pic = 'data://text/plain;base64,'. $img;
+$pdf->image($pic, -20,$aqui,0,0,'png'); 
+}
+
+
 
 //----------------------------------------
 // "I" -> se entrega al navegador y se activa el plugin para mostrarlo
