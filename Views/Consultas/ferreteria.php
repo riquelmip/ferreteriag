@@ -31,7 +31,7 @@ function Header()
   $this->Text(75, 15, utf8_decode('FERRETERIA GRANADEÑO'));
   
   $this->Text(77, 21, utf8_decode('6ª av. Jiquilisco,Usulután'));
-    $this->Text(88,27, utf8_decode('Tel: 7245 8620'));
+    $this->Text(88,27, utf8_decode('Tel: 7245-8620'));
 
     $this->Image('Views/Consultas/img/logoosis.png',160,5,33);
     $this->SetFont('courier', 'B', 10);
@@ -102,7 +102,13 @@ function CheckPageBreak($h,$setX)
     //If the height h would cause an overflow, add a new page immediately
     if($this->GetY()+$h>$this->PageBreakTrigger){
         $this->AddPage($this->CurOrientation);
-
+         $this->SetX($setX);
+                $this->SetFillColor(93, 155, 155);
+                $this->SetDrawColor(44, 62, 80);
+                $this->Cell(80, 10, 'Producto', 1, 0, 'C', 1);
+                $this->Cell(80, 10, 'Cantidad', 1, 1, 'C', 1);
+                $this->SetFillColor(255,255,255);
+                $this->SetDrawColor(0, 0, 0);
          }
 
 
@@ -182,19 +188,19 @@ $pdf->SetTopMargin(44);
 $pdf->SetLeftMargin(10);
 $pdf->SetRightMargin(10);
 
-$pdf->SetY(40);
+
 $pdf->SetX(30);
 $pdf->SetFont('Arial','B',12);
 
 $pdf->Ln();
 
 /*-------TITULOS Y ENCABEZADOS -----------*/
-$pdf->Ln(20);
+$pdf->Ln(30);
 $pdf->SetFont('', 'B', 12);
 
 $pdf->Text(80, 45,utf8_decode( 'PRODUCTO MÁS VENDIDO'));
 
-$pdf->Ln(-10);
+$pdf->Ln(16);
 /* ---Titulo de Tabla --- */
 
 $pdf->SetX(30);
@@ -207,6 +213,7 @@ $pdf->Cell(80, 10, 'Cantidad', 1, 1, 'C', 1);
 /* --- Datos de la tabla --- */
 //prueba con 32
 $pdf->SetWidths(array(80,80));
+$pdf->SetFont('', '', 12);
 for ($i = 0; $i <count($array) ; $i++) {
 if($i%2==0){
 //240,240,240
@@ -219,7 +226,7 @@ $pdf->SetFillColor(197, 226, 246);
 $pdf->SetDrawColor(0, 0, 0);
 }
 
-$pdf->Row(array($array[$i]['descripcion'],$array[$i]['canti']),30);
+$pdf->Row(array(utf8_decode($array[$i]['descripcion']),utf8_decode($array[$i]['canti'])),30);
 
 }
 
