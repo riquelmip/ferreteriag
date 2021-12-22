@@ -28,13 +28,13 @@
           <button class="btn btn-info btn-sm" id="noTabla" style="margin-right: 40px;" title="No mostrar tabla" ><i class="far fa-eye-slash"></i></button>
          
         
-          <form method="post" id="make_pdf" action="consultas/reportes" >
+          <form method="post" id="make_pdf" action="consultas/reportes" target="_blank" >
             <!-- para ver o no la tabla -->
-            <input type="hidden" name="llave" id="llave" value=0>
-            <input type="hidden" name="llavo" id="llavo" value=0>
+         <!--    <input type="hidden" name="llave" id="llave" value=0>
+            <input type="hidden" name="llavo" id="llavo" value=0> -->
               <input type="hidden" id="algo" name="algo" value="1" >
-    <input type="hidden" name="hidden_html" id="hidden_html" />
-    <input type="hidden" name="parametros" id="parametros" />
+  <!--   <input type="hidden" name="hidden_html" id="hidden_html" />
+    <input type="hidden" name="parametros" id="parametros" /> -->
     <button type="button" name="create_pdf" id="create_pdf" class=" dt-button buttons-pdf buttons-html5 btn btn-danger "title="Generar Reporte" ><i class='fas fa-file-pdf' id="pdf"></i> PDF</button>
    </form>
         </div>
