@@ -21,7 +21,10 @@
                 <div class="tile-body">
                   <form id="formProducto" name="formProducto" class="form-horizontal">
                     <input type="hidden" id="idproducto" name="idproducto"  value="">
-                    <input type="hidden"  id="listaProducto" name="listaProducto">
+                    <input type="hidden" id="inputsubtotal" name="inputsubtotal"  value="">
+                    <input type="hidden" id="inputiva" name="inputiva"  value="">
+                    <input type="hidden" id="inputtotal" name="inputtotal"  value="">
+                    <input type="hidden"  id="listaDetalles" name="listaDetalles">
                       
                 
                     <label><h4><b>Fecha : <?php echo date("d-m-Y"); ?></b></h4></label>
@@ -70,7 +73,7 @@
                                 <td class="col-md-1"><input type="number" class="form-control"  id="cantidad" name="cantidad"  min="1" max="5000"></td>
                                 <td  class="col-md-1 text-center"><label id="precio"></label></td>
                                 <td class="col-md-1 text-center"><label id="preciot"></label></td>
-                                <td class="col-md-1 text-center"><button class="btn btn-primary" id="btnAgregarDetalle" type="submit"><i class="fas fa-plus"></i></button></td>
+                                <td class="col-md-1 text-center"><button class="btn btn-primary" id="btnAgregarDetalle" disabled="" type="submit"><i class="fas fa-plus"></i></button></td>
                               </tr>
                             </tbody>
                           </table>

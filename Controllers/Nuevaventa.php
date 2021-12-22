@@ -107,53 +107,50 @@
 			die();
 		}
 
-		public function setCompra(){
+		public function setVenta(){
 			//dep($_POST);
 			//die();
 
 			if($_POST){
 
-					//$intIdCadena = intval($_POST['idCadena']);//id compra
+					
 	                 
-					$strArrayCoros = json_decode($_POST["listaProducto"], true);//detalles
-					$subtotalll = json_decode($_POST["listsub"], true);
-					$sum = 0;
-					foreach ($subtotalll as $key => $value2) {
-						$idproducto = $value2["subtotal"];
-						$sum += floatval($idproducto);
-					}
-					$date = strClean($_POST['fechacredito']);
-					
-					$pruee =  floatval(strClean($_POST['credito']));
-					$intProve =  intval(strClean($_POST['listProve']));
+					$strArray = json_decode($_POST["listaDetalles"], true);//detalles
+					$intCliente =  intval(strClean($_POST['listCliente']));
+					$subtotal =  strClean($_POST['inputsubtotal']);
+					$iva =  strClean($_POST['inputiva']);
+					$total =  strClean($_POST['inputtotal']);
 
-						$request_rol = $this->model->insertarCompra($intProve,$sum,$pruee,$date);//Insertar la compra 1 
+					$request = $this->model->insertarVenta($total, 1, $intCliente, $_SESSION['userData']['idusuario'], $subtotal, $iva);
 					
-					//obtenemos el id de la cadena que se inserto
 					
 						
-					if($request_rol > 0 )
+					if($request > 0 )
 					{
-						foreach ($strArrayCoros as $key => $value) {
+						foreach ($strArray as $key => $value) {
 
 							
 
-							$idcompra = $request_rol;//El id de compra
-							$idproducto = $value["id"];// El idproducto de la tabla detallecompra
-							$cantidad = $value["cantidad"];
-							$preciocompra = $value["preciocompra"];
-							$precioventa = $value["precioventa"];
+							$idventa = $request;
+							$idproducto = $value["id"];
+							$cantidad = intval($value["cantidad"]);
+							$codigo = $value["codigobarra"];
+							
 			
 							if ($_SESSION['permisosMod']['escribir']) {
-								$request_rol1 = $this->model->insertDetalleCadena($idcompra, $idproducto,$cantidad,$preciocompra,$precioventa);
+								$request_detalle = $this->model->insertDetalle($idventa, $idproducto,$cantidad);
+								
+							}
+
+							if ($_SESSION['permisosMod']['actualizar']) {
+								$prod = $this->model->selectProducto($codigo);
+								$nuevacantidad = intval($prod['stock']) - $cantidad;
+								$request_stock = $this->model->actualizarstock($idproducto,$nuevacantidad);
 								
 							}
 						}
-						$arrResponse = array('estado' => true, 'msg' => 'Datos guardados correctamente.');
+						$arrResponse = array('estado' => true, 'msg' => 'Datos guardados correctamente.', 'idventa' => $request);
 					
-					}else if($request_rol == 'exist'){
-						
-						$arrResponse = array('estado' => false, 'msg' => '¡Atención! La Cadena ya existe.');
 					}else{
 						$arrResponse = array("estado" => false, "msg" => 'No es posible almacenar los datos.');
 					}
@@ -166,7 +163,30 @@
 		}
 
 		
-			
+		public function imprimirticket($idventa){
+			//if($_SESSION['permisosMod']['leer']){
+				$id = $idventa;
+				if($id > 0){
+					$arrData = $this->model->selectVenta($id);
+					if(empty($arrData)){
+						$this->views->getView("Errors","error");
+					}else{
+						
+						$data['productos'] = $arrData;
+						$data['idventa'] = $arrData[0]['idventa'];
+						$data['fecha'] = $arrData[0]['dia']."/".$arrData[0]['mes']."/".$arrData[0]['anio'];
+						$data['subtotal'] = $arrData[0]['subtotal'];
+						$data['iva'] = $arrData[0]['iva'];
+						$data['total'] = $arrData[0]['monto'];
+						$data['cliente'] = $arrData[0]['cliente'];
+						$data['vendedor'] = $_SESSION['userData']['nombre'].' '.$_SESSION['userData']['apellido'] ;
+						$this->views->getViewSinController(base_url()."/Libraries/tcpdf/pdf/ticket.php",$data);
+					}
+					echo json_encode($data,JSON_UNESCAPED_UNICODE);
+				}
+			//}
+			die();
+		}
 
 		public function getProductos()
 		{

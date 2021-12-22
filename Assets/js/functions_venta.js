@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function(){
         },
         "columns":[
             {"data":"idventa"},
-            {"data":"fechaventa"},
+            {"data":"fecha"},
             {"data":"monto"},
             {"data":"cliente"},
             {"data":"estado"},

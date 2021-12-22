@@ -20,7 +20,7 @@
 					v.anio,
 					v.monto,
 					v.estado,
-					c.nombre + ' ' + c.apellido AS cliente
+					CONCAT(c.nombre,' ',c.apellido)  AS cliente
 					FROM venta v
 					INNER JOIN cliente c ON v.idcliente = c.idcliente";
 			$request = $this->select_all($sql);
