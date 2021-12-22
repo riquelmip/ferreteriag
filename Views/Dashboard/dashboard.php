@@ -6,8 +6,6 @@
         </div>
         <ul class="app-breadcrumb breadcrumb">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-          <li class="breadcrumb-item"><a href="<?= base_url(); ?>/dashboard">Incio</a></li>
-
         </ul>
       </div>
       <div class="row">
@@ -17,9 +15,9 @@
                 <div class="row">
                   <div class="col-md-4">
                     <div class="text-white text-center bg-warning mb-3">
-                      <div class="card-header">Título</div>
+                      <div class="card-header">Artículos más vendido</div>
                         <div class="card-body">
-                          <h5 class="card-title"><span id="totalCreditos">$9999</span></h5>
+                          <h5 class="card-title" onchange="funcionvendidos()" ><span id="totalCreditos" onchange="funcionvendidos()"  >$9999</span></h5>
                           <p class="card-text">AAAAAAAAAAAA</p>
                       </div>
                     </div>
