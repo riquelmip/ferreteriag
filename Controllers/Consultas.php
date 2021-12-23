@@ -53,6 +53,18 @@
 			$this->views->getView($this,"reportes/productomenosvendido",$data);
 		}
 
+
+		public function productosmasvendidos10()
+		{
+			if ($_SESSION['permisosMod']['leer']) {
+				$arrData = $this->model->selectConsulta();
+				echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
+			}
+			die();
+		}
+
+
+
 		public function getRoles()
 		{
 			if ($_SESSION['permisosMod']['leer']) {

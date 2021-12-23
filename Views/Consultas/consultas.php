@@ -10,31 +10,15 @@
     <main class="app-content">
       <div class="app-title">
         <div class="row">
-            <h1 style="margin-right: 50px;"><i class="far fa-chart-bar"></i> <?= $data['page_title'] ?></h1>
+          <h1 style="margin-right: 40px;"><i class="far fa-chart-bar"></i> <?= $data['page_title'] ?></h1>
 
-            <select class="form-control form-control-sm" style=" width: 150px; font-size: 16px; margin-right: 50px;">
-            <option>Parametro</option>
-      
-          </select>
-
-          <select class="form-control form-control-sm" style=" width: 150px; font-size: 16px; margin-right: 50px;">
-            <option>Parametro </option>
-     
-          </select>
-          <select title="Seleccione el gráfico de tu agrado" class="form-control form-control-sm" style=" width: 150px; font-size: 16px; margin-right: 50px;">
-            <option>Gráfico</option>
-        
-          </select>
-          <button class="btn btn-info btn-sm" id="noTabla" style="margin-right: 40px;" title="No mostrar tabla" ><i class="far fa-eye-slash"></i></button>
+          <label style="margin-top: 10px;" >Fecha de Venta</label>
+          <input type="date" id="fecha_venta"  style=" width: 170px; font-size: 16px; margin-right: 40px; margin-left: 10px;" name="fecha_fin" class="form-control form-control-sm"/>
          
-        
+          <button class="btn btn-info btn-sm" id="noTabla" style="margin-right: 40px;" title="No mostrar tabla" ><i class="far fa-eye-slash"></i></button>
           <form method="post" id="make_pdf" action="consultas/reportes" target="_blank" >
-            <!-- para ver o no la tabla -->
-         <!--    <input type="hidden" name="llave" id="llave" value=0>
-            <input type="hidden" name="llavo" id="llavo" value=0> -->
+
               <input type="hidden" id="algo" name="algo" value="1" >
-  <!--   <input type="hidden" name="hidden_html" id="hidden_html" />
-    <input type="hidden" name="parametros" id="parametros" /> -->
     <button type="button" name="create_pdf" id="create_pdf" class=" dt-button buttons-pdf buttons-html5 btn btn-danger "title="Generar Reporte" ><i class='fas fa-file-pdf' id="pdf"></i> PDF</button>
    </form>
         </div>
