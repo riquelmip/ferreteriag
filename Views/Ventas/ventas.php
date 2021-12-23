@@ -26,9 +26,9 @@
                     <table class="table table-hover table-bordered" id="tableVentas">
                       <thead>
                         <tr>
-                          <th>Id Venta</th>
-                          <th>Fecha de Venta</th>
-                          <th>Monto</th>
+                          <th>Venta</th>
+                          <th>Fecha</th>
+                          <th>Monto ($)</th>
                           <th>Cliente</th>
                           <th>Estado</th>
                           <th>Acciones</th>

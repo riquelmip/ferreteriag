@@ -20,6 +20,36 @@ document.addEventListener('DOMContentLoaded', function(){
             {"data":"estado"},
             {"data":"opciones"}
         ],
+        columnDefs: [{
+            width: "5%",
+            targets: 0,
+            className: 'text-center'
+          },
+          {
+            width: "7%",
+            targets: 1,
+            className: 'text-center'
+          },
+          {
+            width: "7%",
+            targets: 2,
+            className: 'text-center'
+          },
+          {
+            width: "25%",
+            targets: 3
+          },
+          {
+            width: "4%",
+            targets: 4,
+            className: 'text-center'
+          },
+          {
+            width: "11%",
+            targets: 5,
+            className: 'text-center'
+          }
+        ],
         "responsive":"true",
         "bDestroy": true,
         "iDisplayLength": 10,
@@ -62,6 +92,44 @@ function fntViewCadenaAv(idcadena){
 }
 
 
+function anularVenta(idventa){
+
+    swal({
+        title: "Anular Venta",
+        text: "¿Realmente quiere la venta?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Si, anular!",
+        cancelButtonText: "No, cancelar!",
+        closeOnConfirm: false,
+        closeOnCancel: true
+    }, function(isConfirm) {
+        
+        if (isConfirm) 
+        {
+            let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            let ajaxUrl = base_url+'/Ventas/anularVenta';
+            let strData = "idventa="+idventa;
+            request.open("POST",ajaxUrl,true);
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.send(strData);
+            request.onreadystatechange = function(){
+                if(request.readyState == 4 && request.status == 200){
+                    let objData = JSON.parse(request.responseText);
+                    if(objData.estado)
+                    {
+                        swal("Anular!", objData.msg , "success");
+                        tableVentas.api().ajax.reload();
+                    }else{
+                        swal("Anular!", objData.msg , "error");
+                    }
+                }
+            }
+        }
+
+    });
+
+}
 
 
 
