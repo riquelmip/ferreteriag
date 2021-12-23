@@ -13,9 +13,9 @@ $pdf->SetFont('Helvetica','',8);
 //$pdf->Cell(60,4,'C/ Arturo Soria, 1',0,1,'C');
 
 //DIRECCION
-$pdf->Cell(60,4,utf8_decode('Jiquilísco, Usulután'),0,1,'C');
+$pdf->Cell(60,4,utf8_decode('6ª av. Jiquilisco,Usulután'),0,1,'C');
 //TELEFONO
-$pdf->Cell(60,4,'2362-8067',0,1,'C');
+$pdf->Cell(60,4,'7245-8620',0,1,'C');
 //EMAIL
 $pdf->Cell(60,4,utf8_decode(EMAIL_REMITENTE),0,1,'C');
  
@@ -23,11 +23,11 @@ $pdf->Cell(60,4,utf8_decode(EMAIL_REMITENTE),0,1,'C');
 $pdf->Ln(5);
 $pdf->Cell(60,4, utf8_decode('Factura N°: '. $data['idventa']),0,1,'');
 $pdf->Cell(60,4,utf8_decode('Fecha: '. $data['fecha']),0,1,'');
-//$pdf->Cell(60,4,'Metodo de pago: Tarjeta',0,1,'');
+$pdf->Cell(60,4,'Cliente: '. $data['cliente'],0,1,'');
  
 // COLUMNAS
 $pdf->SetFont('Helvetica', 'B', 7);
-$pdf->Cell(30, 10, 'Producto', 0);
+$pdf->Cell(30, 10, utf8_decode("Descripción"), 0);
 $pdf->Cell(5, 10, 'Ud',0,0,'R');
 $pdf->Cell(10, 10, 'Precio',0,0,'R');
 $pdf->Cell(15, 10, 'Total',0,0,'R');
@@ -70,5 +70,5 @@ $pdf->Cell(60,0,utf8_decode("¡Gracias por su compra!"),0,1,'C');
 $pdf->Ln(2);
 
  
-$pdf->Output('ticket.pdf','i');
+$pdf->Output("ticket.pdf","I");
 ?>

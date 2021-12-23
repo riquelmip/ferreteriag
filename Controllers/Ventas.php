@@ -47,7 +47,7 @@
 					
 
 					if ($_SESSION['permisosMod']['leer']) {
-						$btnView = '<button class="btn btn-info btn-sm" onClick="fntViewVenta('.$arrData[$i]['idventa'].')" title="Ver venta"><i class="far fa-eye"></i></button>';
+						$btnView = '<button class="btn btn-primary btn-sm" onClick="verTicket('.$arrData[$i]['idventa'].')" title="Ver Ticket"><i class="fas fa-file"></i></button> <button class="btn btn-danger btn-sm" onClick="verFactura('.$arrData[$i]['idventa'].')" title="Ver Factura PDF"><i class="fas fa-file-pdf"></i></button>';
 					}
 					
 					
