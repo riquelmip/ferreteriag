@@ -42,7 +42,8 @@
 					dv.idproducto,
 					p.descripcion as producto,
 					dv.cantidad,
-					p.precio
+					p.precio,
+					p.codigobarra
 					FROM detalleventa dv
 					INNER JOIN venta v ON dv.idventa = v.idventa
 					INNER JOIN producto p ON p.idproducto= dv.idproducto

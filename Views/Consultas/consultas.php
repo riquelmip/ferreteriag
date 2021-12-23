@@ -10,14 +10,33 @@
     <main class="app-content">
       <div class="app-title">
         <div class="row">
-          <h1 style="margin-right: 40px;"><i class="far fa-chart-bar"></i> <?= $data['page_title'] ?></h1>
+            <h1 style="margin-right: 50px;"><i class="far fa-chart-bar"></i> <?= $data['page_title'] ?></h1>
+   
 
-          <label style="margin-top: 10px;" >Fecha de Venta</label>
-          <input type="date" id="fecha_venta"  style=" width: 170px; font-size: 16px; margin-right: 40px; margin-left: 10px;" name="fecha_fin" class="form-control form-control-sm"/>
+            <select class="form-control form-control-sm" style=" width: 150px; font-size: 16px; margin-right: 50px;">
+            <option>Parametro</option>
+      
+          </select>
+
+          <select class="form-control form-control-sm" style=" width: 150px; font-size: 16px; margin-right: 50px;">
+            <option>Parametro </option>
+     
+          </select>
+          <select title="Seleccione el gráfico de tu agrado" class="form-control form-control-sm" style=" width:auto; font-size: 16px; margin-right: 50px;" id="graf" name="graf">
+            <option value=-1>Gráfico</option>
+          <option value="0">Gráfico de barras</option>
+          <option value="1">Gráfico de pastel</option>
+          <option value="2">Gráfico de lineas</option>
+          <option value="3">Gráfico de dona</option>
+          </select>
+           
+          <button class="btn btn-info btn-sm" id="noTabla" name="noTabla" style="margin-right: 40px;" title="No mostrar tabla" ><i class="far fa-eye-slash"></i></button>
          
-          <button class="btn btn-info btn-sm" id="noTabla" style="margin-right: 40px;" title="No mostrar tabla" ><i class="far fa-eye-slash"></i></button>
-          <form method="post" id="make_pdf" action="consultas/reportes" target="_blank" >
-
+        
+             <form method="post" id="make_pdf" action="consultas/reportes" target="_blank" >
+            <!-- para ver o no la tabla -->
+         <input type="hidden" name="keyGraf" id="keyGraf" value=0>
+         <input type="hidden" name="keyTable" id="keyTable" value=0>
               <input type="hidden" id="algo" name="algo" value="1" >
     <button type="button" name="create_pdf" id="create_pdf" class=" dt-button buttons-pdf buttons-html5 btn btn-danger "title="Generar Reporte" ><i class='fas fa-file-pdf' id="pdf"></i> PDF</button>
    </form>

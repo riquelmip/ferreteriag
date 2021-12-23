@@ -13,6 +13,12 @@
 	const DB_PASSWORD = "";
 	const DB_CHARSET = "utf8";
 
+	//const DB_HOST = "localhost";
+	//const DB_NAME = "comuesco_ferreteriagranadeno";
+	//const DB_USER = "comuesco_ferreteriagranadeno";
+	//const DB_PASSWORD = "4@#;!@w++Av_";
+	//const DB_CHARSET = "utf8";
+
 	//Deliminadores decimal y millar Ej. 24,1989.00
 	const SPD = ".";
 	const SPM = ",";
@@ -22,7 +28,7 @@
 
 	//Datos envio de correo
 	const NOMBRE_REMITENTE = "Ferreteria Granadeño";
-	const EMAIL_REMITENTE = "web.riquelmipalacios@gmail.com";
+	const EMAIL_REMITENTE = "ferreteriagranadenio12@gmail.com";
 	const NOMBRE_EMPESA = "Ferreteria Granadeño";
 	const WEB_EMPRESA = "ferreteria_granadeño.com";
 	

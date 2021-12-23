@@ -65,4 +65,14 @@ function fntViewCadenaAv(idcadena){
 
 
 
+function verTicket(idventa){
+
+     window.open(base_url+"/Consultas/imprimirticket/"+idventa);
+}
+
+function verFactura(idventa){
+
+     window.open(base_url+"/Consultas/imprimirfactura/"+idventa);
+}
+
 
