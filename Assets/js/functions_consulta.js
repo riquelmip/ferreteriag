@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', function(){
   
    
     //pruebin();
-    //fntGraficoBarra();
-    fntGraficoLineal();
+    fntGraficoBarra();
+    //fntGraficoLineal();
   });
 
 $('#tableConsul').DataTable();
@@ -66,13 +66,13 @@ function pruebin() {
  });
 
  $('#noTabla').click(function(){
-  var llave=document.getElementById('llave').value;
+  var llave=document.getElementById('keyTable').value;
   if(llave==0){
  document.getElementById('laTabla').style.display = 'none';
-document.getElementById('llave').value=1;
+document.getElementById('keyTable').value=1;
   }else{
  document.getElementById('laTabla').style.display = 'block';
-document.getElementById('llave').value=0;
+document.getElementById('keyTable').value=0;
   }
 
    });
@@ -193,3 +193,72 @@ function fntGraficoBarra(){
     chart.draw(data, options);
       }
 }
+
+ function fntGraficoDona(){
+
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+
+    var data = google.visualization.arrayToDataTable([
+          ['Task', 'AAAA'],
+          ['Chapa',     11],
+          ['Tubo PBC',      8],
+          ['Alambre',  6],
+          ['Pintura Azul', 2],
+          ['Cerradura',    7]
+        ]);
+
+
+var options = {
+          title: 'My Daily Activities',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('graficoo'));
+  google.visualization.events.addListener(chart, 'ready', function(){
+    // chart_area.innerHTML = '<img src="' + chart.getImageURI() + '" class="img-responsive">';
+       document.getElementById('algo').value=chart.getImageURI();
+         });
+        chart.draw(data, options);
+    }
+}
+
+
+  
+
+
+$(document).on("change","#graf",function(e){
+    e.preventDefault();
+  var button = document.getElementById('create_pdf');
+  var x = $("#graf").val();
+switch (x) {
+  case '0':
+    fntGraficoBarra();
+    button.disabled = false;
+   document.querySelector('#keyGraf').value=0; 
+    break;
+  case '1':
+    fntGraficoPastel();
+    button.disabled = false;
+      document.querySelector('#keyGraf').value=1; 
+    break;
+  case '2':
+    fntGraficoLineal();
+    button.disabled = true;
+      document.querySelector('#keyGraf').value=2; 
+    break;
+  case '3':
+    fntGraficoDona();
+    button.disabled = false;
+      document.querySelector('#keyGraf').value=3; 
+
+    break;
+  default:
+    fntGraficoLineal();
+      button.disabled = true;
+    break;
+}
+
+ });
