@@ -251,14 +251,14 @@ $dataURI = $html;
 
 $img = explode(',',$dataURI,2)[1];
 $pic = 'data://text/plain;base64,'. $img;
-$pdf->image($pic, -20,50,0,0,'png');
+$pdf->image($pic, -20,50,20,20,'png');
 }else{
 
 $dataURI = $html;
 $pdf->setX(50);
 $img = explode(',',$dataURI,2)[1];
 $pic = 'data://text/plain;base64,'. $img;
-$pdf->image($pic, -20,$aqui,0,0,'png'); 
+$pdf->image($pic, -10,$aqui,250,0,'png'); 
 }
 
 
