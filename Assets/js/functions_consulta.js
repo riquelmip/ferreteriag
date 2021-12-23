@@ -34,6 +34,47 @@ document.addEventListener('DOMContentLoaded', function(){
 $('#tableConsul').DataTable();
 
 
+window.onload = function () {
+
+  clock();
+
+  function clock() {
+    fecha_fin = $("#fecha_venta").val();
+
+    console.log(fecha_fin);
+    setTimeout(clock, 1000);
+  }
+  
+};
+
+
+
+
+
+function cargar_datos(tipo, fecha_inicio="",fecha_fin="", listNivel){
+  mostrar_mensaje("Cargando", "Obteniendo datos");
+  //console.log("el tipo es: "+tipo);
+  var datos = {"listNivel":listNivel, "fecha_inicio":fecha_inicio, "fecha_fin":fecha_fin};
+  $.ajax({
+      dataType: "json",
+      method: "POST",
+      url: base_url+"/Consultas/getPermisosAgentesSegunTipo/"+1,
+      data : datos
+  }).done(function(json) {
+      console.log("EL consultar",json);
+      
+      $("#tablePermiso").empty().html(json.htmlDatosTabla);
+      $('#tablePermiso').DataTable().destroy();
+      inicializar_tabla("tablePermiso");
+      
+
+  }).fail(function(){
+
+  }).always(function(){
+      Swal.close();
+  });
+}
+
 function pruebin() {
      google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);

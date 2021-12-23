@@ -18,7 +18,13 @@
 			return $request;
 		}
 
+		public function filtrofecha10productosmasvendidos(string $dato)
+		{
 
+			$sql = "SELECT p.descripcion,SUM(dv.cantidad) as Cantidad_Total,CONCAT(v.dia, '/', v.mes, '/', v.anio) fecha_compra from detalleventa dv INNER JOIN producto p on p.idproducto=dv.idproducto inner join venta v on dv.idventa=v.idventa GROUP BY p.descripcion,v.dia having fecha_compra=$dato order by SUM(dv.cantidad) desc LIMIT 10";
+			$request = $this->select_all($sql);
+			return $request;
+		}
 		public function selectVenta(int $idventa) 
 		{
 

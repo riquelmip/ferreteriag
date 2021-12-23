@@ -38,8 +38,6 @@
          <input type="hidden" name="keyGraf" id="keyGraf" value=0>
          <input type="hidden" name="keyTable" id="keyTable" value=0>
               <input type="hidden" id="algo" name="algo" value="1" >
-  <!--   <input type="hidden" name="hidden_html" id="hidden_html" />
-    <input type="hidden" name="parametros" id="parametros" /> -->
     <button type="button" name="create_pdf" id="create_pdf" class=" dt-button buttons-pdf buttons-html5 btn btn-danger "title="Generar Reporte" ><i class='fas fa-file-pdf' id="pdf"></i> PDF</button>
    </form>
         </div>
@@ -54,8 +52,8 @@
                     <table class="table table-hover table-bordered" id="tableConsul">
                       <thead>
                         <tr>
-                          <th>ID</th>
-                          <th>Nombres</th>
+                          <th>Descripción</th>
+                          <th>Cantidad total vendida</th>
 
                          
                         </tr>
