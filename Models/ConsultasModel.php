@@ -45,5 +45,46 @@
 			$request = $this->select_all($sql);
 			return $request;
 		}
+
+		
+			public function productomenosvendido()
+		{
+
+			$sql = "SELECT c.nombre,v.idcliente,SUM(v.monto) AS monto from venta v inner join cliente c on c.idcliente=v.idcliente GROUP BY v.idcliente order by SUM(v.monto) asc LIMIT 10";
+			$request = $this->select_all($sql);
+			return $request;
+		}
+
+			public function clientesmascompras()
+		{
+
+			$sql = "SELECT c.nombre,v.idcliente,SUM(v.monto) AS monto from venta v inner join cliente c on c.idcliente=v.idcliente GROUP BY v.idcliente order by SUM(v.monto) desc LIMIT 10";
+			$request = $this->select_all($sql);
+			return $request;
+		}
+
+			public function clientesmenoscompras()
+		{
+
+			$sql = "SELECT c.nombre,v.idcliente,SUM(v.monto) AS monto from venta v inner join cliente c on c.idcliente=v.idcliente GROUP BY v.idcliente order by SUM(v.monto) asc LIMIT 10";
+			$request = $this->select_all($sql);
+			return $request;
+		}
+
+			public function empleadosconmasventas()
+		{
+
+			$sql = "SELECT u.idempleado,e.nombre,e.apellido,v.idusuario,SUM(v.monto) AS monto from venta v inner join usuario u on u.idusuario=v.idusuario inner join empleado e on e.idempleado=u.idempleado GROUP BY v.idcliente order by SUM(v.monto) desc LIMIT 10";
+			$request = $this->select_all($sql);
+			return $request;
+		}
+
+			public function empleadosconmenosventas()
+		{
+
+			$sql = "SELECT u.idempleado,e.nombre,e.apellido,v.idusuario,SUM(v.monto) AS monto from venta v inner join usuario u on u.idusuario=v.idusuario inner join empleado e on e.idempleado=u.idempleado GROUP BY v.idcliente order by SUM(v.monto) asc LIMIT 10";
+			$request = $this->select_all($sql);
+			return $request;
+		}		
 	}
  ?>
