@@ -1,5 +1,5 @@
 <?php
-require('fpdf/fpdf.php');
+require('Views/Consultas/fpdf/fpdf.php');
 date_default_timezone_set('America/El_Salvador');
 class PDF extends FPDF
 {
@@ -198,12 +198,14 @@ $pdf->Ln();
 $pdf->Ln(30);
 $pdf->SetFont('', 'B', 12);
 
-$pdf->Text(80, 45,utf8_decode( 'LOS 10 PRODUCTOS MÁS VENDIDO'));
+$pdf->Text(70, 45,utf8_decode( 'LOS 10 PRODUCTOS MÁS VENDIDOS'));
 
 $pdf->Ln(16);
 /* ---Titulo de Tabla --- */
 
 $pdf->SetX(30);
+$tabla = $_POST["keyTable"];
+if($tabla==0){
 $pdf->SetFillColor(93, 155, 155);
 $pdf->SetDrawColor(44, 62, 80);
 
@@ -230,7 +232,7 @@ $pdf->Row(array(utf8_decode($array[$i]['descripcion']),utf8_decode($array[$i]['c
 
 }
 
-
+}
 
 
 $pdf->Ln(5);
@@ -243,6 +245,8 @@ $html = $_POST["algo"];
 $aqui=$pdf->Gety();
 //if($aqui>=257){
 
+$graf = $_POST["keyGraf"];
+
 if($aqui>=165){
 
 $pdf->AddPage();
@@ -251,14 +255,19 @@ $dataURI = $html;
 
 $img = explode(',',$dataURI,2)[1];
 $pic = 'data://text/plain;base64,'. $img;
-$pdf->image($pic, -20,50,0,0,'png');
+$pdf->image($pic, -20,50,20,20,'png');
 }else{
 
 $dataURI = $html;
 $pdf->setX(50);
 $img = explode(',',$dataURI,2)[1];
 $pic = 'data://text/plain;base64,'. $img;
-$pdf->image($pic, -20,$aqui,0,0,'png'); 
+if($graf==0){
+  $pdf->image($pic, -15,$aqui,250,0,'png');   
+}else{
+    $pdf->image($pic, -10,$aqui,0,0,'png'); 
+}
+
 }
 
 
