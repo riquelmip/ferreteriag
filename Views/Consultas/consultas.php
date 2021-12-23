@@ -69,7 +69,7 @@
 
        
         <div class="container ax" id="testing"> 
-        <div id="grafico" style="width: 100%; height: 350px; margin: auto; display: flex; align-items: center; justify-content: center; margin-top: 20px;"></div>
+        <div id="grafico" style="width: 80%; height: 350px; margin: auto; display: flex; align-items: center; justify-content: center; margin-top: 20px;"></div>
       
         </div>
        
