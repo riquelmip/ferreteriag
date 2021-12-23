@@ -49,8 +49,8 @@
                     <table class="table table-hover table-bordered" id="tableConsul">
                       <thead>
                         <tr>
-                          <th>ID</th>
-                          <th>Nombres</th>
+                          <th>Descripción</th>
+                          <th>Cantidad total vendida</th>
 
                          
                         </tr>
