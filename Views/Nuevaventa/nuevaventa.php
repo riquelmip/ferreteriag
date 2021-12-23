@@ -70,7 +70,7 @@
                                 <td class="col-md-2"><input type="text" class="form-control"  id="codigobarra" name="codigobarra"></td>
                                 <td class="text-center"><label id="descripcion"></label></td>
                                 <td  class="col-md-1 text-center"><label id="stock"></label></td>
-                                <td class="col-md-1"><input type="number" class="form-control"  id="cantidad" name="cantidad"  min="1" max="5000"></td>
+                                <td class="col-md-1"><input type="number" class="form-control" disabled="" id="cantidad" name="cantidad"  min="1" max="5000"></td>
                                 <td  class="col-md-1 text-center"><label id="precio"></label></td>
                                 <td class="col-md-1 text-center"><label id="preciot"></label></td>
                                 <td class="col-md-1 text-center"><button class="btn btn-primary" id="btnAgregarDetalle" disabled="" type="submit"><i class="fas fa-plus"></i></button></td>

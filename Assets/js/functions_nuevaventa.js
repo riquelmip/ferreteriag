@@ -89,6 +89,7 @@ document.addEventListener('DOMContentLoaded', function(){
                     var precio = parseFloat(json.data.precio).toFixed(2);
                     $("#precio").html(precio);
                     $("#cantidad").val(1);
+                    $("#cantidad").prop('disabled', false);
                     var preciot = parseFloat(json.data.precio).toFixed(2);
                     $("#preciot").html(preciot); 
 
@@ -119,7 +120,8 @@ document.addEventListener('DOMContentLoaded', function(){
             $("#precio").empty();
             $("#preciot").empty();
             $("#cantidad").val("");
-             $("#btnAgregarDetalle").prop('disabled', true);
+            $("#cantidad").prop('disabled', true);
+            $("#btnAgregarDetalle").prop('disabled', true);
         }
        
       
@@ -177,8 +179,15 @@ document.addEventListener('DOMContentLoaded', function(){
                         '<td class="col-md-1 text-center"><button onClick="fntDel('+idproducto+')" class="btn btn-danger btnEliminarDet" type="button"><i class="fas fa-trash-alt"></i></button></td>'+
                     '</tr>'
                 );
-                    
-
+                
+                $("#codigobarra").val("");
+                $("#descripcion").empty();
+                $("#stock").empty();
+                $("#precio").empty();
+                $("#preciot").empty();
+                $("#cantidad").val("");
+                $("#cantidad").prop('disabled', true);
+                $("#btnAgregarDetalle").prop('disabled', true);
                 arrayIdProductos.push({ 
                                 "id" : idproducto,
                                 "codigobarra": codigo,
@@ -233,7 +242,14 @@ document.addEventListener('DOMContentLoaded', function(){
                         '<td class="col-md-1 text-center"><button onClick="fntDel('+idproducto+')" class="btn btn-danger btnEliminarDet" type="button"><i class="fas fa-trash-alt"></i></button></td>'+
                     '</tr>'
                 );
-                    
+                $("#codigobarra").val("");
+                $("#descripcion").empty();
+                $("#stock").empty();
+                $("#precio").empty();
+                $("#preciot").empty();
+                $("#cantidad").val("");
+                $("#cantidad").prop('disabled', true);
+                $("#btnAgregarDetalle").prop('disabled', true); 
                 arrayIdProductos.push({ 
                             "id" : idproducto,
                             "codigobarra": codigo,

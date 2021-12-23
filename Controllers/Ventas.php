@@ -37,6 +37,10 @@
 					if($arrData[$i]['estado'] == 1)
 					{
 						$arrData[$i]['estado'] = '<span class="badge badge-success">Realizada</span>';
+
+						if ($_SESSION['permisosMod']['actualizar']) {
+							$btnEdit = ' <button class="btn btn-danger btn-sm" onClick="anularVenta('.$arrData[$i]['idventa'].')" title="Anular Venta"><i class="fas fa-times"></i></button>';
+						}
 					}else{
 						$arrData[$i]['estado'] = '<span class="badge badge-danger">Anulada</span>';
 					}
@@ -47,16 +51,71 @@
 					
 
 					if ($_SESSION['permisosMod']['leer']) {
-						$btnView = '<button class="btn btn-primary btn-sm" onClick="verTicket('.$arrData[$i]['idventa'].')" title="Ver Ticket"><i class="fas fa-file"></i></button> <button class="btn btn-danger btn-sm" onClick="verFactura('.$arrData[$i]['idventa'].')" title="Ver Factura PDF"><i class="fas fa-file-pdf"></i></button>';
+						$btnView = '<button class="btn btn-info btn-sm" onClick="verTicket('.$arrData[$i]['idventa'].')" title="Ver Ticket"><i class="fas fa-ticket-alt"></i></button> <button class="btn btn-primary btn-sm" onClick="verFactura('.$arrData[$i]['idventa'].')" title="Ver Factura PDF"><i class="fas fa-file-pdf"></i></button>';
 					}
 					
 					
+					
 					//agregamos los botones
-					$arrData[$i]['opciones'] = '<div class="text-center">'.$btnView.' </div>';
+					$arrData[$i]['opciones'] = '<div class="text-center">'.$btnView.$btnEdit.' </div>';
 
 				
 				}
 				echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
+			}
+			die();
+		}
+
+		public function anularVenta()
+		{
+			if ($_SESSION['permisosMod']['leer']) {
+				
+	                 
+
+					$idVenta =  intval(strClean($_POST['idventa']));
+
+
+					$datosVenta = $this->model->selectVenta($idVenta);
+
+					if(count($datosVenta) > 0)
+					{
+
+						$data['productos'] = $datosVenta;
+						$data['idventa'] = $datosVenta[0]['idventa'];
+						$data['fecha'] = $datosVenta[0]['dia']."/".$datosVenta[0]['mes']."/".$datosVenta[0]['anio'];
+						$data['subtotal'] = $datosVenta[0]['subtotal'];
+						$data['iva'] = $datosVenta[0]['iva'];
+						$data['total'] = $datosVenta[0]['monto'];
+						$data['cliente'] = $datosVenta[0]['cliente'];
+						$data['vendedor'] = $_SESSION['userData']['nombre'].' '.$_SESSION['userData']['apellido'] ;
+
+						if ($_SESSION['permisosMod']['escribir']) {
+								$editarestadoventa = $this->model->anularVenta($idVenta);
+								
+							}
+
+						for ($i=0; $i < count($datosVenta); $i++) {
+
+							//agrergando las cantidades nuevamente al stock de producto
+							
+
+							if ($_SESSION['permisosMod']['actualizar']) {
+								$prod = $this->model->selectProducto($datosVenta[$i]['idproducto']);
+								$idproducto = $datosVenta[$i]['idproducto'];
+								$cantidadagregar = intval($datosVenta[$i]['cantidad']);
+								$stockprod = intval($prod['stock']);
+								$nuevostock = $cantidadagregar + $stockprod;
+								$request_stock = $this->model->actualizarstock($idproducto,$nuevostock);
+								
+							}
+						}
+						$arrResponse = array('estado' => true, 'msg' => 'Venta anulada correctamente.');
+					
+					}else{
+						$arrResponse = array("estado" => false, "msg" => 'No es posible anular la venta.');
+					}
+				
+				echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
 			}
 			die();
 		}
