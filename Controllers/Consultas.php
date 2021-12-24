@@ -74,6 +74,60 @@
 			die();
 		}
 
+		public function getDiscapacidades()
+		{
+	
+			$arrData = $this->model->selectConsulta();
+			$htmlDatosTabla = "";
+			for ($i = 0; $i < count($arrData); $i++) {
+		
+	
+	
+
+	
+	
+				$htmlDatosTabla .= '<tr>
+						<td>' . $arrData[$i]['descripcion'] . '</td>
+						<td>' . $arrData[$i]['canti'] . '</td>
+
+					
+					 </tr>';
+			}
+			$arrayDatos = array('datosIndividuales' => $arrData, 'htmlDatosTabla' => $htmlDatosTabla);
+			echo json_encode($arrayDatos, JSON_UNESCAPED_UNICODE);
+	
+			die();
+		}
+
+
+
+
+
+		public function getRoles2(string $dato)
+		{
+
+			$arrData = $this->model->filtrofecha10productosmasvendidos($dato);
+
+			$htmlDatosTabla = "";
+			for ($i = 0; $i < count($arrData); $i++) {
+				
+				
+		
+			$htmlDatosTabla .= '<tr>
+					<td>' . $arrData[$i]['descripcion'] . '</td>
+					<td>' . $arrData[$i]['canti'] . '</td>
+
+				 </tr>';
+		
+		}
+
+		$arrayDatos = array('datosIndividuales' => $arrData, 'htmlDatosTabla' => $htmlDatosTabla);
+		echo json_encode($arrayDatos,JSON_UNESCAPED_UNICODE);
+		
+		die();
+		}
+
+
 
 		public function imprimirticket($idventa){
 			//if($_SESSION['permisosMod']['leer']){

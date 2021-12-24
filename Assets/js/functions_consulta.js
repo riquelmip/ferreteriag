@@ -2,27 +2,8 @@
 var tableRoles;
 var divLoading = document.querySelector('#divLoading');
 document.addEventListener('DOMContentLoaded', function(){
- 
-	tableRoles = $('#tableConsul').dataTable( {
-		"aProcessing":true,
-		"aServerSide":true,
-        "language": {
-        	"url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
-        },
-        "ajax":{
-            "url": " "+base_url+"/Consultas/getRoles",
-            "dataSrc":""
-        },
-        "columns":[
-          
-            {"data":"descripcion"},
-            {"data":"canti"}
-        ],
-        "resonsieve":"true",
-        "bDestroy": true,
-        "iDisplayLength": 10,
-        "order":[[0,"desc"]]  
-    });
+  cargar_datos();
+
 
   
    
@@ -31,10 +12,119 @@ document.addEventListener('DOMContentLoaded', function(){
     //fntGraficoLineal();
   });
 
-$('#tableConsul').DataTable();
 
 
-window.onload = function () {
+function cargar_datos(){
+
+  var datos = {"consultar_info":"si_consultala"}
+  $.ajax({
+      dataType: "json",
+      method: "POST",
+      url: base_url+"/Consultas/getDiscapacidades",
+      data : datos,
+  }).done(function(json) {
+      console.log("EL consultar",json);
+      $("#datos_tabla").empty().html(json.htmlDatosTabla);
+      inicializar_tabla("tableConsul");
+  }).fail(function(){
+
+  }).always(function(){
+     
+  });
+}
+
+
+
+
+
+function alerta_recargartabla(titulo, mensaje, tipo){
+  
+  Swal.fire({
+    title: titulo,
+    text: mensaje,
+    icon: tipo,
+    confirmButtonColor: '#3085d6',
+    confirmButtonText: 'Aceptar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      cargar_datos();
+    } 
+  });
+
+}
+
+function inicializar_tabla(tabla){
+  $('#'+tabla).dataTable( {
+      "responsive": true,
+      "aServerSide": true,
+      "autoWidth": false,
+      "deferRender": true,
+      "retrieve": true,
+      "processing": true,
+      "paging": true,
+      "language": {
+          "sProcessing": "Procesando...",
+          "sLengthMenu": "Mostrar _MENU_ registros",
+          "sZeroRecords": "No se encontraron resultados",
+          "sEmptyTable": "Ningún dato disponible en esta tabla",
+          "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+          "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+          "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+          "sInfoPostFix": "",
+          "sSearch": "Buscar:",
+          "sUrl": "",
+          "sInfoThousands": ",",
+          "sLoadingRecords": "Cargando...",
+          "oPaginate": {
+              "sFirst": "Primero",
+              "sLast": "Último",
+              "sNext": "Siguiente",
+              "sPrevious": "Anterior"
+          }
+      },
+      "columns":[
+          {"data":"descripcion"},
+          {"data":"canti"},
+
+  
+      ],
+      'dom': '<"row"<"col-sm-12 col-md-4"l><"col-sm-12 col-md-4"<"dt-buttons btn-group flex-wrap"B>><"col-sm-12 col-md-4"f>>t<"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
+      'buttons': [
+          {
+              "extend": "copyHtml5",
+              "text": "<i class='far fa-copy'></i>",
+              "titleAttr":"Copiar",
+              "className": "btn btn-primary"
+          },{
+              "extend": "excelHtml5",
+              "text": "<i class='fas fa-file-excel'></i>",
+              "titleAttr":"Exportar a Excel",
+              "className": "btn btn-primary"
+          },{
+              "extend": "pdfHtml5",
+              "text": "<i class='fas fa-file-pdf'></i>",
+              "titleAttr":"Exportar a PDF",
+              "className": "btn btn-primary"
+          },{
+              "extend": "csvHtml5",
+              "text": "<i class='fas fa-file-csv'></i>",
+              "titleAttr":"Exportar a CSV",
+              "className": "btn btn-primary"
+          }
+      ],
+      "bDestroy": true,
+      "iDisplayLength": 10,
+      "order":[[0,"asc"]]  
+  });
+
+
+
+  
+
+}
+
+
+/*window.onload = function () {
 
   clock();
 
@@ -45,35 +135,35 @@ window.onload = function () {
     setTimeout(clock, 1000);
   }
   
-};
+};*/
 
-
-
-
-
-function cargar_datos(tipo, fecha_inicio="",fecha_fin="", listNivel){
-  mostrar_mensaje("Cargando", "Obteniendo datos");
-  //console.log("el tipo es: "+tipo);
-  var datos = {"listNivel":listNivel, "fecha_inicio":fecha_inicio, "fecha_fin":fecha_fin};
+$(document).on("change","#fecha_venta",function(e){
+ var fecha_fin = $("#fecha_venta").val();
+  console.log(fecha_fin);
   $.ajax({
-      dataType: "json",
-      method: "POST",
-      url: base_url+"/Consultas/getPermisosAgentesSegunTipo/"+1,
-      data : datos
-  }).done(function(json) {
-      console.log("EL consultar",json);
-      
-      $("#tablePermiso").empty().html(json.htmlDatosTabla);
-      $('#tablePermiso').DataTable().destroy();
-      inicializar_tabla("tablePermiso");
-      
+    dataType: "json",
+    method: "POST",
+    url: base_url+"/Consultas/getRoles2/"+fecha_fin,
+  
+}).done(function(json) {
+    console.log("EL consultar",json);
+    
+    $("#datos_tabla").empty().html(json.htmlDatosTabla);
+   
+    inicializar_tabla("tableConsul");
 
-  }).fail(function(){
+}).fail(function(){
 
-  }).always(function(){
-      Swal.close();
-  });
-}
+}).always(function(){
+
+});
+ 
+
+
+});
+
+
+
 
 function pruebin() {
      google.charts.load("current", {packages:["corechart"]});
