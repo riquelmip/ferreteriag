@@ -11,19 +11,32 @@
 			getPermisos(2); 
 		}
 
-		public function Consultas(){
+		public function Consultas(){ //Vista primera consulta
 
 			if (empty($_SESSION['permisosMod']['leer'])) {
 			header('location: '.base_url().'/dashboard');
 			}
 			$data['page_id'] = 3;
+			$data['page_tag'] = "Producto más vendido";
+			$data['page_name'] = "consulta_1";
+			$data['page_title'] = "Parámetros: ";
+		 	$data['page_functions_js'] = "functions_productomasvendido.js";
+			$this->views->getView($this,"productomasvendido",$data);
+		}
+
+        public function Reportes(){
+			if (empty($_SESSION['permisosMod']['leer'])) {
+				header('location: '.base_url().'/dashboard');
+			}
+			$data['page_id'] = 3;
 			$data['page_tag'] = "Productos sin stock";
 			$data['page_name'] = "consulta_1";
 			$data['page_title'] = "Parámetros: ";
-		 	$data['page_functions_js'] = "functions_consulta.js";
-			$this->views->getView($this,"consultas",$data);
-		}
-		public function productomenosvendidoconsulta(){
+			 $data['page_functions_js'] = "functions_consulta.js";
+				$this->views->getView($this,"reportes/ferreteria",$data);
+			}
+
+		public function productomenosvendidoconsulta(){ //Vista segunda consulta
 
 			if (empty($_SESSION['permisosMod']['leer'])) {
 			header('location: '.base_url().'/dashboard');
@@ -32,21 +45,11 @@
 			$data['page_tag'] = "Productos menos vendido";
 			$data['page_name'] = "consulta_1";
 			$data['page_title'] = "Parámetros: ";
-			 $data['page_functions_js'] = "functions_consulta.js";
+			 $data['page_functions_js'] = "functions_productomenosvendido.js";
 			$this->views->getView($this,"productomenosvendido",$data);
 		}
 
-        public function Reportes(){
-		if (empty($_SESSION['permisosMod']['leer'])) {
-			header('location: '.base_url().'/dashboard');
-		}
-		$data['page_id'] = 3;
-		$data['page_tag'] = "Productos sin stock";
-		$data['page_name'] = "consulta_1";
-		$data['page_title'] = "Parámetros: ";
-		 $data['page_functions_js'] = "functions_consulta.js";
-			$this->views->getView($this,"reportes/ferreteria",$data);
-		}
+
 
 		 public function ProductoMenosVendido(){
 			if (empty($_SESSION['permisosMod']['leer'])) {
@@ -59,45 +62,50 @@
 			$this->views->getView($this,"reportes/productomenosvendido",$data);
 		}
 
-
-		public function productosmasvendidos10()
-		{
-			if ($_SESSION['permisosMod']['leer']) {
-				$arrData = $this->model->selectConsulta();
-				echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
-			}
-			die();
-		}
-
-
-
-		public function getRoles()
-		{
-			if ($_SESSION['permisosMod']['leer']) {
-				$arrData = $this->model->selectConsulta();
-				echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
-			}
-			die();
-		}
-
-		public function getDiscapacidades()
+		public function productosmasvendidos() //Consulta primera consulta
 		{
 	
 			$arrData = $this->model->selectConsulta();
 			$htmlDatosTabla = "";
 			for ($i = 0; $i < count($arrData); $i++) {
-		
-	
-	
-
-	
-	
-				$htmlDatosTabla .= '<tr>
+			$htmlDatosTabla .= '<tr>
 						<td>' . $arrData[$i]['descripcion'] . '</td>
 						<td>' . $arrData[$i]['canti'] . '</td>
+					 			</tr>';
+			}
+			
+			$arrayDatos = array('datosIndividuales' => $arrData);
+			echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+	
+			die();
+		}
 
-					
-					 </tr>';
+		public function getproductomasvendidoporfecha(string $dato)//Consulta primera consulta filtrada por fechas
+		{
+			$arrData = $this->model->filtrofecha10productosmasvendidos($dato);
+			$htmlDatosTabla = "";
+			for ($i = 0; $i < count($arrData); $i++) {
+			$htmlDatosTabla .= '<tr>
+					<td>' . $arrData[$i]['descripcion'] . '</td>
+					<td>' . $arrData[$i]['canti'] . '</td>
+				 </tr>';		
+		}
+		$arrayDatos = array('datosIndividuales' => $arrData, 'htmlDatosTabla' => $htmlDatosTabla);
+		echo json_encode($arrayDatos,JSON_UNESCAPED_UNICODE);
+		
+		die();
+		}
+
+		public function productosmenosvendidos() //Consulta segunda consulta
+		{
+	
+			$arrData = $this->model->productomenosvendidoconsulta();
+			$htmlDatosTabla = "";
+			for ($i = 0; $i < count($arrData); $i++) {
+			$htmlDatosTabla .= '<tr>
+						<td>' . $arrData[$i]['descripcion'] . '</td>
+						<td>' . $arrData[$i]['canti'] . '</td>
+					 			</tr>';
 			}
 			$arrayDatos = array('datosIndividuales' => $arrData, 'htmlDatosTabla' => $htmlDatosTabla);
 			echo json_encode($arrayDatos, JSON_UNESCAPED_UNICODE);
@@ -105,33 +113,122 @@
 			die();
 		}
 
-
-
-
-
-		public function getRoles2(string $dato)
+		public function getproductomenosvendidoporfecha(string $dato)//Consulta segunda consulta filtrada por fechas
 		{
-
-			$arrData = $this->model->filtrofecha10productosmasvendidos($dato);
-
+			$arrData = $this->model->productomenosvendidoconsultafiltradafecha($dato);
 			$htmlDatosTabla = "";
 			for ($i = 0; $i < count($arrData); $i++) {
-				
-				
-		
 			$htmlDatosTabla .= '<tr>
 					<td>' . $arrData[$i]['descripcion'] . '</td>
 					<td>' . $arrData[$i]['canti'] . '</td>
-
-				 </tr>';
-		
+				 </tr>';		
 		}
-
 		$arrayDatos = array('datosIndividuales' => $arrData, 'htmlDatosTabla' => $htmlDatosTabla);
 		echo json_encode($arrayDatos,JSON_UNESCAPED_UNICODE);
 		
 		die();
 		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -184,6 +281,7 @@
 			//}
 			die();
 		}
+
 
 	}
  ?>

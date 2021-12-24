@@ -2,8 +2,7 @@
 
 	class ConsultasModel extends Mysql
 	{
-		public $intId;
-		public $strNombre;
+
 
 		public function __construct()
 		{
@@ -26,6 +25,28 @@
 		
 			return $request;
 		}
+
+		public function productomenosvendidoconsulta()
+		{
+
+			$sql = "SELECT p.descripcion,SUM(dv.cantidad) as canti from detalleventa dv INNER JOIN producto p on p.idproducto=dv.idproducto GROUP BY p.descripcion order by SUM(dv.cantidad) asc LIMIT 10";
+			$request = $this->select_all($sql);
+			return $request;
+		}
+		public function productomenosvendidoconsultafiltradafecha(string $dato)
+		{
+			$this->strNombre = $dato;
+			$sql = "SELECT p.descripcion,SUM(dv.cantidad) as canti,CONCAT(v.anio, '-', v.mes, '-', v.dia) fecha_compra from detalleventa dv INNER JOIN producto p on p.idproducto=dv.idproducto inner join venta v on dv.idventa=v.idventa GROUP BY p.descripcion,v.dia having fecha_compra='$this->strNombre' order by SUM(dv.cantidad) asc LIMIT 10";
+		
+			$request = $this->select_all($sql);
+		
+			return $request;
+		}
+
+
+
+
+
 		public function selectVenta(int $idventa) 
 		{
 

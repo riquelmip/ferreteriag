@@ -6,7 +6,7 @@
         display: none;
       }
     </style>
-
+ <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <main class="app-content">
       <div class="app-title">
         <div class="row">

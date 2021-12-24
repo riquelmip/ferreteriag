@@ -11,7 +11,7 @@ function cargar_datos(){
   $.ajax({
       dataType: "json",
       method: "POST",
-      url: base_url+"/Consultas/getDiscapacidades",
+      url: base_url+"/Consultas/productosmenosvendidos",
       data : datos,
   }).done(function(json) {
       console.log("EL consultar",json);
@@ -105,7 +105,7 @@ function inicializar_tabla(tabla){
       ],
       "bDestroy": true,
       "iDisplayLength": 10,
-      "order":[[0,"asc"]]  
+      "order":[[1,"asc"]]  
   });
 
 
@@ -115,18 +115,7 @@ function inicializar_tabla(tabla){
 }
 
 
-/*window.onload = function () {
 
-  clock();
-
-  function clock() {
-    fecha_fin = $("#fecha_venta").val();
-
-    console.log(fecha_fin);
-    setTimeout(clock, 1000);
-  }
-  
-};*/
 
 $(document).on("change","#fecha_venta",function(e){
  var fecha_fin = $("#fecha_venta").val();
@@ -134,7 +123,7 @@ $(document).on("change","#fecha_venta",function(e){
   $.ajax({
     dataType: "json",
     method: "POST",
-    url: base_url+"/Consultas/getRoles2/"+fecha_fin,
+    url: base_url+"/Consultas/getproductomenosvendidoporfecha/"+fecha_fin,
   
 }).done(function(json) {
     console.log("EL consultar",json);
