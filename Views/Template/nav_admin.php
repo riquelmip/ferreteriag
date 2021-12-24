@@ -128,7 +128,7 @@
                 </a>
                 <ul class="treeview-menu">
                 <?php if (!empty($_SESSION['permisos'][9]['leer'])) { ?>
-                    <li><a class="treeview-item" href="<?= base_url(); ?>/consultas"><i class="icon fa fa-circle-o"></i> Consultas</a></li>
+                    <li><a class="treeview-item" href="<?= base_url(); ?>/consultas"><i class="icon fa fa-circle-o"></i> Productos más vendidos</a></li>
                 <?php } ?>
         
                 </ul>

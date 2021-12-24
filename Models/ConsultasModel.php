@@ -17,11 +17,6 @@
 			$request = $this->select_all($sql);
 			return $request;
 		}
-
-
-
-
-
 		public function filtrofecha10productosmasvendidos(string $dato)
 		{
 			$this->strNombre = $dato;

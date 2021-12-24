@@ -2,18 +2,9 @@
 var tableRoles;
 var divLoading = document.querySelector('#divLoading');
 document.addEventListener('DOMContentLoaded', function(){
-  cargar_datos();
-
-
-  
-   
-    //pruebin();
+    cargar_datos();
     fntGraficoBarra();
-    //fntGraficoLineal();
   });
-
-
-
 function cargar_datos(){
 
   var datos = {"consultar_info":"si_consultala"}
