@@ -218,6 +218,15 @@ document.addEventListener('DOMContentLoaded', function(){
                        }else{
                             arrayIdProductos[i].cantidad = nuevacantidad;
                             $("#cantidad-"+arrayIdProductos[i].id).empty().html(nuevacantidad);
+
+                            $("#codigobarra").val("");
+                            $("#descripcion").empty();
+                            $("#stock").empty();
+                            $("#precio").empty();
+                            $("#preciot").empty();
+                            $("#cantidad").val("");
+                            $("#cantidad").prop('disabled', true);
+                            $("#btnAgregarDetalle").prop('disabled', true); 
                        }
                       
 
@@ -250,6 +259,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 $("#cantidad").val("");
                 $("#cantidad").prop('disabled', true);
                 $("#btnAgregarDetalle").prop('disabled', true); 
+
                 arrayIdProductos.push({ 
                             "id" : idproducto,
                             "codigobarra": codigo,
