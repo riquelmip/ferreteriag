@@ -10,7 +10,7 @@
 			}
 			getPermisos(2); 
 		}
-
+///////////Funciones para vistas
 		public function Consultas(){ //Vista primera consulta
 
 			if (empty($_SESSION['permisosMod']['leer'])) {
@@ -24,19 +24,9 @@
 			$this->views->getView($this,"productomasvendido",$data);
 		}
 
-        public function Reportes(){
-			if (empty($_SESSION['permisosMod']['leer'])) {
-				header('location: '.base_url().'/dashboard');
-			}
-			$data['page_id'] = 3;
-			$data['page_tag'] = "Productos sin stock";
-			$data['page_name'] = "consulta_1";
-			$data['page_title'] = "Parámetros: ";
-			 $data['page_functions_js'] = "functions_consulta.js";
-				$this->views->getView($this,"reportes/ferreteria",$data);
-			}
 
-		public function productomenosvendidoconsulta(){ //Vista segunda consulta
+
+		public function productomenosvendidovista(){ //Vista segunda consulta
 
 			if (empty($_SESSION['permisosMod']['leer'])) {
 			header('location: '.base_url().'/dashboard');
@@ -49,20 +39,121 @@
 			$this->views->getView($this,"productomenosvendido",$data);
 		}
 
+		public function clientesconmayorcomprasvista(){ //Vista tercera consulta
 
-
-		 public function ProductoMenosVendido(){
 			if (empty($_SESSION['permisosMod']['leer'])) {
 			header('location: '.base_url().'/dashboard');
 			}
 			$data['page_id'] = 3;
-			$data['page_tag'] = "Productos sin stock";
+			$data['page_tag'] = "Clientes con mayor indice de compra";
 			$data['page_name'] = "consulta_1";
 			$data['page_title'] = "Parámetros: ";
-			$this->views->getView($this,"reportes/productomenosvendido",$data);
+			 $data['page_functions_js'] = "functions_clientesconmayorcompra.js";
+			$this->views->getView($this,"clientesconmayorcomprasvista",$data);
 		}
 
-		public function productosmasvendidos() //Consulta primera consulta
+		public function clientesconmenorcomprasvista(){ //Vista cuatro consulta
+
+			if (empty($_SESSION['permisosMod']['leer'])) {
+			header('location: '.base_url().'/dashboard');
+			}
+			$data['page_id'] = 3;
+			$data['page_tag'] = "Cliente con menor compra";
+			$data['page_name'] = "consulta_1";
+			$data['page_title'] = "Parámetros: ";
+			 $data['page_functions_js'] = "functions_clientesconmenorcompra.js";
+			$this->views->getView($this,"clienteconmenorcompravista",$data);
+		}
+		public function empleadosconmayorventa(){ //Vista cinco consulta
+
+			if (empty($_SESSION['permisosMod']['leer'])) {
+			header('location: '.base_url().'/dashboard');
+			}
+			$data['page_id'] = 3;
+			$data['page_tag'] = "Empleados mayor ventas";
+			$data['page_name'] = "consulta_1";
+			$data['page_title'] = "Parámetros: ";
+			 $data['page_functions_js'] = "functions_empleadoconmayorventa.js";
+			$this->views->getView($this,"mayorindicedeventa",$data);
+		}
+		public function empleadosconmenorventa(){ //Vista seis consulta
+
+			if (empty($_SESSION['permisosMod']['leer'])) {
+			header('location: '.base_url().'/dashboard');
+			}
+			$data['page_id'] = 3;
+			$data['page_tag'] = "Empleados menos ventas";
+			$data['page_name'] = "consulta_1";
+			$data['page_title'] = "Parámetros: ";
+			 $data['page_functions_js'] = "functions_empleadoconmenorventa.js";
+			$this->views->getView($this,"menorindicedeventa",$data);
+		}
+
+		public function stocklimitado10(){ //Vista siete consulta
+
+			if (empty($_SESSION['permisosMod']['leer'])) {
+			header('location: '.base_url().'/dashboard');
+			}
+			$data['page_id'] = 3;
+			$data['page_tag'] = "Productos menos vendido";
+			$data['page_name'] = "consulta_1";
+			$data['page_title'] = "Parámetros: ";
+			 $data['page_functions_js'] = "functions_productomenosvendido.js";
+			$this->views->getView($this,"clientesconmayorcomprasvista",$data);
+		}
+
+///////////Funciones para grafico
+		public function productosmasvendidos() //primera consulta grafico
+		{
+			$arrData = $this->model->selectConsulta();
+			echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+			die();
+		}
+
+		public function productomenosvendidos() //segunda consulta grafico
+		{
+	
+			$arrData = $this->model->productomenosvendidoconsulta();
+			echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+			die();
+		}
+
+		public function clientemayorcompra() //tercera consulta grafico
+		{
+			$arrData = $this->model->clientesmascompras();
+			echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+			die();
+		}
+
+		public function clientemenorcompra() //cuarta consulta grafico
+		{
+			$arrData = $this->model->clientesmenoscompras();
+			echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+			die();
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////Funciones para tabla 
+		public function productosmasvendidosconsulta() //primera consulta tabla
 		{
 	
 			$arrData = $this->model->selectConsulta();
@@ -74,29 +165,14 @@
 					 			</tr>';
 			}
 			
-			$arrayDatos = array('datosIndividuales' => $arrData);
-			echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+			
+			$arrayDatos = array('datosIndividuales' => $arrData, 'htmlDatosTabla' => $htmlDatosTabla);
+			echo json_encode($arrayDatos,JSON_UNESCAPED_UNICODE);
 	
 			die();
 		}
 
-		public function getproductomasvendidoporfecha(string $dato)//Consulta primera consulta filtrada por fechas
-		{
-			$arrData = $this->model->filtrofecha10productosmasvendidos($dato);
-			$htmlDatosTabla = "";
-			for ($i = 0; $i < count($arrData); $i++) {
-			$htmlDatosTabla .= '<tr>
-					<td>' . $arrData[$i]['descripcion'] . '</td>
-					<td>' . $arrData[$i]['canti'] . '</td>
-				 </tr>';		
-		}
-		$arrayDatos = array('datosIndividuales' => $arrData, 'htmlDatosTabla' => $htmlDatosTabla);
-		echo json_encode($arrayDatos,JSON_UNESCAPED_UNICODE);
-		
-		die();
-		}
-
-		public function productosmenosvendidos() //Consulta segunda consulta
+		public function productosmenosvendidos() //segunda consulta tabla
 		{
 	
 			$arrData = $this->model->productomenosvendidoconsulta();
@@ -112,8 +188,69 @@
 	
 			die();
 		}
+		public function clientemayorcompras() //tercera consulta tabla
+		{
+	
+			$arrData = $this->model->clientesmascompras();
+			$htmlDatosTabla = "";
+			for ($i = 0; $i < count($arrData); $i++) {
+			$htmlDatosTabla .= '<tr>
+						<td>' . $arrData[$i]['nombre'] . '</td>
+						<td>' . $arrData[$i]['apellido'] . '</td>
+						<td>' . $arrData[$i]['idcliente'] . '</td>
+						<td>' . $arrData[$i]['monto'] . '</td>
+					 			</tr>';
+			}
+			$arrayDatos = array('datosIndividuales' => $arrData, 'htmlDatosTabla' => $htmlDatosTabla);
+			echo json_encode($arrayDatos, JSON_UNESCAPED_UNICODE);
+	
+			die();
+		}
 
-		public function getproductomenosvendidoporfecha(string $dato)//Consulta segunda consulta filtrada por fechas
+		public function clientemenorcompras() //cuarta consulta tabla
+		{
+	
+			$arrData = $this->model->clientesmenoscompras();
+			$htmlDatosTabla = "";
+			for ($i = 0; $i < count($arrData); $i++) {
+			$htmlDatosTabla .= '<tr>
+						<td>' . $arrData[$i]['nombre'] . '</td>
+						<td>' . $arrData[$i]['apellido'] . '</td>
+						<td>' . $arrData[$i]['idcliente'] . '</td>
+						<td>' . $arrData[$i]['monto'] . '</td>
+					 			</tr>';
+			}
+			$arrayDatos = array('datosIndividuales' => $arrData, 'htmlDatosTabla' => $htmlDatosTabla);
+			echo json_encode($arrayDatos, JSON_UNESCAPED_UNICODE);
+	
+			die();
+		}
+
+
+
+
+
+
+
+/////////Consulta para vista filtradas
+		public function getproductomasvendidoporfecha(string $dato)//primera consulta filtrada por fechas
+		{
+			$arrData = $this->model->filtrofecha10productosmasvendidos($dato);
+			$htmlDatosTabla = "";
+			for ($i = 0; $i < count($arrData); $i++) {
+			$htmlDatosTabla .= '<tr>
+					<td>' . $arrData[$i]['descripcion'] . '</td>
+					<td>' . $arrData[$i]['canti'] . '</td>
+				 </tr>';		
+		}
+		$arrayDatos = array('datosIndividuales' => $arrData, 'htmlDatosTabla' => $htmlDatosTabla);
+		echo json_encode($arrayDatos,JSON_UNESCAPED_UNICODE);
+		
+		die();
+		}
+
+
+		public function getproductomenosvendidoporfecha(string $dato)//segunda consulta filtrada por fechas
 		{
 			$arrData = $this->model->productomenosvendidoconsultafiltradafecha($dato);
 			$htmlDatosTabla = "";
@@ -122,6 +259,41 @@
 					<td>' . $arrData[$i]['descripcion'] . '</td>
 					<td>' . $arrData[$i]['canti'] . '</td>
 				 </tr>';		
+		}
+		$arrayDatos = array('datosIndividuales' => $arrData, 'htmlDatosTabla' => $htmlDatosTabla);
+		echo json_encode($arrayDatos,JSON_UNESCAPED_UNICODE);
+		
+		die();
+		}
+		public function clientemayorcomprasfiltradaporfecha(string $dato)//tercera consulta filtrada por fechas
+		{
+			$arrData = $this->model->clientemayorcomprasfiltrada($dato);
+			$htmlDatosTabla = "";
+			for ($i = 0; $i < count($arrData); $i++) {
+				$htmlDatosTabla .= '<tr>
+						<td>' . $arrData[$i]['nombre'] . '</td>
+						<td>' . $arrData[$i]['apellido'] . '</td>
+						<td>' . $arrData[$i]['idcliente'] . '</td>
+						<td>' . $arrData[$i]['monto'] . '</td>
+					 			</tr>';		
+		}
+		$arrayDatos = array('datosIndividuales' => $arrData, 'htmlDatosTabla' => $htmlDatosTabla);
+		echo json_encode($arrayDatos,JSON_UNESCAPED_UNICODE);
+		
+		die();
+		}
+
+		public function clientemenorcomprasfiltradaporfecha(string $dato)//cuarta consulta filtrada por fechas
+		{
+			$arrData = $this->model->clientemenorcomprasfiltrada($dato);
+			$htmlDatosTabla = "";
+			for ($i = 0; $i < count($arrData); $i++) {
+				$htmlDatosTabla .= '<tr>
+						<td>' . $arrData[$i]['nombre'] . '</td>
+						<td>' . $arrData[$i]['apellido'] . '</td>
+						<td>' . $arrData[$i]['idcliente'] . '</td>
+						<td>' . $arrData[$i]['monto'] . '</td>
+					 			</tr>';		
 		}
 		$arrayDatos = array('datosIndividuales' => $arrData, 'htmlDatosTabla' => $htmlDatosTabla);
 		echo json_encode($arrayDatos,JSON_UNESCAPED_UNICODE);
@@ -173,65 +345,34 @@
 
 
 
+		///////Reportes
+
+		public function Reportes(){
+			if (empty($_SESSION['permisosMod']['leer'])) {
+				header('location: '.base_url().'/dashboard');
+			}
+			$data['page_id'] = 3;
+			$data['page_tag'] = "Productos sin stock";
+			$data['page_name'] = "consulta_1";
+			$data['page_title'] = "Parámetros: ";
+			 $data['page_functions_js'] = "functions_consulta.js";
+				$this->views->getView($this,"reportes/ferreteria",$data);
+			}
 
 
+		 public function ProductoMenosVendido(){
+			if (empty($_SESSION['permisosMod']['leer'])) {
+			header('location: '.base_url().'/dashboard');
+			}
+			$data['page_id'] = 3;
+			$data['page_tag'] = "Productos sin stock";
+			$data['page_name'] = "consulta_1";
+			$data['page_title'] = "Parámetros: ";
+			$this->views->getView($this,"reportes/productomenosvendido",$data);
+		}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		/////////Venta
 		public function imprimirticket($idventa){
 			//if($_SESSION['permisosMod']['leer']){
 				$id = $idventa;

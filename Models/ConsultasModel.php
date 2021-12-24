@@ -42,7 +42,24 @@
 		
 			return $request;
 		}
-
+		public function clientemayorcomprasfiltrada(string $dato)
+		{
+			$this->strNombre = $dato;
+			$sql = "SELECT c.nombre,c.apellido,v.idcliente,SUM(v.monto) AS monto,CONCAT(v.anio, '-', v.mes, '-', v.dia) fecha_compra from venta v inner join cliente c on c.idcliente=v.idcliente GROUP BY v.idcliente having fecha_compra='$this->strNombre' order by SUM(v.monto) desc LIMIT 10";
+		
+			$request = $this->select_all($sql);
+		
+			return $request;
+		}
+		public function clientemenorcomprasfiltrada(string $dato)
+		{
+			$this->strNombre = $dato;
+			$sql = "SELECT c.nombre,c.apellido,v.idcliente,SUM(v.monto) AS monto,CONCAT(v.anio, '-', v.mes, '-', v.dia) fecha_compra from venta v inner join cliente c on c.idcliente=v.idcliente GROUP BY v.idcliente having fecha_compra='$this->strNombre' order by SUM(v.monto) asc LIMIT 10";
+		
+			$request = $this->select_all($sql);
+		
+			return $request;
+		}
 
 
 
@@ -87,7 +104,7 @@
 			public function clientesmascompras()
 		{
 
-			$sql = "SELECT c.nombre,v.idcliente,SUM(v.monto) AS monto from venta v inner join cliente c on c.idcliente=v.idcliente GROUP BY v.idcliente order by SUM(v.monto) desc LIMIT 10";
+			$sql = "SELECT c.nombre,c.apellido,v.idcliente,SUM(v.monto) AS monto from venta v inner join cliente c on c.idcliente=v.idcliente GROUP BY v.idcliente order by SUM(v.monto) desc LIMIT 10";
 			$request = $this->select_all($sql);
 			return $request;
 		}
@@ -95,7 +112,7 @@
 			public function clientesmenoscompras()
 		{
 
-			$sql = "SELECT c.nombre,v.idcliente,SUM(v.monto) AS monto from venta v inner join cliente c on c.idcliente=v.idcliente GROUP BY v.idcliente order by SUM(v.monto) asc LIMIT 10";
+			$sql = "SELECT c.nombre,c.apellido,v.idcliente,SUM(v.monto) AS monto from venta v inner join cliente c on c.idcliente=v.idcliente GROUP BY v.idcliente order by SUM(v.monto) asc LIMIT 10";
 			$request = $this->select_all($sql);
 			return $request;
 		}

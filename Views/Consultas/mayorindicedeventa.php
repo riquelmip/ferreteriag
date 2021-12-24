@@ -6,10 +6,13 @@
         display: none;
       }
     </style>
- <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
     <main class="app-content">
+      
       <div class="app-title">
+        
         <div class="row">
+          
             <h1 style="margin-right: 50px;"><i class="far fa-chart-bar"></i> <?= $data['page_title'] ?></h1>
    
 
@@ -36,8 +39,8 @@
    </form>
         </div>
       </div><!-- final de title -->
-      <h2 style="margin-right: 50px;"><i class="far fa-chart-bar"></i>Producto más vendido</h2>
 
+      <h2 style="margin-right: 50px;"><i class="far fa-chart-bar"></i> Empleado con mayor venta por fecha</h2>
               <div class="row" id="laTabla">
             <div class="col-md-12">
               <div class="tile">
@@ -46,8 +49,10 @@
                     <table class="table table-hover table-bordered" id="tableConsul">
                       <thead>
                         <tr>
-                          <th>Descripción</th>
-                          <th>Cantidad total vendida</th>
+                          <th>Nombre</th>
+                          <th>Apellido</th>
+                          <th>Nª de Empleado</th>
+                          <th>Monto total vendido</th>
                         </tr>
                       </thead>
                       <tbody id="datos_tabla">

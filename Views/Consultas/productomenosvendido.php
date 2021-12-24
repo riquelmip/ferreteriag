@@ -36,7 +36,7 @@
    </form>
         </div>
       </div><!-- final de title -->
-
+      <h2 style="margin-right: 50px;"><i class="far fa-chart-bar"></i>Producto menos vendido</h2>
 
               <div class="row" id="laTabla">
             <div class="col-md-12">

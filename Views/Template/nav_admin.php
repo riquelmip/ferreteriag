@@ -132,6 +132,43 @@
                 <?php } ?>
         
                 </ul>
+                <ul class="treeview-menu">
+                <?php if (!empty($_SESSION['permisos'][9]['leer'])) { ?>
+                    <li><a class="treeview-item" href="<?= base_url(); ?>/consultas/productomenosvendidovista"><i class="icon fa fa-circle-o"></i> Productos menos vendidos</a></li>
+                <?php } ?>
+        
+                </ul>
+                <ul class="treeview-menu">
+                <?php if (!empty($_SESSION['permisos'][9]['leer'])) { ?>
+                    <li><a class="treeview-item" href="<?= base_url(); ?>/consultas/clientesconmayorcomprasvista"><i class="icon fa fa-circle-o"></i> Clientes con mayor compras</a></li>
+                <?php } ?>
+        
+                </ul>
+                <ul class="treeview-menu">
+                <?php if (!empty($_SESSION['permisos'][9]['leer'])) { ?>
+                    <li><a class="treeview-item" href="<?= base_url(); ?>/consultas/clientesconmenorcomprasvista"><i class="icon fa fa-circle-o"></i> Clientes con menor compras</a></li>
+                <?php } ?>
+        
+                </ul>
+                <ul class="treeview-menu">
+                <?php if (!empty($_SESSION['permisos'][9]['leer'])) { ?>
+                    <li><a class="treeview-item" href="<?= base_url(); ?>/consultas/empleadosconmayorventa"><i class="icon fa fa-circle-o"></i> Mayor indice de venta por empleado</a></li>
+                <?php } ?>
+        
+                </ul>
+                <ul class="treeview-menu">
+                <?php if (!empty($_SESSION['permisos'][9]['leer'])) { ?>
+                    <li><a class="treeview-item" href="<?= base_url(); ?>/consultas/empleadosconmenorventa"><i class="icon fa fa-circle-o"></i> Menor indice de venta por empleado</a></li>
+                <?php } ?>
+        
+                </ul>
+                <ul class="treeview-menu">
+                <?php if (!empty($_SESSION['permisos'][9]['leer'])) { ?>
+                    <li><a class="treeview-item" href="<?= base_url(); ?>/consultas"><i class="icon fa fa-circle-o"></i> Existencia de productos</a></li>
+                <?php } ?>
+        
+                </ul>
+
             </li>
         <?php } ?>
 
