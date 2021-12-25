@@ -132,7 +132,18 @@
 			die();
 		}
 
-
+		public function empleadosconmayorventas() //quinta consulta grafico
+		{
+			$arrData = $this->model->empleadosconmasventas();
+			echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+			die();
+		}
+		public function empleadosconmenorventas() //sexta consulta grafico
+		{
+			$arrData = $this->model->empleadosconmenosventas();
+			echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+			die();
+		}
 
 
 
@@ -225,6 +236,42 @@
 	
 			die();
 		}
+		public function empleadoconmayorventas() //quinta consulta tabla
+		{
+	
+			$arrData = $this->model->empleadosconmasventas();
+			$htmlDatosTabla = "";
+			for ($i = 0; $i < count($arrData); $i++) {
+			$htmlDatosTabla .= '<tr>
+						<td>' . $arrData[$i]['nombre'] . '</td>
+						<td>' . $arrData[$i]['apellido'] . '</td>
+						<td>' . $arrData[$i]['idempleado'] . '</td>
+						<td>' . $arrData[$i]['monto'] . '</td>
+					 			</tr>';
+			}
+			$arrayDatos = array('datosIndividuales' => $arrData, 'htmlDatosTabla' => $htmlDatosTabla);
+			echo json_encode($arrayDatos, JSON_UNESCAPED_UNICODE);
+	
+			die();
+		}
+		public function empleadoconmenorventas() //sexta consulta tabla
+		{
+	
+			$arrData = $this->model->empleadosconmenosventas();
+			$htmlDatosTabla = "";
+			for ($i = 0; $i < count($arrData); $i++) {
+			$htmlDatosTabla .= '<tr>
+						<td>' . $arrData[$i]['nombre'] . '</td>
+						<td>' . $arrData[$i]['apellido'] . '</td>
+						<td>' . $arrData[$i]['idempleado'] . '</td>
+						<td>' . $arrData[$i]['monto'] . '</td>
+					 			</tr>';
+			}
+			$arrayDatos = array('datosIndividuales' => $arrData, 'htmlDatosTabla' => $htmlDatosTabla);
+			echo json_encode($arrayDatos, JSON_UNESCAPED_UNICODE);
+	
+			die();
+		}
 
 
 
@@ -300,7 +347,41 @@
 		
 		die();
 		}
+		public function empleadomayorventafiltradaporfecha(string $dato)//quinta consulta filtrada por fechas
+		{
+			$arrData = $this->model->empleadomayorventafiltradaporfecha($dato);
+			$htmlDatosTabla = "";
+			for ($i = 0; $i < count($arrData); $i++) {
+				$htmlDatosTabla .= '<tr>
+						<td>' . $arrData[$i]['nombre'] . '</td>
+						<td>' . $arrData[$i]['apellido'] . '</td>
+						<td>' . $arrData[$i]['idempleado'] . '</td>
+						<td>' . $arrData[$i]['monto'] . '</td>
+					 			</tr>';		
+		}
+		$arrayDatos = array('datosIndividuales' => $arrData, 'htmlDatosTabla' => $htmlDatosTabla);
+		echo json_encode($arrayDatos,JSON_UNESCAPED_UNICODE);
+		
+		die();
+		}
 
+		public function empleadomenorventafiltradaporfecha(string $dato)//sexta consulta filtrada por fechas
+		{
+			$arrData = $this->model->empleadomenorventafiltradaporfecha($dato);
+			$htmlDatosTabla = "";
+			for ($i = 0; $i < count($arrData); $i++) {
+				$htmlDatosTabla .= '<tr>
+						<td>' . $arrData[$i]['nombre'] . '</td>
+						<td>' . $arrData[$i]['apellido'] . '</td>
+						<td>' . $arrData[$i]['idempleado'] . '</td>
+						<td>' . $arrData[$i]['monto'] . '</td>
+					 			</tr>';		
+		}
+		$arrayDatos = array('datosIndividuales' => $arrData, 'htmlDatosTabla' => $htmlDatosTabla);
+		echo json_encode($arrayDatos,JSON_UNESCAPED_UNICODE);
+		
+		die();
+		}
 
 
 

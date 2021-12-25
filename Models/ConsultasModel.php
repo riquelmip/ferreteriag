@@ -61,6 +61,24 @@
 			return $request;
 		}
 
+		public function empleadomayorventafiltradaporfecha(string $dato)
+		{
+			$this->strNombre = $dato;
+			$sql = "SELECT u.idempleado,e.nombre,e.apellido,v.idusuario,SUM(v.monto) AS monto,CONCAT(v.anio, '-', v.mes, '-', v.dia) fecha_compra from venta v inner join usuario u on u.idusuario=v.idusuario inner join empleado e on e.idempleado=u.idempleado GROUP BY v.idcliente having fecha_compra='$this->strNombre' order by SUM(v.monto) desc LIMIT 10";
+		
+			$request = $this->select_all($sql);
+		
+			return $request;
+		}
+		public function empleadomenorventafiltradaporfecha(string $dato)
+		{
+			$this->strNombre = $dato;
+			$sql = "SELECT u.idempleado,e.nombre,e.apellido,v.idusuario,SUM(v.monto) AS monto,CONCAT(v.anio, '-', v.mes, '-', v.dia) fecha_compra from venta v inner join usuario u on u.idusuario=v.idusuario inner join empleado e on e.idempleado=u.idempleado GROUP BY v.idcliente having fecha_compra='$this->strNombre' order by SUM(v.monto) asc LIMIT 10";
+		
+			$request = $this->select_all($sql);
+		
+			return $request;
+		}
 
 
 

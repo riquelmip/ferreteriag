@@ -11,7 +11,7 @@ function cargar_datos(){
   $.ajax({
       dataType: "json",
       method: "POST",
-      url: base_url+"/Consultas/clientemayorcompras",
+      url: base_url+"/Consultas/empleadoconmenorventas",
       data : datos,
   }).done(function(json) {
       console.log("EL consultar",json);
@@ -76,7 +76,7 @@ function inicializar_tabla(tabla){
       "columns":[
           {"data":"nombre"},
           {"data":"apellido"},
-          {"data":"idcliente"},
+          {"data":"idempleado"},
           {"data":"monto"},
   
       ],
@@ -124,7 +124,7 @@ $(document).on("change","#fecha_venta",function(e){
    $.ajax({
      dataType: "json",
      method: "POST",
-     url: base_url+"/Consultas/clientemayorcomprasfiltradaporfecha/"+fecha_fin,
+     url: base_url+"/Consultas/empleadomenorventafiltradaporfecha/"+fecha_fin,
    
  }).done(function(json) {
      console.log("EL consultar",json);
@@ -157,7 +157,7 @@ $(document).on("change","#fecha_venta",function(e){
    $.ajax({
      dataType: "json",
      method: "POST",
-     url: base_url+"/Consultas/clientemayorcompra", 
+     url: base_url+"/Consultas/empleadosconmenorventas", 
  }).done(function(json) {
      console.log("EL consultar",json);
      for(var i in json)
@@ -176,7 +176,7 @@ $(document).on("change","#fecha_venta",function(e){
  });
    }
    var options = {
-     title: 'Clientes con mayor indice de compra',
+     title: 'Empleados con menor indice de venta',
      is3D: true,
    };
    var chart = new google.visualization.PieChart(document.getElementById('graficoo'));
@@ -198,7 +198,7 @@ $(document).on("change","#fecha_venta",function(e){
          $.ajax({
            dataType: "json",
            method: "POST",
-           url: base_url+"/Consultas/clientemayorcompra",        
+           url: base_url+"/Consultas/empleadosconmenorventas",        
        }).done(function(json) {
            console.log("EL consultar",json);
            for(var i in json)
@@ -218,7 +218,7 @@ $(document).on("change","#fecha_venta",function(e){
          }
       var options = {
          chart: {
-           title: 'Clientes con mayor indice de compra',
+           title: 'Empleados con menor indice de venta',
            subtitle: 'montodades'
          }, 
        };
@@ -239,7 +239,7 @@ $(document).on("change","#fecha_venta",function(e){
          $.ajax({
            dataType: "json",
            method: "POST",
-           url: base_url+"/Consultas/clientemayorcompra", 
+           url: base_url+"/Consultas/empleadosconmenorventas", 
        }).done(function(json) {
            console.log("EL consultar",json);
            for(var i in json)
@@ -258,7 +258,7 @@ $(document).on("change","#fecha_venta",function(e){
    });
          }
      var options = {
-       title: 'Clientes con mayor indice de compra',
+       title: 'Empleados con menor indice de venta',
            colors: ['#1b9e77', '#d95f02', '#7570b3'],
             legend: { position: "none" },
          };
@@ -282,7 +282,7 @@ $(document).on("change","#fecha_venta",function(e){
    $.ajax({
      dataType: "json",
      method: "POST",
-     url: base_url+"/Consultas/clientemayorcompra",
+     url: base_url+"/Consultas/empleadosconmenorventas",
  }).done(function(json) {
      console.log("EL consultar",json);
      for(var i in json)
@@ -301,7 +301,7 @@ $(document).on("change","#fecha_venta",function(e){
        });
      }
  var options = {
-   title: 'Clientes con mayor indice de compra',
+   title: 'Empleados con menor indice de venta',
            pieHole: 0.4,
          };
          var chart = new google.visualization.PieChart(document.getElementById('graficoo'));
