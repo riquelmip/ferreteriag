@@ -162,12 +162,7 @@
                 <?php } ?>
         
                 </ul>
-                <ul class="treeview-menu">
-                <?php if (!empty($_SESSION['permisos'][9]['leer'])) { ?>
-                    <li><a class="treeview-item" href="<?= base_url(); ?>/consultas"><i class="icon fa fa-circle-o"></i> Existencia de productos</a></li>
-                <?php } ?>
-        
-                </ul>
+
 
             </li>
         <?php } ?>

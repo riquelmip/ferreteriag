@@ -145,24 +145,6 @@
 			die();
 		}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ///////////Funciones para tabla 
 		public function productosmasvendidosconsulta() //primera consulta tabla
 		{
@@ -273,12 +255,6 @@
 			die();
 		}
 
-
-
-
-
-
-
 /////////Consulta para vista filtradas
 		public function getproductomasvendidoporfecha(string $dato)//primera consulta filtrada por fechas
 		{
@@ -295,7 +271,6 @@
 		
 		die();
 		}
-
 
 		public function getproductomenosvendidoporfecha(string $dato)//segunda consulta filtrada por fechas
 		{
@@ -408,24 +383,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		
 		///////Reportes
 
 		public function Reportes(){
