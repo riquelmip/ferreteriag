@@ -162,8 +162,11 @@ function NbLines($w,$txt)
 
 
 $a = new ConsultasModel();
-$array=$a->selectConsulta();
-
+if($_POST["parametro"]==0){
+    $array=$a->productomenosvendidoconsulta($_POST["parametro"]); 
+}else{
+    $array=$a->productomenosvendidoconsultafiltradafecha($_POST["parametro"]);
+}
 // Creación del objeto de la clase heredada
 
 $pdf = new PDF();
@@ -212,8 +215,7 @@ $pdf->SetFillColor(197, 226, 246);
 $pdf->SetDrawColor(0, 0, 0);
 }
 
-$pdf->Row(array(utf8_decode($array[$i]['descripcion']),utf8_decode($array[$i]['canti'])),30);
-
+$pdf->Row(array(utf8_decode(ucwords(strtolower($array[$i]['descripcion']))),utf8_decode($array[$i]['canti'])),30);                      
 }
 
 
@@ -237,14 +239,14 @@ $dataURI = $html;
 
 $img = explode(',',$dataURI,2)[1];
 $pic = 'data://text/plain;base64,'. $img;
-$pdf->image($pic, -20,50,0,0,'png');
+$pdf->image($pic, -20,50,250,0,'png');
 }else{
 
 $dataURI = $html;
 $pdf->setX(50);
 $img = explode(',',$dataURI,2)[1];
 $pic = 'data://text/plain;base64,'. $img;
-$pdf->image($pic, -20,$aqui,0,0,'png'); 
+$pdf->image($pic, -15,$aqui,250,0,'png'); 
 }
 
 

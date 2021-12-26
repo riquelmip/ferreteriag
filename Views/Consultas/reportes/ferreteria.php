@@ -177,7 +177,7 @@ function NbLines($w,$txt)
 
 $a = new ConsultasModel();
 if($_POST["parametro"]==0){
-    $array=$a->productomenosvendidoconsulta($_POST["parametro"]); 
+    $array=$a->selectConsulta($_POST["parametro"]); 
 }else{
     $array=$a->filtrofecha10productosmasvendidos($_POST["parametro"]);
 

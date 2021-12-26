@@ -399,7 +399,7 @@
 			}
 
 
-		 public function ProductoMenosVendido(){
+		 public function ProductMenosVendidoReporte(){
 			if (empty($_SESSION['permisosMod']['leer'])) {
 			header('location: '.base_url().'/dashboard');
 			}
@@ -407,7 +407,7 @@
 			$data['page_tag'] = "Productos sin stock";
 			$data['page_name'] = "consulta_1";
 			$data['page_title'] = "Parámetros: ";
-			$this->views->getView($this,"reportes/productomenosvendido",$data);
+			$this->views->getView($this,"reportes/productomenosvendidorepor",$data);
 		}
 
 

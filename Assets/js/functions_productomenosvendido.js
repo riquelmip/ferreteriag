@@ -119,6 +119,7 @@ function inicializar_tabla(tabla){
 
 $(document).on("change","#fecha_venta",function(e){
  var fecha_fin = $("#fecha_venta").val();
+ document.querySelector('#parametro').value=fecha_fin;
   console.log(fecha_fin);
   $.ajax({
     dataType: "json",
@@ -316,7 +317,7 @@ var options = {
 
 $(document).on("change","#graf",function(e){
     e.preventDefault();
-  var button = document.getElementById('create_pdf');
+  var button = document.getElementById('menosvendido');
   var x = $("#graf").val();
 switch (x) {
   case '0':
