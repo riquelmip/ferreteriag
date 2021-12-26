@@ -176,9 +176,16 @@ function NbLines($w,$txt)
 
 
 $a = new ConsultasModel();
-$array=$a->selectConsulta();
+if($_POST["parametro"]==0){
+    $array=$a->productomenosvendidoconsulta($_POST["parametro"]); 
+}else{
+    $array=$a->filtrofecha10productosmasvendidos($_POST["parametro"]);
+
+}
+
 
 // Creación del objeto de la clase heredada
+
 
 $pdf = new PDF();
 $pdf->AliasNbPages();

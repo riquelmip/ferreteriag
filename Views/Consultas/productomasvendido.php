@@ -29,6 +29,7 @@
         
              <form method="post" id="make_pdf" action="consultas/reportes" target="_blank" >
             <!-- para ver o no la tabla -->
+            <input type="hidden" name="parametro" id="parametro" value=0>
          <input type="hidden" name="keyGraf" id="keyGraf" value=0>
          <input type="hidden" name="keyTable" id="keyTable" value=0>
               <input type="hidden" id="algo" name="algo" value="1" >
