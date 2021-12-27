@@ -43,3 +43,35 @@
   </div>
 </div>
 
+
+
+
+<div class="modal fade" id="modalAyuda" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+        <h5>Ayuda</h5>
+        <hr>
+        <h5>Pasos para realizar la venta:</h5>
+        <p><b>1. Seleccionar cliente:</b></p>
+        <p>Primeramente, debe seleccionar el cliente al que se le hará la venta, si éste no aparece, debe ingresar un nuevo cliente, para eso, debe dar click en el botón de "Agregar cliente", tal como se muestra en la siguiente imagen.</p>
+        <img src="<?= media(); ?>/images/ayuda/crearcliente-nuevaventa.png" alt="" width="450">
+        <p style="color: blue;">Nota. Puede registrar un cliente llenando todos los campos o solo llenando el nombre y apellido.</p>
+        <br>
+        <p><b>2. Buscar producto y agregarlo al carrito:</b></p>
+        <p>En el campo "Código" debe ingresar el código del producto y automáticamente se pondrán los datos de ese producto en los campos correspondientes.</p>
+        <p>Puede cambiar la cantidad que se venderá en el campo "Cantidad".</p>
+        <p>Al dar "click" en el botón con el símbolo de (+), ese producto se agrega al carrito de venta.</p>
+        <img src="<?= media(); ?>/images/ayuda/buscarproducto-nuevaventa.png" alt="" width="450">
+
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+

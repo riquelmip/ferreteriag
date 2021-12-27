@@ -445,3 +445,9 @@ function calcularTotal(){
       $("#total").empty().html(total.toFixed(2));
       $("#inputtotal").val(total.toFixed(2));
 }
+
+
+function mostrarAyuda(){
+    $('#modalAyuda').modal('show');
+}
+
