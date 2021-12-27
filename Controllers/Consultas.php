@@ -23,9 +23,6 @@
 		 	$data['page_functions_js'] = "functions_productomasvendido.js";
 			$this->views->getView($this,"productomasvendido",$data);
 		}
-
-
-
 		public function productomenosvendidovista(){ //Vista segunda consulta
 
 			if (empty($_SESSION['permisosMod']['leer'])) {
@@ -110,10 +107,25 @@
 			die();
 		}
 
+		public function productosmasvendidosfecha(string $dato) //primera consulta grafico con fecha
+		{
+			$arrData = $this->model->filtrofecha10productosmasvendidos($dato);
+			echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+			die();
+		}
+
 		public function productomenosvendidos() //segunda consulta grafico
 		{
 	
 			$arrData = $this->model->productomenosvendidoconsulta();
+			echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+			die();
+		}
+
+		public function productomenosvendidosfecha(string $dato) //segunda consulta grafico con fecha
+		{
+	
+			$arrData = $this->model->productomenosvendidoconsultafiltradafecha($dato);
 			echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
 			die();
 		}
@@ -125,9 +137,23 @@
 			die();
 		}
 
+		public function clientemayorcomprafecha(string $dato) //tercera consulta grafico con fecha
+		{
+			$arrData = $this->model->clientemayorcomprasfiltrada($dato);
+			echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+			die();
+		}
+
 		public function clientemenorcompra() //cuarta consulta grafico
 		{
 			$arrData = $this->model->clientesmenoscompras();
+			echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+			die();
+		}
+
+		public function clientemenorcomprafecha(string $dato) //cuarta consulta grafico con fecha
+		{
+			$arrData = $this->model->clientemenorcomprasfiltrada($dato);
 			echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
 			die();
 		}
@@ -138,12 +164,29 @@
 			echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
 			die();
 		}
+
+		public function empleadosconmayorventasfecha(string $dato) //quinta consulta grafico con fecha
+		{
+			$arrData = $this->model->empleadomayorventafiltradaporfecha($dato);
+			echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+			die();
+		}
+
 		public function empleadosconmenorventas() //sexta consulta grafico
 		{
 			$arrData = $this->model->empleadosconmenosventas();
 			echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
 			die();
 		}
+
+		public function empleadosconmenorventasfecha(string $dato) //sexta consulta grafico
+		{
+			$arrData = $this->model->empleadomenorventafiltradaporfecha($dato);
+			echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+			die();
+		}
+
+
 
 ///////////Funciones para tabla 
 		public function productosmasvendidosconsulta() //primera consulta tabla
