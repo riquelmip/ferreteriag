@@ -23,7 +23,6 @@
             <option value=-1>Gráfico</option>
           <option value="0">Gráfico de barras</option>
           <option value="1">Gráfico de pastel</option>
-          <option value="2">Gráfico de lineas</option>
           <option value="3">Gráfico de dona</option>
           </select>
            

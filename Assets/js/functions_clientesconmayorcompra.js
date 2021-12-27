@@ -3,7 +3,7 @@ var tableRoles;
 var divLoading = document.querySelector('#divLoading');
 document.addEventListener('DOMContentLoaded', function(){
     cargar_datos();
-    fntGraficoBarra();
+
   });
 function cargar_datos(){
 
@@ -120,6 +120,8 @@ function inicializar_tabla(tabla){
 
 $(document).on("change","#fecha_venta",function(e){
   var fecha_fin = $("#fecha_venta").val();
+  document.getElementById("graficoo").innerHTML = "";
+  document.getElementById("graficoo").innerHTML = "<div id=\"graficoo\"></div>";
      document.querySelector('#parametro').value=fecha_fin;
    $.ajax({
      dataType: "json",
@@ -150,6 +152,8 @@ $(document).on("change","#fecha_venta",function(e){
  
  //Grafico Pastel
  function fntGraficoPastel(){
+  var fecha_fin = $("#fecha_venta").val();
+  if (fecha_fin=="") {
  google.charts.load('current', {'packages':['corechart']});
  google.charts.setOnLoadCallback(drawChart);
  var result = [];
@@ -185,53 +189,53 @@ $(document).on("change","#fecha_venta",function(e){
           });
          chart.draw(data, options);
        });
+     }}else{
+      var fecha_fin = $("#fecha_venta").val();
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      var result = [];
+      function drawChart() {
+        $.ajax({
+          dataType: "json",
+          method: "POST",
+          url: base_url + "/Consultas/clientemayorcomprafecha/" + fecha_fin,
+      }).done(function(json) {
+          console.log("EL consultar",json);
+          for(var i in json)
+          result.push([i, json [i]]);
+          for (let index = 0; index < result.length; index++) {
+            console.log(json[0].monto);
+            console.log(json[0].nombre);
+            var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Week');
+      data.addColumn('number', 'Retail');
+      json.forEach(function (row) {
+      data.addRow([
+      row.nombre,
+      parseFloat(row.monto)
+      ]);
+      });
+        }
+        var options = {
+          title: 'Clientes con mayor indice de compra',
+          is3D: true,
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('graficoo'));
+        google.visualization.events.addListener(chart, 'ready', function(){
+        document.getElementById('algo').value=chart.getImageURI();
+               });
+              chart.draw(data, options);
+            });
+          }
      }
  }
  //Fin Grafico de Pastel
  
- //Inicio de grafico lineal
-     function fntGraficoLineal(){
-     google.charts.load('current', {'packages':['line']});
-     google.charts.setOnLoadCallback(drawChart);
-     var result = [];
-     function drawChart() {      
-         $.ajax({
-           dataType: "json",
-           method: "POST",
-           url: base_url+"/Consultas/clientemayorcompra",        
-       }).done(function(json) {
-           console.log("EL consultar",json);
-           for(var i in json)
-           result.push([i, json [i]]);
-           for (let index = 0; index < result.length; index++) {
-           console.log(json[0].monto);
-           console.log(json[0].nombre);
-           var data = new google.visualization.DataTable();
- data.addColumn('string', 'Week');
- data.addColumn('number', 'Retail');
- json.forEach(function (row) {
- data.addRow([
- row.nombre,
- parseFloat(row.monto)
-     ]);
-   });
-         }
-      var options = {
-         chart: {
-           title: 'Clientes con mayor indice de compra',
-           subtitle: 'montodades'
-         }, 
-       };
-         var chart = new google.charts.Line(document.getElementById('graficoo'));
-         chart.draw(data, google.charts.Line.convertOptions(options));
-       });
-     }
- }
- //Fin de grafico lineal
- 
  
  //Inicio de grafico Barra
  function fntGraficoBarra(){
+  var fecha_fin = $("#fecha_venta").val();
+  if (fecha_fin=="") {
    google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
     var result = [];
@@ -270,11 +274,55 @@ $(document).on("change","#fecha_venta",function(e){
        chart.draw(data, options);
        });
        }
+      
+      }else{
+        var fecha_fin = $("#fecha_venta").val();
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+        var result = [];
+        function drawChart() {
+          $.ajax({
+            dataType: "json",
+            method: "POST",
+            url: base_url + "/Consultas/clientemayorcomprafecha/" + fecha_fin,
+           }).done(function(json) {
+               console.log("EL consultar",json);
+               for(var i in json)
+               result.push([i, json [i]]);
+               for (let index = 0; index < result.length; index++) {
+                 console.log(json[0].monto);
+                 console.log(json[0].nombre);
+                 var data = new google.visualization.DataTable();
+       data.addColumn('string', 'Week');
+       data.addColumn('number', 'Retail');
+       json.forEach(function (row) { 
+       data.addRow([      
+       row.nombre,
+       parseFloat(row.monto)
+         ]);
+       });
+             }
+         var options = {
+           title: 'Clientes con mayor indice de compra',
+               colors: ['#1b9e77', '#d95f02', '#7570b3'],
+                legend: { position: "none" },
+             };
+           var chart_area = document.getElementById('graficoo');
+           var chart = new google.visualization.ColumnChart(chart_area);
+           google.visualization.events.addListener(chart, 'ready', function(){
+              document.getElementById('algo').value=chart.getImageURI();
+           });
+           chart.draw(data, options);
+           });
+           }
+       }
  }
  //Fin de grafico Barra
  
  //Inicio de grafico Dona
   function fntGraficoDona(){
+    var fecha_fin = $("#fecha_venta").val();
+    if (fecha_fin=="") {
  google.charts.load('current', {'packages':['corechart']});
  google.charts.setOnLoadCallback(drawChart);
  var result = [];
@@ -311,6 +359,45 @@ $(document).on("change","#fecha_venta",function(e){
           });
          chart.draw(data, options);
  });
+     }}else{
+      var fecha_fin = $("#fecha_venta").val();
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      var result = [];
+      function drawChart() {
+        $.ajax({
+          dataType: "json",
+          method: "POST",
+          url: base_url + "/Consultas/clientemayorcomprafecha/" + fecha_fin,
+      }).done(function(json) {
+          console.log("EL consultar",json);
+          for(var i in json)
+          result.push([i, json [i]]);
+          for (let index = 0; index < result.length; index++) {
+                console.log(json[0].monto);
+                console.log(json[0].nombre);
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Week');
+                data.addColumn('number', 'Valor');
+                json.forEach(function (row) {
+                data.addRow([
+                row.nombre,
+                parseFloat(row.monto)
+              ]);
+            });
+          }
+      var options = {
+        title: 'Clientes con mayor indice de compra',
+                pieHole: 0.4,
+              };
+              var chart = new google.visualization.PieChart(document.getElementById('graficoo'));
+        google.visualization.events.addListener(chart, 'ready', function(){
+          
+             document.getElementById('algo').value=chart.getImageURI();
+               });
+              chart.draw(data, options);
+      });
+          }
      }
  }
  //Inicio de grafico Dona
@@ -330,11 +417,7 @@ $(document).on("change","#fecha_venta",function(e){
      button.disabled = false;
        document.querySelector('#keyGraf').value=1; 
      break;
-   case '2':
-     fntGraficoLineal();
-     button.disabled = true;
-       document.querySelector('#keyGraf').value=2; 
-     break;
+
    case '3':
      fntGraficoDona();
      button.disabled = false;
@@ -342,8 +425,7 @@ $(document).on("change","#fecha_venta",function(e){
  
      break;
    default:
-     fntGraficoLineal();
-       button.disabled = true;
+
      break;
  }
  
