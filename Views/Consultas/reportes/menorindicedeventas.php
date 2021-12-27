@@ -3,21 +3,7 @@ require('Views/Consultas/fpdf/fpdf.php');
 date_default_timezone_set('America/El_Salvador');
 class PDF extends FPDF
 {
-// Cabecera de página
-//Numeros de paginas
-//SetTextColor(255,255,255);es RGB extraer colores con GIMP
-//SetFillColor()
-//SetDrawColor()
-//Line(derecha-izquierda, arriba-abajo,ancho,arriba-abajo)
-//Color line setDrawColor(61,174,233)
-//GetX() || GetY() posiciones en cm
-//Grosor SetLineWidth(1)
-// SetFont(tipo{COURIER, HELVETICA,ARIAL,TIMES,SYMBOL, ZAPDINGBATS}, estilo[normal,B,I ,A], tamaño)
-// Cell(ancho , alto,texto,borde,salto(0/1),alineacion,rellenar, link)
-//AddPage(orientacion[PORTRAIT, LANDSCAPE], tamño[A3.A4.A5.LETTER,LEGAL],rotacion)
-//Image(ruta, poscisionx,pocisiony,alto,ancho,tipo,link)
-//SetMargins(10,30,20,20) luego de addpage
-  
+
 function Header()
 {
 
@@ -177,15 +163,11 @@ function NbLines($w,$txt)
 
 $a = new ConsultasModel();
 if($_POST["parametro"]==0){
-    $array=$a->selectConsulta(); 
+    $array=$a->empleadosconmenosventas(); 
 }else{
-    $array=$a->filtrofecha10productosmasvendidos($_POST["parametro"]);
-
+    $array=$a->empleadomenorventafiltradaporfecha($_POST["parametro"]);
 }
-
-
 // Creación del objeto de la clase heredada
-
 
 $pdf = new PDF();
 $pdf->AliasNbPages();
@@ -196,7 +178,7 @@ $pdf->SetLeftMargin(10);
 $pdf->SetRightMargin(10);
 
 
-$pdf->SetX(30);
+
 $pdf->SetFont('Arial','B',12);
 
 $pdf->Ln();
@@ -205,41 +187,38 @@ $pdf->Ln();
 $pdf->Ln(30);
 $pdf->SetFont('', 'B', 12);
 
-$pdf->Text(70, 45,utf8_decode( 'LOS 10 PRODUCTOS MÁS VENDIDOS'));
+$pdf->Text(50, 45,'LOS 10 EMPLEADOS CON MENOR INDICE DE VENTAS ');
 
 $pdf->Ln(16);
 /* ---Titulo de Tabla --- */
 
 $pdf->SetX(30);
-$tabla = $_POST["keyTable"];
-if($tabla==0){
 $pdf->SetFillColor(93, 155, 155);
 $pdf->SetDrawColor(44, 62, 80);
 
-$pdf->Cell(80, 10, 'Producto', 1, 0, 'C', 1);
-$pdf->Cell(80, 10, 'Cantidad', 1, 1, 'C', 1);
+$pdf->Cell(80, 10, 'Nombre', 1, 0, 'C', 1);
+$pdf->Cell(80, 10, 'Monto Total Vendido', 1, 1, 'C', 1);
 
 /* --- Datos de la tabla --- */
 //prueba con 32
 $pdf->SetWidths(array(80,80));
 $pdf->SetFont('', '', 12);
 for ($i = 0; $i <count($array) ; $i++) {
-        if($i%2==0){
-        //240,240,240
-        $pdf->SetFillColor(255,255,255);
-        $pdf->SetDrawColor(0, 0, 0);
+if($i%2==0){
+//240,240,240
+$pdf->SetFillColor(255,255,255);
+$pdf->SetDrawColor(0, 0, 0);
 
-        }else{
-        $pdf->SetFillColor(197, 226, 246);
-        // $pdf->SetDrawColor(44, 62, 80);
-        $pdf->SetDrawColor(0, 0, 0);
-        }
-
-$pdf->Row(array(utf8_decode(ucwords(strtolower($array[$i]['descripcion']))),utf8_decode($array[$i]['canti'])),30);
-
+}else{
+$pdf->SetFillColor(197, 226, 246);
+// $pdf->SetDrawColor(44, 62, 80);
+$pdf->SetDrawColor(0, 0, 0);
 }
 
+$pdf->Row(array(utf8_decode($array[$i]['nombre']).utf8_decode($array[$i]['apellido']),$array[$i]['monto']),30);                      
 }
+
+
 
 
 $pdf->Ln(5);
@@ -252,8 +231,6 @@ $html = $_POST["algo"];
 $aqui=$pdf->Gety();
 //if($aqui>=257){
 
-$graf = $_POST["keyGraf"];
-
 if($aqui>=165){
 
 $pdf->AddPage();
@@ -263,23 +240,17 @@ $pdf->AddPage();
 
     $img = explode(',',$dataURI,2)[1];
     $pic = 'data://text/plain;base64,'. $img;
-    $pdf->image($pic, -15,50,250,0,'png');
+    $pdf->image($pic, -20,50,250,0,'png');
     }
 
 }else{
-
     if($html!=1){
     $dataURI = $html;
     $pdf->setX(50);
     $img = explode(',',$dataURI,2)[1];
     $pic = 'data://text/plain;base64,'. $img;
-    // if($graf==0){
-      $pdf->image($pic, -15,$aqui,250,0,'png'); 
-      }  
-// }else{
-//     $pdf->image($pic, -10,$aqui,0,0,'png'); 
-// }
-
+    $pdf->image($pic, -15,$aqui,250,0,'png'); 
+    }
 }
 
 
@@ -292,3 +263,4 @@ $pdf->AddPage();
 // $pdf->Output($nombre_archivo,$modo)
 
 $pdf->Output("Reporte Ferreteria.pdf","I");
+?>

@@ -2,8 +2,7 @@
 
 	class ConsultasModel extends Mysql
 	{
-		public $intId;
-		public $strNombre;
+
 
 		public function __construct()
 		{
@@ -17,11 +16,6 @@
 			$request = $this->select_all($sql);
 			return $request;
 		}
-
-
-
-
-
 		public function filtrofecha10productosmasvendidos(string $dato)
 		{
 			$this->strNombre = $dato;
@@ -31,6 +25,63 @@
 		
 			return $request;
 		}
+
+		public function productomenosvendidoconsulta()
+		{
+
+			$sql = "SELECT p.descripcion,SUM(dv.cantidad) as canti from detalleventa dv INNER JOIN producto p on p.idproducto=dv.idproducto GROUP BY p.descripcion order by SUM(dv.cantidad) asc LIMIT 10";
+			$request = $this->select_all($sql);
+			return $request;
+		}
+		public function productomenosvendidoconsultafiltradafecha(string $dato)
+		{
+			$this->strNombre = $dato;
+			$sql = "SELECT p.descripcion,SUM(dv.cantidad) as canti,CONCAT(v.anio, '-', v.mes, '-', v.dia) fecha_compra from detalleventa dv INNER JOIN producto p on p.idproducto=dv.idproducto inner join venta v on dv.idventa=v.idventa GROUP BY p.descripcion,v.dia having fecha_compra='$this->strNombre' order by SUM(dv.cantidad) asc LIMIT 10";
+		
+			$request = $this->select_all($sql);
+		
+			return $request;
+		}
+		public function clientemayorcomprasfiltrada(string $dato)
+		{
+			$this->strNombre = $dato;
+			$sql = "SELECT c.nombre,c.apellido,v.idcliente,SUM(v.monto) AS monto,CONCAT(v.anio, '-', v.mes, '-', v.dia) fecha_compra from venta v inner join cliente c on c.idcliente=v.idcliente GROUP BY v.idcliente having fecha_compra='$this->strNombre' order by SUM(v.monto) desc LIMIT 10";
+		
+			$request = $this->select_all($sql);
+		
+			return $request;
+		}
+		public function clientemenorcomprasfiltrada(string $dato)
+		{
+			$this->strNombre = $dato;
+			$sql = "SELECT c.nombre,c.apellido,v.idcliente,SUM(v.monto) AS monto,CONCAT(v.anio, '-', v.mes, '-', v.dia) fecha_compra from venta v inner join cliente c on c.idcliente=v.idcliente GROUP BY v.idcliente having fecha_compra='$this->strNombre' order by SUM(v.monto) asc LIMIT 10";
+		
+			$request = $this->select_all($sql);
+		
+			return $request;
+		}
+
+		public function empleadomayorventafiltradaporfecha(string $dato)
+		{
+			$this->strNombre = $dato;
+			$sql = "SELECT u.idempleado,e.nombre,e.apellido,v.idusuario,SUM(v.monto) AS monto,CONCAT(v.anio, '-', v.mes, '-', v.dia) fecha_compra from venta v inner join usuario u on u.idusuario=v.idusuario inner join empleado e on e.idempleado=u.idempleado GROUP BY v.idcliente having fecha_compra='$this->strNombre' order by SUM(v.monto) desc LIMIT 10";
+		
+			$request = $this->select_all($sql);
+		
+			return $request;
+		}
+		public function empleadomenorventafiltradaporfecha(string $dato)
+		{
+			$this->strNombre = $dato;
+			$sql = "SELECT u.idempleado,e.nombre,e.apellido,v.idusuario,SUM(v.monto) AS monto,CONCAT(v.anio, '-', v.mes, '-', v.dia) fecha_compra from venta v inner join usuario u on u.idusuario=v.idusuario inner join empleado e on e.idempleado=u.idempleado GROUP BY v.idcliente having fecha_compra='$this->strNombre' order by SUM(v.monto) asc LIMIT 10";
+		
+			$request = $this->select_all($sql);
+		
+			return $request;
+		}
+
+
+
 		public function selectVenta(int $idventa) 
 		{
 
@@ -71,7 +122,7 @@
 			public function clientesmascompras()
 		{
 
-			$sql = "SELECT c.nombre,v.idcliente,SUM(v.monto) AS monto from venta v inner join cliente c on c.idcliente=v.idcliente GROUP BY v.idcliente order by SUM(v.monto) desc LIMIT 10";
+			$sql = "SELECT c.nombre,c.apellido,v.idcliente,SUM(v.monto) AS monto from venta v inner join cliente c on c.idcliente=v.idcliente GROUP BY v.idcliente order by SUM(v.monto) desc LIMIT 10";
 			$request = $this->select_all($sql);
 			return $request;
 		}
@@ -79,7 +130,7 @@
 			public function clientesmenoscompras()
 		{
 
-			$sql = "SELECT c.nombre,v.idcliente,SUM(v.monto) AS monto from venta v inner join cliente c on c.idcliente=v.idcliente GROUP BY v.idcliente order by SUM(v.monto) asc LIMIT 10";
+			$sql = "SELECT c.nombre,c.apellido,v.idcliente,SUM(v.monto) AS monto from venta v inner join cliente c on c.idcliente=v.idcliente GROUP BY v.idcliente order by SUM(v.monto) asc LIMIT 10";
 			$request = $this->select_all($sql);
 			return $request;
 		}

@@ -27,16 +27,17 @@
           <button class="btn btn-info btn-sm" id="noTabla" name="noTabla" style="margin-right: 40px;" title="No mostrar tabla" ><i class="far fa-eye-slash"></i></button>
          
         
-             <form method="post" id="make_pdf" action="consultas/reportes" target="_blank" >
+             <form method="post" id="make" action="/ferreteriag/consultas/ProductMenosVendidoReporte" target="_blank" >
             <!-- para ver o no la tabla -->
+            <input type="hidden" name="parametro" id="parametro" value=0>
          <input type="hidden" name="keyGraf" id="keyGraf" value=0>
          <input type="hidden" name="keyTable" id="keyTable" value=0>
               <input type="hidden" id="algo" name="algo" value="1" >
-    <button type="button" name="create_pdf" id="create_pdf" class=" dt-button buttons-pdf buttons-html5 btn btn-danger "title="Generar Reporte" ><i class='fas fa-file-pdf' id="pdf"></i> PDF</button>
+    <button type="submit" name="menosvendido" id="menosvendido" class=" dt-button buttons-pdf buttons-html5 btn btn-danger "title="Generar Reporte" ><i class='fas fa-file-pdf' id="pdf"></i> PDF</button>
    </form>
         </div>
       </div><!-- final de title -->
-
+      <h2 style="text-align: center;">Producto menos vendido</h2>
 
               <div class="row" id="laTabla">
             <div class="col-md-12">
@@ -48,8 +49,6 @@
                         <tr>
                           <th>Descripción</th>
                           <th>Cantidad total vendida</th>
-
-                         
                         </tr>
                       </thead>
                       <tbody id="datos_tabla">
@@ -63,15 +62,5 @@
         </div>
 <!-- --------------------------------------------------------------------------- -->
          <div id="graficoo"  style="width: 100%; height: 350px; margin: auto; display: flex; align-items: center; justify-content: center; margin-top: 20px;"></div>
-
-       
-        <div class="container ax" id="testing"> 
-        <div id="grafico" style="width: 80%; height: 350px; margin: auto; display: flex; align-items: center; justify-content: center; margin-top: 20px;"></div>
-      
-        </div>
-       
-
-   
-
         
 <?php footerAdmin($data); ?>

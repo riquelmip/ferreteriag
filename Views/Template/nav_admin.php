@@ -86,7 +86,21 @@
                 </ul>
             </li>
         <?php } ?>
-
+        <?php if (!empty($_SESSION['permisos'][7]['leer'])) { ?>
+            <li class="treeview">
+                <a class="app-menu__item" href="#" data-toggle="treeview">
+                    <i class="app-menu__icon fas fa-box-open" aria-hidden="true"></i>
+                    <span class="app-menu__label">Inventario</span>
+                    <i class="treeview-indicator fa fa-angle-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                <?php if (!empty($_SESSION['permisos'][7]['leer'])) { ?>
+                    <li><a class="treeview-item" href="<?= base_url(); ?>/Inventario"><i class="icon fa fa-circle-o"></i> Inventario</a></li>
+                    <li><a class="treeview-item" href="<?= base_url(); ?>/Ventas"><i class="icon fa fa-circle-o"></i> Kárdex</a></li>
+                <?php  } ?>
+                </ul>
+            </li>
+        <?php } ?>
         <?php if (!empty($_SESSION['permisos'][8]['leer'])) { ?>
             <li>
                 <a class="app-menu__item" href="<?= base_url(); ?>/cliente">
@@ -128,10 +142,42 @@
                 </a>
                 <ul class="treeview-menu">
                 <?php if (!empty($_SESSION['permisos'][9]['leer'])) { ?>
-                    <li><a class="treeview-item" href="<?= base_url(); ?>/consultas"><i class="icon fa fa-circle-o"></i> Consultas</a></li>
+                    <li><a class="treeview-item" href="<?= base_url(); ?>/consultas"><i class="icon fa fa-circle-o"></i> Productos más vendidos</a></li>
                 <?php } ?>
         
                 </ul>
+                <ul class="treeview-menu">
+                <?php if (!empty($_SESSION['permisos'][9]['leer'])) { ?>
+                    <li><a class="treeview-item" href="<?= base_url(); ?>/consultas/productomenosvendidovista"><i class="icon fa fa-circle-o"></i> Productos menos vendidos</a></li>
+                <?php } ?>
+        
+                </ul>
+                <ul class="treeview-menu">
+                <?php if (!empty($_SESSION['permisos'][9]['leer'])) { ?>
+                    <li><a class="treeview-item" href="<?= base_url(); ?>/consultas/clientesconmayorcomprasvista"><i class="icon fa fa-circle-o"></i> Clientes con mayor compras</a></li>
+                <?php } ?>
+        
+                </ul>
+                <ul class="treeview-menu">
+                <?php if (!empty($_SESSION['permisos'][9]['leer'])) { ?>
+                    <li><a class="treeview-item" href="<?= base_url(); ?>/consultas/clientesconmenorcomprasvista"><i class="icon fa fa-circle-o"></i> Clientes con menor compras</a></li>
+                <?php } ?>
+        
+                </ul>
+                <ul class="treeview-menu">
+                <?php if (!empty($_SESSION['permisos'][9]['leer'])) { ?>
+                    <li><a class="treeview-item" href="<?= base_url(); ?>/consultas/empleadosconmayorventa"><i class="icon fa fa-circle-o"></i> Mayor indice de venta por empleado</a></li>
+                <?php } ?>
+        
+                </ul>
+                <ul class="treeview-menu">
+                <?php if (!empty($_SESSION['permisos'][9]['leer'])) { ?>
+                    <li><a class="treeview-item" href="<?= base_url(); ?>/consultas/empleadosconmenorventa"><i class="icon fa fa-circle-o"></i> Menor indice de venta por empleado</a></li>
+                <?php } ?>
+        
+                </ul>
+
+
             </li>
         <?php } ?>
 
