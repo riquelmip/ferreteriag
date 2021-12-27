@@ -177,7 +177,7 @@ function NbLines($w,$txt)
 
 $a = new ConsultasModel();
 if($_POST["parametro"]==0){
-    $array=$a->selectConsulta($_POST["parametro"]); 
+    $array=$a->selectConsulta(); 
 }else{
     $array=$a->filtrofecha10productosmasvendidos($_POST["parametro"]);
 
@@ -257,20 +257,25 @@ $graf = $_POST["keyGraf"];
 if($aqui>=165){
 
 $pdf->AddPage();
-//$pdf->AddPage('LANDSCAPE', 'A4');
-$dataURI = $html;
 
-$img = explode(',',$dataURI,2)[1];
-$pic = 'data://text/plain;base64,'. $img;
-$pdf->image($pic, -15,50,250,0,'png');
+    if($html!=1){
+    $dataURI = $html;
+
+    $img = explode(',',$dataURI,2)[1];
+    $pic = 'data://text/plain;base64,'. $img;
+    $pdf->image($pic, -15,50,250,0,'png');
+    }
+
 }else{
 
-$dataURI = $html;
-$pdf->setX(50);
-$img = explode(',',$dataURI,2)[1];
-$pic = 'data://text/plain;base64,'. $img;
-// if($graf==0){
-  $pdf->image($pic, -15,$aqui,250,0,'png');   
+    if($html!=1){
+    $dataURI = $html;
+    $pdf->setX(50);
+    $img = explode(',',$dataURI,2)[1];
+    $pic = 'data://text/plain;base64,'. $img;
+    // if($graf==0){
+      $pdf->image($pic, -15,$aqui,250,0,'png'); 
+      }  
 // }else{
 //     $pdf->image($pic, -10,$aqui,0,0,'png'); 
 // }

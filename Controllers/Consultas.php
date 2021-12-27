@@ -411,6 +411,53 @@
 		}
 
 
+		 public function conmayorventas(){
+			if (empty($_SESSION['permisosMod']['leer'])) {
+			header('location: '.base_url().'/dashboard');
+			}
+			$data['page_id'] = 3;
+			$data['page_tag'] = "Productos sin stock";
+			$data['page_name'] = "consulta_1";
+			$data['page_title'] = "Parámetros: ";
+			$this->views->getView($this,"reportes/mayorindicedeventas",$data);
+		}
+
+
+		 public function conmenorventas(){
+			if (empty($_SESSION['permisosMod']['leer'])) {
+			header('location: '.base_url().'/dashboard');
+			}
+			$data['page_id'] = 3;
+			$data['page_tag'] = "Productos sin stock";
+			$data['page_name'] = "consulta_1";
+			$data['page_title'] = "Parámetros: ";
+			$this->views->getView($this,"reportes/menorindicedeventas",$data);
+		}
+
+		
+
+			 public function clientesmayorcompras(){
+			if (empty($_SESSION['permisosMod']['leer'])) {
+			header('location: '.base_url().'/dashboard');
+			}
+			$data['page_id'] = 3;
+			$data['page_tag'] = "Productos sin stock";
+			$data['page_name'] = "consulta_1";
+			$data['page_title'] = "Parámetros: ";
+			$this->views->getView($this,"reportes/clientesmayorcompras",$data);
+		}
+
+			public function clientesmenorcompras(){
+			if (empty($_SESSION['permisosMod']['leer'])) {
+			header('location: '.base_url().'/dashboard');
+			}
+			$data['page_id'] = 3;
+			$data['page_tag'] = "Productos sin stock";
+			$data['page_name'] = "consulta_1";
+			$data['page_title'] = "Parámetros: ";
+			$this->views->getView($this,"reportes/clientesmenorcompras",$data);
+		}
+
 		/////////Venta
 		public function imprimirticket($idventa){
 			//if($_SESSION['permisosMod']['leer']){

@@ -120,7 +120,7 @@ function inicializar_tabla(tabla){
 
 $(document).on("change","#fecha_venta",function(e){
   var fecha_fin = $("#fecha_venta").val();
-   console.log(fecha_fin);
+     document.querySelector('#parametro').value=fecha_fin;
    $.ajax({
      dataType: "json",
      method: "POST",

@@ -163,9 +163,9 @@ function NbLines($w,$txt)
 
 $a = new ConsultasModel();
 if($_POST["parametro"]==0){
-    $array=$a->productomenosvendidoconsulta(); 
+    $array=$a->clientesmascompras(); 
 }else{
-    $array=$a->productomenosvendidoconsultafiltradafecha($_POST["parametro"]);
+    $array=$a->clientemayorcomprasfiltrada($_POST["parametro"]);
 }
 // Creación del objeto de la clase heredada
 
@@ -187,7 +187,7 @@ $pdf->Ln();
 $pdf->Ln(30);
 $pdf->SetFont('', 'B', 12);
 
-$pdf->Text(70, 45,'LOS 10 PRODUCTOS MENOS VENDIDOS');
+$pdf->Text(50, 45,'LOS 10 CLIENTES CON MAYOR INDICE DE COMPRAS ');
 
 $pdf->Ln(16);
 /* ---Titulo de Tabla --- */
@@ -196,8 +196,8 @@ $pdf->SetX(30);
 $pdf->SetFillColor(93, 155, 155);
 $pdf->SetDrawColor(44, 62, 80);
 
-$pdf->Cell(80, 10, 'Producto', 1, 0, 'C', 1);
-$pdf->Cell(80, 10, 'Cantidad', 1, 1, 'C', 1);
+$pdf->Cell(80, 10, 'Nombre', 1, 0, 'C', 1);
+$pdf->Cell(80, 10, 'Monto Total Vendido', 1, 1, 'C', 1);
 
 /* --- Datos de la tabla --- */
 //prueba con 32
@@ -215,7 +215,7 @@ $pdf->SetFillColor(197, 226, 246);
 $pdf->SetDrawColor(0, 0, 0);
 }
 
-$pdf->Row(array(utf8_decode(ucwords(strtolower($array[$i]['descripcion']))),utf8_decode($array[$i]['canti'])),30);                      
+$pdf->Row(array(utf8_decode($array[$i]['nombre']).utf8_decode($array[$i]['apellido']),$array[$i]['monto']),30);                      
 }
 
 
@@ -234,23 +234,23 @@ $aqui=$pdf->Gety();
 if($aqui>=165){
 
 $pdf->AddPage();
+//$pdf->AddPage('LANDSCAPE', 'A4');
+if($html!=1){
+  $dataURI = $html;
 
-    if($html!=1){
-    $dataURI = $html;
+$img = explode(',',$dataURI,2)[1];
+$pic = 'data://text/plain;base64,'. $img;
+$pdf->image($pic, -20,50,250,0,'png');  
+}
 
-    $img = explode(',',$dataURI,2)[1];
-    $pic = 'data://text/plain;base64,'. $img;
-    $pdf->image($pic, -20,50,250,0,'png');
-    }
 }else{
-
-    if($html!=1){
-    $dataURI = $html;
-    $pdf->setX(50);
-    $img = explode(',',$dataURI,2)[1];
-    $pic = 'data://text/plain;base64,'. $img;
-    $pdf->image($pic, -15,$aqui,250,0,'png'); 
-    }
+if($html!=1){
+$dataURI = $html;
+$pdf->setX(50);
+$img = explode(',',$dataURI,2)[1];
+$pic = 'data://text/plain;base64,'. $img;
+$pdf->image($pic, -15,$aqui,250,0,'png'); 
+}
 }
 
 

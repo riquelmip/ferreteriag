@@ -37,7 +37,7 @@
    </form>
         </div>
       </div><!-- final de title -->
-      <h2 style="margin-right: 50px;"><i class="far fa-chart-bar"></i>Producto más vendido</h2>
+      <h2 style="text-align: center;">Productos más vendido</h2>
 
               <div class="row" id="laTabla">
             <div class="col-md-12">
@@ -63,14 +63,6 @@
 <!-- --------------------------------------------------------------------------- -->
          <div id="graficoo"  style="width: 100%; height: 350px; margin: auto; display: flex; align-items: center; justify-content: center; margin-top: 20px;"></div>
 
-       
-        <div class="container ax" id="testing"> 
-        <div id="grafico" style="width: 80%; height: 350px; margin: auto; display: flex; align-items: center; justify-content: center; margin-top: 20px;"></div>
-      
-        </div>
-       
-
-   
 
         
 <?php footerAdmin($data); ?>
