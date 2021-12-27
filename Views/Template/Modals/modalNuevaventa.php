@@ -61,12 +61,22 @@
         <p>Primeramente, debe seleccionar el cliente al que se le hará la venta, si éste no aparece, debe ingresar un nuevo cliente, para eso, debe dar click en el botón de "Agregar cliente", tal como se muestra en la siguiente imagen.</p>
         <img src="<?= media(); ?>/images/ayuda/crearcliente-nuevaventa.png" alt="" width="450">
         <p style="color: blue;">Nota. Puede registrar un cliente llenando todos los campos o solo llenando el nombre y apellido.</p>
-        <br>
+
         <p><b>2. Buscar producto y agregarlo al carrito:</b></p>
         <p>En el campo "Código" debe ingresar el código del producto y automáticamente se pondrán los datos de ese producto en los campos correspondientes.</p>
         <p>Puede cambiar la cantidad que se venderá en el campo "Cantidad".</p>
         <p>Al dar "click" en el botón con el símbolo de (+), ese producto se agrega al carrito de venta.</p>
         <img src="<?= media(); ?>/images/ayuda/buscarproducto-nuevaventa.png" alt="" width="450">
+
+        <br><br>
+        <p><b>3. Carrito de ventas y eliminar producto del carrito:</b></p>
+        <p>Luego de haber añadido los productos al carrito, automáticamente se calcula el subtotal, iva y total de la venta.</p>
+        <p>Al dar "click" en el botón "eliminar", ese producto se quita del carrito de venta.</p>
+        <img src="<?= media(); ?>/images/ayuda/carritoventa-nuevaventa.png" alt="" width="450">
+
+        <br><br>
+        <p><b>4. Realizar la venta:</b></p>
+        <p>Al dar "click" en el botón "Guardar", la venta se realiza y se crea el ticket.</p>
 
 
       </div>

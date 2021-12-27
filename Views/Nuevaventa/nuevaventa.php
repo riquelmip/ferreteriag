@@ -28,8 +28,6 @@
                       
                     <div class="text-right">
                       <a onmouseover="mostrarAyuda();"><i class="fa fa-question fa-lg"></i></a>
-                  
-                   
                     </div>
                     <label><h4><b>Fecha : <?php echo date("d-m-Y"); ?></b></h4></label>
 
