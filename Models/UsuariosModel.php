@@ -102,7 +102,9 @@
 		{
 			
 			//EXTRAE ROLES
-			$sql = "SELECT * FROM empleado WHERE estado != 0";
+			$sql = "SELECT * FROM empleado e 
+			WHERE NOT EXISTS(SELECT NULL FROM usuario u WHERE u.idempleado = e.idempleado) 
+			and e.estado != 0 and e.estado !=2";
 			$request = $this->select_all($sql);
 			return $request;
 		}
