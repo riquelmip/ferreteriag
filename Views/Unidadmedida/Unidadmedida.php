@@ -20,7 +20,11 @@
         <div class="row">
             <div class="col-md-12">
               <div class="tile">
-                <div class="tile-body">
+                <div class="tile-body"> 
+                <div class="text-right">
+                      <a onmouseover="mostrarAyuda();"><i class="fa fa-question fa-lg"></i></a>
+                    </div>
+                    <br>
                   <div class="table-responsive">
                     <table class="table table-hover table-bordered" id="tableUnidad">
                       <thead>
