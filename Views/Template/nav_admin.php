@@ -138,7 +138,7 @@
             <li class="treeview">
                 <a class="app-menu__item" href="#" data-toggle="treeview">
                     <i class="app-menu__icon fa fa-wrench" aria-hidden="true"></i>
-                    <span class="app-menu__label">Consultas</span>
+                    <span class="app-menu__label">Información</span>
                     <i class="treeview-indicator fa fa-angle-right"></i>
                 </a>
                 <ul class="treeview-menu">
