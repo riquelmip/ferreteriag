@@ -18,6 +18,10 @@
             <div class="col-md-12">
               <div class="tile">
                 <div class="tile-body">
+                <div class="text-right">
+                      <a onmouseover="mostrarAyuda();"><i class="fa fa-question fa-lg"></i></a>
+                    </div>
+                    <br>
                   <form id="formProducto" name="formProducto" class="form-horizontal">
                     <input type="hidden" id="idCadena" name="idCadena"  value="">
                     <p  style="text-align: left; font-size: large;" >Fecha : <?php echo date("d-m-Y"); ?></p>

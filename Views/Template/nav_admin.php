@@ -95,8 +95,9 @@
                 </a>
                 <ul class="treeview-menu">
                 <?php if (!empty($_SESSION['permisos'][7]['leer'])) { ?>
-                    <li><a class="treeview-item" href="<?= base_url(); ?>/Inventario"><i class="icon fa fa-circle-o"></i> Inventario</a></li>
-                    <li><a class="treeview-item" href="<?= base_url(); ?>/Ventas"><i class="icon fa fa-circle-o"></i> Kárdex</a></li>
+                    <li><a class="treeview-item" href="<?= base_url(); ?>/Inventario"><i class="icon fa fa-circle-o"></i> Existencias</a></li>
+                    <li><a class="treeview-item" href="<?= base_url(); ?>/Inventario/entradasProductos"><i class="icon fa fa-circle-o"></i> Registro Entradas</a></li>
+                     <li><a class="treeview-item" href="<?= base_url(); ?>/Inventario/salidasProductos"><i class="icon fa fa-circle-o"></i> Registro Salidas</a></li>
                 <?php  } ?>
                 </ul>
             </li>
@@ -137,7 +138,7 @@
             <li class="treeview">
                 <a class="app-menu__item" href="#" data-toggle="treeview">
                     <i class="app-menu__icon fa fa-wrench" aria-hidden="true"></i>
-                    <span class="app-menu__label">Consultas</span>
+                    <span class="app-menu__label">Información</span>
                     <i class="treeview-indicator fa fa-angle-right"></i>
                 </a>
                 <ul class="treeview-menu">
