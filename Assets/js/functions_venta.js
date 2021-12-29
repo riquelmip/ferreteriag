@@ -144,3 +144,6 @@ function verFactura(idventa){
 }
 
 
+function mostrarAyuda(){
+    $('#modalAyuda').modal('show');
+}

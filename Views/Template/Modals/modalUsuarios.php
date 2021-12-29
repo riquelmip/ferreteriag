@@ -115,3 +115,39 @@
   </div>
 </div>
 
+<div class="modal fade" id="modalAyuda" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+        <h5>Ayuda</h5>
+        <hr>
+        <p><b>1. Crear Usuario:</b></p>
+        <p>Para crear un nuevo usuario dar click en el botón "Nuevo +".</p>
+        <img src="<?= media(); ?>/images/ayuda/botonnuevo-usuarios.png" alt="" width="450">
+        <br><br>
+
+        <p><b>2. Ver usuario:</b></p>
+        <p>Para ver los datos del usuario dar click en el botón "Ver".</p>
+        <img src="<?= media(); ?>/images/ayuda/botonver-usuarios.png" alt="" width="450">
+        <br><br>
+
+        <p><b>3. Editar usuario:</b></p>
+        <p>Para editar los datos del usuario dar click en el botón "Editar".</p>
+        <img src="<?= media(); ?>/images/ayuda/botoneditar-usuarios.png" alt="" width="450">
+        <br><br>
+
+        <p><b>4. Eliminar usuario:</b></p>
+        <p>Para eliminar un usuario dar click en el botón "Eliminar".</p>
+        <img src="<?= media(); ?>/images/ayuda/botoneliminar-usuarios.png" alt="" width="450">
+
+        
+
+      </div>
+      
+    </div>
+  </div>
+</div>

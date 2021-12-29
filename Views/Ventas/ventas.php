@@ -1,6 +1,6 @@
 <?php 
     headerAdmin($data); 
-    //getModal('modalVentas',$data);
+    getModal('modalVentas',$data);
 ?>
     <div id="contentAjax"></div> 
     <main class="app-content">
@@ -8,7 +8,7 @@
         <div>
             <h1><i class="fas fa-tags"></i> <?= $data['page_title'] ?>
               <?php if (!empty($_SESSION['permisosMod']['escribir'])) { ?>
-                <a class="btn btn-success" type="button" href="Nuevaventa" ><i class="fas fa-plus-circle"></i> Nuevo</a>
+                <a class="btn btn-success" type="button" href="Nuevaventa" ><i class="fas fa-plus-circle"></i> Nueva</a>
               <?php } ?>
             </h1>
         </div>

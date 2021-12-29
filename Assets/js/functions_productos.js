@@ -645,3 +645,7 @@ function fntAñadirUnidad(){
     
                 
 }
+
+function mostrarAyuda(){
+    $('#modalAyuda').modal('show');
+}
