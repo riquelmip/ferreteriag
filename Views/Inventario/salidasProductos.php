@@ -5,10 +5,10 @@
     <main class="app-content">
       <div class="app-title">
         <div>
-            <h1><i class="fas fa-box-tissue"></i> <?= $data['page_title'] ?></h1>
+            <h1><i class="fas fa-dolly"></i> <?= $data['page_title'] ?></h1>
         </div>
         <ul class="app-breadcrumb breadcrumb">
-          <li class="breadcrumb-item"><i class="fas fa-box-tissue fa-lg"></i></li>
+          <li class="breadcrumb-item"><i class="fas fa-dolly fa-lg"></i></li>
           <li class="breadcrumb-item"><a href="<?= base_url(); ?>/inventario"><?= $data['page_title'] ?></a></li>
         </ul>
       </div>
@@ -18,15 +18,16 @@
               <div class="tile">
                 <div class="tile-body">
                   <div class="table-responsive">
-                    <table class="table table-hover table-bordered" id="tableInventario">
+                    <table class="table table-hover table-bordered" id="tableSalidas">
                       <thead>
                         <tr>
+                          <th>Fecha</th>
                           <th>Código</th>
                           <th>Descripción</th>
                           <th>Marca</th>
                           <th>Categoria</th>
-                          <th>Stock</th>
-                          <th>Unidad de Medida</th>
+                          <th>Cantidad</th>
+                          <th>Total ($)</th>
                         </tr>
                       </thead>
                       <tbody>

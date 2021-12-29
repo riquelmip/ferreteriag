@@ -19,9 +19,9 @@
 				header('location: '.base_url().'/dashboard');
 			}
 			$data['page_id'] = 11;
-			$data['page_tag'] = "Inventario";
+			$data['page_tag'] = "Existencias";
 			$data['page_name'] = "inventario";
-			$data['page_title'] = "Inventario <small> Ferretería</small>";
+			$data['page_title'] = "Existencias <small> productos</small>";
 			$data['page_functions_js'] = "functions_inventario.js";
 			$this->views->getView($this,"inventario",$data);
 		}
@@ -35,15 +35,15 @@
 
 				for ($i=0; $i < count($arrData); $i++) {
 					
-					$btnView = "";
+					$stock="";
 
-					//si tiene permiso de eliminar se agrega el boton
-					if ($_SESSION['permisosMod']['actualizar']) {
-						$btnView = '<button class="btn btn-info btn-sm btnVerDetallesProd" onClick="fntPermisos('.$arrData[$i]['idproducto'].')" title="Permisos"><i class="far fa-eye"></i></button>';
+					if($arrData[$i]['stock'] > 10){
+						$stock='<span class="badge badge-success">'.$arrData[$i]['stock'].'</span>';
+					}else{
+						$stock='<span class="badge badge-danger">'.$arrData[$i]['stock'].'</span>';
 					}
-					//agregamos los botones
-					$arrData[$i]['opciones'] = '<div class="text-center">'.$btnView.'</div>';
 
+					$arrData[$i]['stock'] = $stock;
 				
 				}
 
@@ -51,6 +51,55 @@
 			}
 			die();
 		}
+
+		public function entradasProductos()
+		{
+			//si no tiene permiso de usuarios, lo rediccionara
+			if (empty($_SESSION['permisosMod']['leer'])) {
+				header('location: '.base_url().'/dashboard');
+			}
+			$data['page_id'] = 11;
+			$data['page_tag'] = "Entradas";
+			$data['page_name'] = "entradas";
+			$data['page_title'] = "Registro de entradas <small> productos</small>";
+			$data['page_functions_js'] = "functions_entradas.js";
+			$this->views->getView($this,"registroEntradas",$data);
+		}
+
+		public function getRegistroEntradas(){
+
+			if ($_SESSION['permisosMod']['leer']) {
+
+				$arrData = $this->model->selectEntradas();
+				echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
+			}
+			die();
+		}
+
+		public function salidasProductos()
+		{
+			//si no tiene permiso de usuarios, lo rediccionara
+			if (empty($_SESSION['permisosMod']['leer'])) {
+				header('location: '.base_url().'/dashboard');
+			}
+			$data['page_id'] = 11;
+			$data['page_tag'] = "Salidas";
+			$data['page_name'] = "salidas";
+			$data['page_title'] = "Registro de salidas <small> productos</small>";
+			$data['page_functions_js'] = "functions_salidas.js";
+			$this->views->getView($this,"salidasProductos",$data);
+		}
+
+		public function getRegistroSalidas(){
+
+			if ($_SESSION['permisosMod']['leer']) {
+
+				$arrData = $this->model->selectSalidas();
+				echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
+			}
+			die();
+		}
+
 
 
 	}

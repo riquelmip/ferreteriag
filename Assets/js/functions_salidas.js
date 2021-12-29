@@ -1,27 +1,53 @@
-var tableInventario;
+var tableSalidas;
 var divLoading = document.querySelector('#divLoading');
 document.addEventListener('DOMContentLoaded', function(){
 
 
-	tableInventario = $('#tableInventario').dataTable( {
+	tableSalidas = $('#tableSalidas').dataTable( {
 		"aProcessing":true,
 		"aServerSide":true,
         "language": {
         	"url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
         },
         "ajax":{
-            "url": " "+base_url+"/Inventario/getInventario",
+            "url": " "+base_url+"/Inventario/getRegistroSalidas",
             "dataSrc":""
 
         },
         "columns":[
+            {"data":"fecha"},
             {"data":"codigobarra"},
             {"data":"descripcion"},
             {"data":"marca"},
             {"data":"categoria"},
-            {"data":"stock"},
-            {"data":"unidad"}
+            {"data":"cantidad"},           
+            {"data":"monto"}
             
+        ],
+        columnDefs: [{
+            targets: 0,
+            className: 'text-center'
+          },
+          {
+            targets: 1,
+            className: 'text-center'
+          },
+          {
+            targets: 3,
+            className: 'text-center'
+          },
+          {
+            targets: 4,
+            className: 'text-center'
+          },
+          {
+            targets: 5,
+            className: 'text-center'
+          },
+          {
+            targets: 6,
+            className: 'text-center'
+          }
         ],
         'dom': 'lBfrtip',
         'buttons': [
@@ -56,4 +82,4 @@ document.addEventListener('DOMContentLoaded', function(){
 
 });
 
-$('#tableInventario').DataTable();
+$('#tableSalidas').DataTable();
