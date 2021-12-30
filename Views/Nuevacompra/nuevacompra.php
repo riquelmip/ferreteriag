@@ -1,5 +1,6 @@
 <?php 
     headerAdmin($data); 
+    getModal('modalNuevacompra',$data);
     
 ?>
     <div id="contentAjax"></div> 

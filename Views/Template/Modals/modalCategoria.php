@@ -28,3 +28,32 @@
   </div>
 </div>
 
+
+
+<div class="modal fade" id="modalAyuda" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+        <h5>Ayuda</h5>
+        <hr>
+        <p><b>1. Realizar una nueva categoria:</b></p>
+        <p>Para realizar  una nueva categoria dar click en el botón "Nueva +".</p>
+        <img src="<?= media(); ?>/images/ayuda/nuevocategoria.png" alt="" width="450">
+       
+
+        <p><b>2. Editar una categoria:</b></p>
+        <p>Para editar una categoria presione el botón Editar</p>
+        <img src="<?= media(); ?>/images/ayuda/editarcategoria.png" alt="" width="450">
+
+        <br><br>
+        <p><b>3. Eliminar una categoria:</b></p>
+        <p>Para eliminar una categoria presione el botón Eliminar.</p>
+        <img src="<?= media(); ?>/images/ayuda/eliminarcategoria.png" alt="" width="450">
+     </div>
+    </div>
+  </div>
+</div>

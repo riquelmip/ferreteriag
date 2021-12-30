@@ -160,3 +160,6 @@ function fntDelCategoria(idcate){
 
 
 
+function mostrarAyuda(){
+    $('#modalAyuda').modal('show');
+}

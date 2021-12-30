@@ -158,3 +158,7 @@ function fntDelCargos(idcate){
 
 
 
+function mostrarAyuda(){
+    $('#modalAyuda').modal('show');
+}
+

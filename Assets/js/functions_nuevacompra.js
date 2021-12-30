@@ -410,3 +410,6 @@ $("#formProducto").on("click", "button.quitarCoro", function(){
 
 
 
+function mostrarAyuda(){
+    $('#modalAyuda').modal('show');
+}
