@@ -20,18 +20,14 @@
         <p>Puede cambiar la cantidad que se comprara en el campo "Cantidad".</p>
         <p>Puede cambiar el precio de Compra  en el campo "Precio Compra".</p>
         <img src="<?= media(); ?>/images/ayuda/producto.png" alt="" width="450">
-        <p>Al dar "click" en el botón con el símbolo de (+), ese producto se agrega al carrito de venta.</p>
+        <p>Al dar "click" en el botón con el símbolo de Guardar, dara por finalizada una compra al contado.</p>
         
 
         <br><br>
-        <p><b>3. Carrito de ventas y eliminar producto del carrito:</b></p>
-        <p>Luego de haber añadido los productos al carrito, automáticamente se calcula el subtotal, iva y total de la venta.</p>
-        <p>Al dar "click" en el botón "eliminar", ese producto se quita del carrito de venta.</p>
-        <img src="<?= media(); ?>/images/ayuda/carritoventa-nuevaventa.png" alt="" width="450">
+        <p><b>1 Realizar compra al credito:</b></p>
+        <p>Luego de haber añadido los productos a la compra, puede colocar en el espacio de credito la cantidad a pagar y la fecha cuando se hara el pago.</p>
+        <img src="<?= media(); ?>/images/ayuda/finproducto.png" alt="" width="450">
 
-        <br><br>
-        <p><b>4. Realizar la venta:</b></p>
-        <p>Al dar "click" en el botón "Guardar", la venta se realiza y se crea el ticket.</p>
 
 
       </div>
