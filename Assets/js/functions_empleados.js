@@ -409,3 +409,7 @@ function inicializar_tabla(tabla){
         "order":[[0,"asc"]]  
     });
 }
+
+function mostrarAyuda(){
+    $('#modalAyudaEmpleado').modal('show');
+}

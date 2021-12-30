@@ -159,3 +159,6 @@ function fntEditUnidad(idunidad){
 }
 
 
+function mostrarAyuda(){
+    $('#modalAyuda').modal('show');
+}
