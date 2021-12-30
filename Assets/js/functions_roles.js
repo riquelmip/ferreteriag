@@ -209,3 +209,7 @@ function fntSavePermisos(evento){
     }
     
 }
+
+function mostrarAyuda(){
+    $('#modalAyuda').modal('show');
+}
