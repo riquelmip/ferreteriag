@@ -239,3 +239,6 @@ function fntEditproveedor(idproveedor){
 }
 
 
+function mostrarAyuda(){
+    $('#modalAyuda').modal('show');
+}
