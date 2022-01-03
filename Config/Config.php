@@ -7,7 +7,7 @@
 	date_default_timezone_set('America/El_Salvador');
 
 	//Datos de conexión a Base de Datos
-	const DB_HOST = "ec2-3-129-23-217.us-east-2.compute.amazonaws.com";
+	const DB_HOST = "ec2-3-15-31-182.us-east-2.compute.amazonaws.com";
 	const DB_NAME = "db_ferreteria";
 	const DB_USER = "will";
 	const DB_PASSWORD = "will";
