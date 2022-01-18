@@ -178,6 +178,12 @@
         
                 </ul>
 
+                 <ul class="treeview-menu">
+                <?php if (!empty($_SESSION['permisos'][9]['leer'])) { ?>
+                    <li><a class="treeview-item" href="<?= base_url(); ?>/backup"><i class="icon fa fa-circle-o"></i>Backup</a></li>
+                <?php } ?>
+        
+                </ul>
 
             </li>
         <?php } ?>
