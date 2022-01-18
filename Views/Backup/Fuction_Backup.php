@@ -25,7 +25,7 @@ function backup_tables($host,$user,$pass,$name,$tables = '*')
    {
       $tables = is_array($tables) ? $tables : explode(',',$tables);
    }
-   var_dump($tables);
+
    //cycle through
    foreach($tables as $table)
    {
