@@ -178,15 +178,25 @@
         
                 </ul>
 
+            </li>
+        <?php } ?>
+
+
+          <li class="treeview">
+                <a class="app-menu__item" href="#" data-toggle="treeview">
+                    <i class="app-menu__icon fas fa-cogs" aria-hidden="true"></i>
+                    <span class="app-menu__label">Backup</span>
+                    <i class="treeview-indicator fa fa-angle-right"></i>
+                </a>
+
                  <ul class="treeview-menu">
                 <?php if (!empty($_SESSION['permisos'][9]['leer'])) { ?>
-                    <li><a class="treeview-item" href="<?= base_url(); ?>/backup"><i class="icon fa fa-circle-o"></i>Backup</a></li>
+                    <li><a class="treeview-item" href="<?= base_url(); ?>/backup"><i class="icon fa fa-circle-o"></i> Generar Backup</a></li>
                 <?php } ?>
         
                 </ul>
 
-            </li>
-        <?php } ?>
+        </li>
 
         <li>
             <a class="app-menu__item" href="<?= base_url(); ?>/logout">
