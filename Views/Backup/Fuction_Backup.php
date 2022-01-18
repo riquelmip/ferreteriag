@@ -56,7 +56,7 @@ function backup_tables($host,$user,$pass,$name,$tables = '*')
    }
    $fecha=date("Y-m-d");
    //save file
-   $handle = fopen('Backups/db-ferreteria-'.$fecha.'.sql','w+');
+   $handle = fopen('Backups/db_ferreteria-'.$fecha.'.sql','w+');
     fwrite($handle,$return);
     fclose($handle);
 }
