@@ -9,7 +9,8 @@ function backup_tables($host,$user,$pass,$name,$tables = '*')
 {
    $return='';
    $link = new mysqli($host,$user,$pass,$name);
-  // mysql_select_db($name,$link);
+   echo($link);
+   die();  // mysql_select_db($name,$link);
    
    //get all of the tables
    if($tables == '*')
