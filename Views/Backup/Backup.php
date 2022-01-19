@@ -8,6 +8,6 @@
 		$fecha=date("Y-m-d");
 		header("Content-disposition: attachment; filename=db-ferreteria-".$fecha.".sql");
 		header("Content-type: MIME");
-		readfile("backups/db-ferreteria-".$fecha.".sql");
+		readfile("Backups/db_ferreteria-".$fecha.".sql");
 
  ?>
