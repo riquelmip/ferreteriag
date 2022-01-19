@@ -5,11 +5,11 @@
 //profesor,estudiante,clase
 //O déjalo con el asterisco '*' para que se respalde toda la base de datos
 
-function backup_tables($host,$user,$pass,$name,$port,$tables = '*')
+function backup_tables($host,$user,$pass,$name,$tables = '*')
 {
    $return='';
-   $link = new mysqli($host,$user,$pass,$name,$port);
- // mysql_select_db($name,$link);
+   $link = new mysqli($host,$user,$pass,$name);
+  // mysql_select_db($name,$link);
    
    //get all of the tables
    if($tables == '*')
@@ -25,6 +25,7 @@ function backup_tables($host,$user,$pass,$name,$port,$tables = '*')
    {
       $tables = is_array($tables) ? $tables : explode(',',$tables);
    }
+   
    //cycle through
    foreach($tables as $table)
    {
@@ -55,7 +56,7 @@ function backup_tables($host,$user,$pass,$name,$port,$tables = '*')
    }
    $fecha=date("Y-m-d");
    //save file
-   $handle = fopen('Backups/db_ferreteria-'.$fecha.'.sql','w+');
+   $handle = fopen('Backups/db-ferreteria-'.$fecha.'.sql','w+');
     fwrite($handle,$return);
     fclose($handle);
 }
