@@ -73,8 +73,6 @@ function fntGraficoPastel() {
       chart.draw(data, options);
     });
   }
-  
-  
 }
 
 function fntGraficoBarra(json) {

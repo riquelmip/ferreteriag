@@ -2,7 +2,7 @@ var tableRoles;
 var divLoading = document.querySelector("#divLoading");
 document.addEventListener("DOMContentLoaded", function () {
   cargar_datos();
-  
+
 
 
 
@@ -20,8 +20,8 @@ function cargar_datos() {
       $("#datos_tabla").empty().html(json.htmlDatosTabla);
       inicializar_tabla("tableConsul");
     })
-    .fail(function () {})
-    .always(function () {});
+    .fail(function () { })
+    .always(function () { });
 }
 function alerta_recargartabla(titulo, mensaje, tipo) {
   Swal.fire({
@@ -101,7 +101,7 @@ function inicializar_tabla(tabla) {
 
 $(document).on("change", "#fecha_venta", function (e) {
   var fecha_fin = $("#fecha_venta").val();
-  document.querySelector('#parametro').value=fecha_fin;
+  document.querySelector('#parametro').value = fecha_fin;
   document.getElementById("graficoo").innerHTML = "";
   document.getElementById("graficoo").innerHTML = "<div id=\"graficoo\" ></div>";
   console.log(fecha_fin);
@@ -117,8 +117,8 @@ $(document).on("change", "#fecha_venta", function (e) {
 
       inicializar_tabla("tableConsul");
     })
-    .fail(function () {})
-    .always(function () {});
+    .fail(function () { })
+    .always(function () { });
 });
 
 $("#create_pdf").click(function () {
@@ -139,51 +139,51 @@ $("#noTabla").click(function () {
 //Grafico Pastel
 function fntGraficoPastel() {
   var fecha_fin = $("#fecha_venta").val();
-  if (fecha_fin=="") {
+  if (fecha_fin == "") {
     google.charts.load("current", { packages: ["corechart"] });
-  google.charts.setOnLoadCallback(drawChart);
-  var result = [];
-  function drawChart() {
-    $.ajax({
-      dataType: "json",
-      method: "POST",
-      url: base_url + "/Consultas/productosmasvendidos",
-    }).done(function (json) {
-      console.log("EL consultar", json);
-      for (var i in json) result.push([i, json[i]]);
-      for (let index = 0; index < result.length; index++) {
-        console.log(json[0].canti);
-        console.log(json[0].descripcion);
-        var data = new google.visualization.DataTable();
-        data.addColumn("string", "Week");
-        data.addColumn("number", "Retail");
-        json.forEach(function (row) {
-          data.addRow([row.descripcion, parseInt(row.canti)]);
+    google.charts.setOnLoadCallback(drawChart);
+    var result = [];
+    function drawChart() {
+      $.ajax({
+        dataType: "json",
+        method: "POST",
+        url: base_url + "/Consultas/productosmasvendidos",
+      }).done(function (json) {
+        console.log("EL consultar", json);
+        for (var i in json) result.push([i, json[i]]);
+        for (let index = 0; index < result.length; index++) {
+          console.log(json[0].canti);
+          console.log(json[0].descripcion);
+          var data = new google.visualization.DataTable();
+          data.addColumn("string", "Week");
+          data.addColumn("number", "Retail");
+          json.forEach(function (row) {
+            data.addRow([row.descripcion, parseInt(row.canti)]);
+          });
+        }
+        var options = {
+          title: "Productos más vendidos",
+          is3D: true,
+        };
+        var chart = new google.visualization.PieChart(
+          document.getElementById("graficoo")
+        );
+        google.visualization.events.addListener(chart, "ready", function () {
+          document.getElementById("algo").value = chart.getImageURI();
         });
-      }
-      var options = {
-        title: "Productos más vendidos",
-        is3D: true,
-      };
-      var chart = new google.visualization.PieChart(
-        document.getElementById("graficoo")
-      );
-      google.visualization.events.addListener(chart, "ready", function () {
-        document.getElementById("algo").value = chart.getImageURI();
+        chart.draw(data, options);
       });
-      chart.draw(data, options);
-    });
-  }
-  }else {
+    }
+  } else {
     var fecha_fin = $("#fecha_venta").val();
     google.charts.load("current", { packages: ["corechart"] });
-  google.charts.setOnLoadCallback(drawChart);
-  var result = [];
-  function drawChart() {
-    $.ajax({
-      dataType: "json",
-      method: "POST",
-      url: base_url + "/Consultas/productosmasvendidosfecha/" + fecha_fin,
+    google.charts.setOnLoadCallback(drawChart);
+    var result = [];
+    function drawChart() {
+      $.ajax({
+        dataType: "json",
+        method: "POST",
+        url: base_url + "/Consultas/productosmasvendidosfecha/" + fecha_fin,
       }).done(function (json) {
         console.log("EL consultar", json);
         for (var i in json) result.push([i, json[i]]);
@@ -211,7 +211,7 @@ function fntGraficoPastel() {
       });
     }
   }
-  
+
 }
 //Fin Grafico de Pastel
 
@@ -220,158 +220,158 @@ function fntGraficoPastel() {
 //Inicio de grafico Barra
 function fntGraficoBarra() {
   var fecha_fin = $("#fecha_venta").val();
-  if (fecha_fin=="") {
+  if (fecha_fin == "") {
     google.charts.load("current", { packages: ["corechart"] });
-  google.charts.setOnLoadCallback(drawChart);
-  var result = [];
-  function drawChart() {
-    $.ajax({
-      dataType: "json",
-      method: "POST",
-      url: base_url + "/Consultas/productosmasvendidos",
-    }).done(function (json) {
-      console.log("EL consultar", json);
-      for (var i in json) result.push([i, json[i]]);
-      for (let index = 0; index < result.length; index++) {
-        console.log(json[0].canti);
-        console.log(json[0].descripcion);
-        var data = new google.visualization.DataTable();
-        data.addColumn("string", "Week");
-        data.addColumn("number", "Retail");
-        json.forEach(function (row) {
-          data.addRow([row.descripcion, parseInt(row.canti)]);
+    google.charts.setOnLoadCallback(drawChart);
+    var result = [];
+    function drawChart() {
+      $.ajax({
+        dataType: "json",
+        method: "POST",
+        url: base_url + "/Consultas/productosmasvendidos",
+      }).done(function (json) {
+        console.log("EL consultar", json);
+        for (var i in json) result.push([i, json[i]]);
+        for (let index = 0; index < result.length; index++) {
+          console.log(json[0].canti);
+          console.log(json[0].descripcion);
+          var data = new google.visualization.DataTable();
+          data.addColumn("string", "Week");
+          data.addColumn("number", "Retail");
+          json.forEach(function (row) {
+            data.addRow([row.descripcion, parseInt(row.canti)]);
+          });
+        }
+        var options = {
+          title: "Productos más vendidos",
+          colors: ["#7570b3", "#d95f02", "#7570b3"],
+          legend: { position: "none" },
+        };
+        var chart_area = document.getElementById("graficoo");
+        var chart = new google.visualization.ColumnChart(chart_area);
+        google.visualization.events.addListener(chart, "ready", function () {
+          document.getElementById("algo").value = chart.getImageURI();
         });
-      }
-      var options = {
-        title: "Productos más vendidos",
-        colors: ["#1b9e77", "#d95f02", "#7570b3"],
-        legend: { position: "none" },
-      };
-      var chart_area = document.getElementById("graficoo");
-      var chart = new google.visualization.ColumnChart(chart_area);
-      google.visualization.events.addListener(chart, "ready", function () {
-        document.getElementById("algo").value = chart.getImageURI();
+        chart.draw(data, options);
       });
-      chart.draw(data, options);
-    });
-  }
+    }
   } else {
     var fecha_fin = $("#fecha_venta").val();
     google.charts.load("current", { packages: ["corechart"] });
-  google.charts.setOnLoadCallback(drawChart);
-  var result = [];
-  function drawChart() {
-    $.ajax({
-      dataType: "json",
-      method: "POST",
-      url: base_url + "/Consultas/productosmasvendidosfecha/" + fecha_fin,
-    }).done(function (json) {
-      console.log("EL consultar", json);
-      for (var i in json) result.push([i, json[i]]);
-      for (let index = 0; index < result.length; index++) {
-        console.log(json[0].canti);
-        console.log(json[0].descripcion);
-        var data = new google.visualization.DataTable();
-        data.addColumn("string", "Week");
-        data.addColumn("number", "Retail");
-        json.forEach(function (row) {
-          data.addRow([row.descripcion, parseInt(row.canti)]);
+    google.charts.setOnLoadCallback(drawChart);
+    var result = [];
+    function drawChart() {
+      $.ajax({
+        dataType: "json",
+        method: "POST",
+        url: base_url + "/Consultas/productosmasvendidosfecha/" + fecha_fin,
+      }).done(function (json) {
+        console.log("EL consultar", json);
+        for (var i in json) result.push([i, json[i]]);
+        for (let index = 0; index < result.length; index++) {
+          console.log(json[0].canti);
+          console.log(json[0].descripcion);
+          var data = new google.visualization.DataTable();
+          data.addColumn("string", "Week");
+          data.addColumn("number", "Retail");
+          json.forEach(function (row) {
+            data.addRow([row.descripcion, parseInt(row.canti)]);
+          });
+        }
+        var options = {
+          title: "Productos más vendidos",
+          colors: ["#1b9e77", "#d95f02", "#7570b3"],
+          legend: { position: "none" },
+        };
+        var chart_area = document.getElementById("graficoo");
+        var chart = new google.visualization.ColumnChart(chart_area);
+        google.visualization.events.addListener(chart, "ready", function () {
+          document.getElementById("algo").value = chart.getImageURI();
         });
-      }
-      var options = {
-        title: "Productos más vendidos",
-        colors: ["#1b9e77", "#d95f02", "#7570b3"],
-        legend: { position: "none" },
-      };
-      var chart_area = document.getElementById("graficoo");
-      var chart = new google.visualization.ColumnChart(chart_area);
-      google.visualization.events.addListener(chart, "ready", function () {
-        document.getElementById("algo").value = chart.getImageURI();
+        chart.draw(data, options);
       });
-      chart.draw(data, options);
-    });
+    }
+
+
   }
- 
-  
-}
 }
 //Fin de grafico Barra
 
 //Inicio de grafico Dona
 function fntGraficoDona() {
   var fecha_fin = $("#fecha_venta").val();
-  if (fecha_fin=="") {
-  google.charts.load("current", { packages: ["corechart"] });
-  google.charts.setOnLoadCallback(drawChart);
-  var result = [];
-  function drawChart() {
-    $.ajax({
-      dataType: "json",
-      method: "POST",
-      url: base_url + "/Consultas/productosmasvendidos",
-    }).done(function (json) {
-      console.log("EL consultar", json);
-      for (var i in json) result.push([i, json[i]]);
-      for (let index = 0; index < result.length; index++) {
-        console.log(json[0].canti);
-        console.log(json[0].descripcion);
-        var data = new google.visualization.DataTable();
-        data.addColumn("string", "Week");
-        data.addColumn("number", "Valor");
-        json.forEach(function (row) {
-          data.addRow([row.descripcion, parseInt(row.canti)]);
-        });
-      }
-      var options = {
-        title: "Productos más vendidos",
-        pieHole: 0.4,
-      };
-      var chart = new google.visualization.PieChart(
-        document.getElementById("graficoo")
-      );
-      google.visualization.events.addListener(chart, "ready", function () {
-        document.getElementById("algo").value = chart.getImageURI();
-      });
-      chart.draw(data, options);
-    });
-  }
-}else{
-  var fecha_fin = $("#fecha_venta").val();
+  if (fecha_fin == "") {
     google.charts.load("current", { packages: ["corechart"] });
-  google.charts.setOnLoadCallback(drawChart);
-  var result = [];
-  function drawChart() {
-    $.ajax({
-      dataType: "json",
-      method: "POST",
-      url: base_url + "/Consultas/productosmasvendidosfecha/" + fecha_fin,
-    }).done(function (json) {
-      console.log("EL consultar", json);
-      for (var i in json) result.push([i, json[i]]);
-      for (let index = 0; index < result.length; index++) {
-        console.log(json[0].canti);
-        console.log(json[0].descripcion);
-        var data = new google.visualization.DataTable();
-        data.addColumn("string", "Week");
-        data.addColumn("number", "Valor");
-        json.forEach(function (row) {
-          data.addRow([row.descripcion, parseInt(row.canti)]);
+    google.charts.setOnLoadCallback(drawChart);
+    var result = [];
+    function drawChart() {
+      $.ajax({
+        dataType: "json",
+        method: "POST",
+        url: base_url + "/Consultas/productosmasvendidos",
+      }).done(function (json) {
+        console.log("EL consultar", json);
+        for (var i in json) result.push([i, json[i]]);
+        for (let index = 0; index < result.length; index++) {
+          console.log(json[0].canti);
+          console.log(json[0].descripcion);
+          var data = new google.visualization.DataTable();
+          data.addColumn("string", "Week");
+          data.addColumn("number", "Valor");
+          json.forEach(function (row) {
+            data.addRow([row.descripcion, parseInt(row.canti)]);
+          });
+        }
+        var options = {
+          title: "Productos más vendidos",
+          pieHole: 0.4,
+        };
+        var chart = new google.visualization.PieChart(
+          document.getElementById("graficoo")
+        );
+        google.visualization.events.addListener(chart, "ready", function () {
+          document.getElementById("algo").value = chart.getImageURI();
         });
-      }
-      var options = {
-        title: "Productos más vendidos",
-        pieHole: 0.4,
-      };
-      var chart = new google.visualization.PieChart(
-        document.getElementById("graficoo")
-      );
-      google.visualization.events.addListener(chart, "ready", function () {
-        document.getElementById("algo").value = chart.getImageURI();
+        chart.draw(data, options);
       });
-      chart.draw(data, options);
-    });
-  } 
-}
+    }
+  } else {
+    var fecha_fin = $("#fecha_venta").val();
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(drawChart);
+    var result = [];
+    function drawChart() {
+      $.ajax({
+        dataType: "json",
+        method: "POST",
+        url: base_url + "/Consultas/productosmasvendidosfecha/" + fecha_fin,
+      }).done(function (json) {
+        console.log("EL consultar", json);
+        for (var i in json) result.push([i, json[i]]);
+        for (let index = 0; index < result.length; index++) {
+          console.log(json[0].canti);
+          console.log(json[0].descripcion);
+          var data = new google.visualization.DataTable();
+          data.addColumn("string", "Week");
+          data.addColumn("number", "Valor");
+          json.forEach(function (row) {
+            data.addRow([row.descripcion, parseInt(row.canti)]);
+          });
+        }
+        var options = {
+          title: "Productos más vendidos",
+          pieHole: 0.4,
+        };
+        var chart = new google.visualization.PieChart(
+          document.getElementById("graficoo")
+        );
+        google.visualization.events.addListener(chart, "ready", function () {
+          document.getElementById("algo").value = chart.getImageURI();
+        });
+        chart.draw(data, options);
+      });
+    }
+  }
 }
 //Inicio de grafico Dona
 
@@ -397,7 +397,7 @@ $(document).on("change", "#graf", function (e) {
 
       break;
     default:
-      
+
       break;
   }
 });
