@@ -1,4 +1,7 @@
 <?php headerAdmin($data); ?>
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
     <main class="app-content">
       <div class="app-title">
         <div>
@@ -15,10 +18,11 @@
                 <div class="row">
                   <div class="col-md-4">
                     <div class="text-white text-center bg-warning mb-3">
-                      <div class="card-header">Artículos más vendido</div>
+                      <div class="card-header">Total Ventas</div>
                         <div class="card-body">
-                          <h5 class="card-title" onchange="funcionvendidos()" ><span id="totalCreditos" onchange="funcionvendidos()"  >$9999</span></h5>
-                          <p class="card-text">AAAAAAAAAAAA</p>
+                          <h5 class="card-title">
+                            <span id="totalVenta"></span></h5>
+                          <p class="card-text">Monto total en dolares durante el mes de <span id="mesVenta"></span></p>
                       </div>
                     </div>
                   </div>
@@ -27,19 +31,19 @@
                     <?php
                             $btnVerVentas = '<button class="btn btn-primary btn-sm btnPermisosRol" onClick="" title="Permisos"><i class="fas fa-eye"></i></button>';
                     ?>
-                      <div class="card-header">Título</div>
+                      <div class="card-header">Total Compras</div>
                         <div class="card-body">
-                          <h5 class="card-title"><span id="totalVentas">$9999</span></h5>                
-                          <p class="card-text"> AAAAAAAAAAAA</p>
+                          <h5 class="card-title"><span id="totalCompra"></span></h5>                
+                          <p class="card-text">Monto total en dolares durante el mes de <span id="mesCompra"></span></p>
                         </div>
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="text-white bg-primary text-center mb-3">
-                      <div class="card-header">Título</div>
+                      <div class="card-header">Total Crédito</div>
                         <div class="card-body">
-                          <h5 class="card-title"><span id="totalCompras">$9999</span></h5>
-                          <p class="card-text">AAAAAAAAAAAA</p>
+                          <h5 class="card-title"><span id="totalCredito"></span></h5>
+                          <p class="card-text">Monto total de crédito pendiente en el mes de <span id="mesCredito"></span></p>
                         </div>
                     </div>
                   </div>
@@ -54,15 +58,14 @@
       <div class="col-md-6">
               <div class="tile">
                 <div class="tile-body">
-                     <div id="graficoPastel"  style=" width: 400px; height: 200px; margin: auto; display: flex; align-items: letf; justify-content: left; position: relative;"></div>
+                     <div id="graficoPastel" style="width: 100%; height: 380px; display: flex;"></div>
                     </div>
                   </div>
-              </div>
+      </div>
               <div class="col-md-6" >
               <div class="tile">
                 <div class="tile-body">
-                      <div id="graficoBarras"  style=" width: 100%;">
-                      </div>
+                      <canvas id="myChart" width="400" height="200"></canvas>
                 </div>
               </div>
               </div>
@@ -72,7 +75,7 @@
             <div class="col-md-12">
               <div class="tile">
                 <div class="tile-body">
-                  <div id="graficoLinea" style=" margin: auto; display: flex; align-items: center; justify-content: center; position: relative;"></div>        
+                  <canvas id="graficoLineal" width="800" height="400" ></canvas>        
                 </div>
               </div>
             </div>
@@ -81,4 +84,4 @@
         
 </main>
 <?php footerAdmin($data); ?>
-    
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

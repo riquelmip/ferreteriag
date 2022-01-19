@@ -2,210 +2,202 @@ var tableRoles;
 var divLoading = document.querySelector('#divLoading');
 document.addEventListener('DOMContentLoaded', function(){
 
-	// tableRoles = $('#tableRoles').dataTable( {
-	// 	"aProcessing":true,
-	// 	"aServerSide":true,
-    //     "language": {
-    //     	"url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
-    //     },
-    //     "ajax":{
-    //         "url": " "+base_url+"/Roles/getRoles",
-    //         "dataSrc":""
-    //     },
-    //     "columns":[
-    //         {"data":"idrol"},
-    //         {"data":"nombrerol"},
-    //         {"data":"descripcion"},
-    //         {"data":"estado"},
-    //         {"data":"opciones"}
-    //     ],
-    //     "resonsieve":"true",
-    //     "bDestroy": true,
-    //     "iDisplayLength": 10,
-    //     "order":[[0,"desc"]]  
-    // });
+    cargar_datos();
     fntGraficoPastel();
-    fntGraficoLineal();
-    fntGraficoBarra();
+    //fntGraficoBarra();
+    //fntGraficoLineal();
+    //fntGraficoBarra();
 });
 
-function funcionvendidos(){
 
-      mostrar_mensaje("Cargando", "Obteniendo datos");
-  var datos = {"consultar_info":"si_consultala"}
+function cargar_datos(){
   $.ajax({
       dataType: "json",
       method: "POST",
-      url: base_url+'/Dashboard/getDisPuesto/',
-      data : datos,
+      url: base_url+'/Dashboard/getDatos',
   }).done(function(json) {
-       
-       //[23,34]
+    console.log(json);
+    var fecha = new Date();
+    var mes = fecha.getMonth() + 1;
 
+    document.getElementById('totalVenta').innerHTML =  "$ "+json['totalVenta']['totalVenta'];
+    document.getElementById('mesVenta').innerHTML = obtenerMes(mes);
+    document.getElementById('totalCompra').innerHTML =  "$ "+json['totalCompra']['totalCompra'];
+    document.getElementById('mesCompra').innerHTML = obtenerMes(mes);
+    document.getElementById('totalCredito').innerHTML =  "$ "+json['totalCredito']['totalCredito'];    
+    document.getElementById('mesCredito').innerHTML = obtenerMes(mes);
+    fntGraficoBarra(json);
+    fntGraficoLineal(json);
 
-       var femenino=parseInt(json.femenino);
-
-    
-
-         let optionsVisitorsProfile  = {
-          series: [femenino,masculino],
-          labels: ["Femenino","Masculino"],
-          colors: ['#ea553d','#3bc3e9'],
-          chart: {
-              type: 'donut',
-              width: '100%',
-              height:'300px'
-          },
-          legend: {
-              position: 'bottom'
-          },
-          plotOptions: {
-              pie: {
-                  donut: {
-                      size: '30%'
-                  }
-              }
-          }
-      }
-     $('#chart-visitors-profile').empty();
-      var chartVisitorsProfile = new ApexCharts(document.getElementById('chart-visitors-profile'), optionsVisitorsProfile)
-      chartVisitorsProfile.render();
-
-       $("#hombre").empty();
-$("#hombre").append(masculino);
-
-$("#mujer").empty();
-$("#mujer").append(femenino);
 
   }).fail(function(){
 
   }).always(function(){
-      Swal.close();
+    
   });
   
-  
+};
 
-     
-     };
+function fntGraficoPastel() {
 
+  google.charts.load("current", { packages: ["corechart"] });
+  google.charts.setOnLoadCallback(drawChart);
+  var ventas = [];
+  function drawChart() {
+    $.ajax({
+      dataType: "json",
+      method: "POST",
+      url: base_url + "/Dashboard/creditosProveedores",
+    }).done(function (json) {
+      console.log("EL consultar", json);
+      for (var i in json) ventas.push([i, json[i]]);
 
-
-
-function fntGraficoPastel(){
-
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
-
-function drawChart() {
-
-  var data = google.visualization.arrayToDataTable([
-    ['Task', 'Hours per Day'],
-    ['XXXX1',     11],
-    ['XXXX2',      2],
-    ['XXXX3',  2],
-    ['XXXX4', 2],
-    ['XXXX5',    7]
-  ]);
-
-  var options = {
-    title: 'Título',
-    is3D: true,
-  };
-
-        var chart = new google.visualization.PieChart(document.getElementById('graficoPastel'));
-
-        chart.draw(data, options);
-    }
-}
-
-function fntGraficoLineal(){
-
-    google.charts.load('current', {'packages':['line']});
-      google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-
+      for (let index = 0; index < ventas.length; index++) {
+        
         var data = new google.visualization.DataTable();
-        data.addColumn('number', 'Eje X');
-        data.addColumn('number', 'XXXX1');
-        data.addColumn('number', 'XXXX2');
-        data.addColumn('number', 'XXXX3');
+        data.addColumn("string", "Week");
+        data.addColumn("number", "Retail");
+        json.forEach(function (row) {
+          data.addRow([row.nombre, parseFloat(row.total)]);
+        });
+      }
+      var options = {
+        title: "Créditos a proveedores",
+        is3D: true,
+      };
 
-        data.addRows([
-            [1,  37.8, 80.8, 41.8],
-            [2,  30.9, 69.5, 32.4],
-            [3,  25.4,   57, 25.7],
-            [4,  11.7, 18.8, 10.5],
-            [5,  11.9, 17.6, 10.4],
-            [6,   8.8, 13.6,  7.7],
-            [7,   7.6, 12.3,  9.6],
-            [8,  12.3, 29.2, 10.6],
-            [9,  16.9, 42.9, 14.8],
-            [10, 12.8, 30.9, 11.6],
-            [11,  5.3,  7.9,  4.7],
-            [12,  6.6,  8.4,  5.2],
-            [13,  4.8,  6.3,  3.6],
-            [14,  4.2,  6.2,  3.4]
-        ]);
+      var chart = new google.visualization.PieChart(
+        document.getElementById("graficoPastel")
+      );
 
-        var options = {
-            chart: {
-            title: 'Título',
-            subtitle: 'Subtítulo'
-            },
-            width: 900,
-            height: 350,
-            
-            series: {
-                0: { axis: 'distance' }, // Bind series 0 to an axis named 'distance'.
-              },
-              axes: {
-                y: {
-                  distance: {label: 'Eje Y'}, // Left y-axis.
-                  
-                }
-              }
-
-        };
-
-        var chart = new google.charts.Line(document.getElementById('graficoLinea'));
-
-        chart.draw(data, google.charts.Line.convertOptions(options));
-    }
+      chart.draw(data, options);
+    });
+  }
+  
+  
 }
 
-function fntGraficoBarra(){
-    google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Eje X', 'XXXX1', 'XXXX2', 'XXXX3'],
-          ['XXXX1', 1000, 400, 200],
-          ['XXXX2', 1170, 460, 250],
-          ['XXXX3', 660, 1120, 300],
-          ['XXXX4', 1030, 540, 350]
-        ]);
-
-        var options = {
-            chart: {
-              title: 'Título',
-              subtitle: 'Subtítulo'
-            },
-            series: {
-              0: { axis: 'distance' }, // Bind series 0 to an axis named 'distance'.
-            },
-            axes: {
-              y: {
-                distance: {label: 'Eje Y'}, // Left y-axis.
-                
-              }
+function fntGraficoBarra(json) {
+  var fecha = new Date();
+  var mes = [];
+    var total= [];
+    for (var i = 0; i < json['ventas'].length ; i++) {
+      mes.push(json['ventas'][i].mes);
+      total.push(json['ventas'][i].total);
+    }
+    
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: mes,
+        datasets: [{
+            label: 'Total en ventas de los ultimos 3 meses del año '+fecha.getFullYear(),
+            data: total,
+            backgroundColor: [
+              'rgb(255, 99, 132)',
+              'rgb(54, 162, 235)',
+              'rgb(255, 205, 86)'
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 205, 86)'
+            ],
+            borderWidth: 2
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+               }
             }
-          };
+        }
+    });
 
-        var chart = new google.charts.Bar(document.getElementById('graficoBarras'));
+}
 
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-      }
+function fntGraficoLineal(json){
+
+  
+  var categoria = [];
+    var stock= [];
+    for (var i = 0; i < json['productos'].length ; i++) {
+      categoria.push(json['productos'][i].nombre);
+      stock.push(json['productos'][i].stock);
+    }
+    
+    const ctx = document.getElementById('graficoLineal').getContext('2d');
+    const myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: categoria,
+        datasets: [{
+            label: 'Stock de productos por categoria ',
+            data: stock,
+            backgroundColor: [
+              'rgb(255, 99, 132)',
+              'rgb(54, 162, 235)',
+              'rgb(255, 205, 86)'
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 205, 86)'
+            ],
+            borderWidth: 2
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+               }
+            }
+        }
+    });
+}
+
+function obtenerMes(mes){
+  
+    switch(mes){
+      case 1:
+        return mes = "Enero";
+      break;
+      case 2:
+        return mes = "Febrero";
+      break;
+      case 3:
+        return mes = "Marzo";
+      break;
+      case 4:
+        return mes = "Abril";
+      break;
+      case 5:
+        return mes = "Mayo";
+      break;
+      case 6:
+        return mes = "Junio";
+      break;
+      case 7:
+        return mes = "Julio";
+      break;
+      case 8:
+        return mes = "Agosto";
+      break;
+      case 9:
+        return mes = "Septiembre";
+      break;
+      case 10:
+        return mes = "Octubre";
+      break;
+      case 11:
+        return mes = "Noviembre";
+      break;
+      case 12:
+        return mes = "Diciembre";
+      break;
+    }
 }
 
