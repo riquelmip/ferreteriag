@@ -25,8 +25,6 @@ function backup_tables($host,$user,$pass,$name,$port,$tables = '*')
    {
       $tables = is_array($tables) ? $tables : explode(',',$tables);
    }
-   var_dump($link);
-   die(); 
    //cycle through
    foreach($tables as $table)
    {
