@@ -5,10 +5,10 @@
 //profesor,estudiante,clase
 //O déjalo con el asterisco '*' para que se respalde toda la base de datos
 
-function backup_tables($host,$user,$pass,$name,$tables = '*')
+function backup_tables($host,$user,$pass,$name,$port,$tables = '*')
 {
    $return='';
-   $link = new mysqli($host,$user,$pass,$name);
+   $link = new mysqli($host,$user,$pass,$name,$port);
  // mysql_select_db($name,$link);
    
    //get all of the tables
