@@ -96,7 +96,7 @@
 
 						if ($requestUpdate) {
 							//enviar el email
-							$sendEmail = sendEmail($dataUsuario, 'email_cambioPassword');
+							$sendEmail = sendMailLocal($dataUsuario, 'email_cambioPassword');
 							if ($sendEmail) {
 								$arrResponse = array('estado' => true, 'msg' => 'Se ha enviado un email a tu cuenta de correo para cambiar tu contraseña');
 							}else{
