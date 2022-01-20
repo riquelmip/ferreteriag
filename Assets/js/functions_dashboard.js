@@ -2,14 +2,14 @@ var tableRoles;
 var divLoading = document.querySelector('#divLoading');
 document.addEventListener('DOMContentLoaded', function(){
 
-    cargar_datos();
-    fntGraficoPastel();
+  /*  cargar_datos();*/
+   // fntGraficoPastel();
     //fntGraficoBarra();
     //fntGraficoLineal();
     //fntGraficoBarra();
 });
 
-
+/*
 function cargar_datos(){
   $.ajax({
       dataType: "json",
@@ -36,7 +36,7 @@ function cargar_datos(){
     
   });
   
-};
+};*/
 
 function fntGraficoPastel() {
 
