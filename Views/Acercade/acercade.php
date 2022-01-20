@@ -28,7 +28,7 @@ getModal('modalCargos', $data);
                         
                     </div>
                 </div>
-                <div class="text-white text-center bg-success mb-3">
+                <div class="text-white text-center bg-primary mb-3">
                 <div class="card-header" style="font-size: x-large; text-align: left;">Manuales
                         </div>  </div>
                 <div class="justify-content-md-end">
