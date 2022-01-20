@@ -3,7 +3,7 @@
 	//define("BASE_URL", "http://localhost/ferreteria/");
 	const BASE_URL = "http://localhost/ferreteriag";
 	//const BASE_URL = "http://ferreteria.hinakocc.engineer";
-//const BASE_URL = "http://localhost/ferreteriag";
+const BASE_URL2 = "http://localhost/ferreteriag/consultas/";
 	//Zona horaria
 	date_default_timezone_set('America/El_Salvador');
 	/*

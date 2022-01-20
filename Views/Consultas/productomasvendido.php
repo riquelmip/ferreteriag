@@ -26,7 +26,7 @@
           <button class="btn btn-info btn-sm" id="noTabla" name="noTabla" style="margin-right: 40px;" title="No mostrar tabla" ><i class="far fa-eye-slash"></i></button>
          
         
-             <form method="post" id="make_pdf" action="consultas/reportes" target="_blank" >
+             <form method="post" id="make_pdf" action="<?= base_url2(); ?>reportes" target="_blank" >
             <!-- para ver o no la tabla -->
             <input type="hidden" name="parametro" id="parametro" value=0>
          <input type="hidden" name="keyGraf" id="keyGraf" value=0>
