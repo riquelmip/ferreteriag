@@ -14,40 +14,8 @@
     <div class="col-md-12">
       <div class="tile">
         <div class="tile-body">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="text-white text-center bg-warning mb-3">
-                <div class="card-header">Total Ventas</div>
-                <div class="card-body">
-                  <h5 class="card-title">
-                    <span id="totalVenta"></span>
-                  </h5>
-                  <p class="card-text">Monto total en dolares durante el mes de <span id="mesVenta"></span></p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="text-white text-center bg-success mb-3">
-                <?php
-                $btnVerVentas = '<button class="btn btn-primary btn-sm btnPermisosRol" onClick="" title="Permisos"><i class="fas fa-eye"></i></button>';
-                ?>
-                <div class="card-header">Total Compras</div>
-                <div class="card-body">
-                  <h5 class="card-title"><span id="totalCompra"></span></h5>
-                  <p class="card-text">Monto total en dolares durante el mes de <span id="mesCompra"></span></p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="text-white bg-primary text-center mb-3">
-                <div class="card-header">Total Crédito</div>
-                <div class="card-body">
-                  <h5 class="card-title"><span id="totalCredito"></span></h5>
-                  <p class="card-text">Monto total de crédito pendiente en el mes de <span id="mesCredito"></span></p>
-                </div>
-              </div>
-            </div>
-          </div>
+
+
         </div>
       </div>
     </div>
