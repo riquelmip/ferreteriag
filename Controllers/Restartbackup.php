@@ -62,13 +62,14 @@ $arrayDatos = array('listaFiles' => $htmlOptions);
 
 public function resturar(){
 	    // Connect & select the database
+        $basecita=$_POST['listBases'];
     $db = new mysqli("ec2-18-191-71-210.us-east-2.compute.amazonaws.com", "will", "will", "db_ferreteria"); 
 
     // Temporary variable, used to store current query
     $templine = '';
     
     // Read in entire file
-    $filePath='./Backups/db-ferreteria-2022-01-20.sql';
+    $filePath='./Backups/'.$basecita;
     $lines = file($filePath);
     $error = ''; 
     

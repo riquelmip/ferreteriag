@@ -23,7 +23,7 @@ function cargar_datos(){
 }
 
 $(document).on("click","#restaurar",function restar() {
-	var datos = {"consultar_info":"si_consultala"}
+var datos = {"listBases":document.querySelector('#listBases').value}
 	   $.ajax({
         dataType: "json",
         method: "POST",

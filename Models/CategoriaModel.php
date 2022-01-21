@@ -10,7 +10,7 @@
 			parent::__construct();
 		}
 
-		public function selectCategorias() //Selecciona todas las categorias existentes
+		public function selectCategorias()    //Selecciona todas las categorias existentes
 		{
 
 			$sql = "SELECT * FROM categoria";

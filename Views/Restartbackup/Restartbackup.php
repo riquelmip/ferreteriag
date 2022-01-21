@@ -16,8 +16,8 @@ headerAdmin($data);
               </div>
 
                <div class="form-group col-md-6">
-              <label for="listCargo">Cargo</label>
-              <select class="form-control" data-live-search="true" id="listCargo" name="listCargo" required>
+              <label for="listBases">Historial de Bases de Datos</label>
+              <select class="form-control" data-live-search="true" id="listBases" name="listBases" required>
               </select>
 
             </div>
