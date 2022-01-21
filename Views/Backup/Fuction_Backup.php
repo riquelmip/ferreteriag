@@ -27,6 +27,9 @@ function backup_tables($host,$user,$pass,$name,$tables = '*')
    }
    
    //cycle through
+
+   $return.="\n\n".'SET NAMES utf8mb4;'."\n\n";
+   $return.="\n\n".'SET FOREIGN_KEY_CHECKS = 0;'."\n\n";
    foreach($tables as $table)
    {
       $result = $link->query('SELECT * FROM '.$table);
