@@ -62,7 +62,7 @@ $arrayDatos = array('listaFiles' => $htmlOptions);
 
 public function resturar(){
 	    // Connect & select the database
-    $db = new mysqli("ec2-18-218-117-12.us-east-2.compute.amazonaws.com", "will", "will", "db_ferreteria"); 
+    $db = new mysqli("ec2-18-191-71-210.us-east-2.compute.amazonaws.com", "will", "will", "db_ferreteria"); 
 
     // Temporary variable, used to store current query
     $templine = '';
