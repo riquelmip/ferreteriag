@@ -14,12 +14,11 @@ function cargar_datos(){
       url: base_url+'/Dashboard/getDatos',
   }).done(function(json) {
     console.log(json);
-    var fecha = new Date();
-    var mes = fecha.getMonth() + 1;
 
-    document.getElementById('totalCreditos').innerHTML =  "$"+json['totalVenta']['totalVenta'];
 
-    document.getElementById('totalVentas').innerHTML =  "$"+json['totalCompra']['totalCompra'];
+   // document.getElementById('totalCreditos').innerHTML =  "$"+json['totalVenta']['totalVenta'];
+
+  //  document.getElementById('totalVentas').innerHTML =  "$"+json['totalCompra']['totalCompra'];
 
 
   }).fail(function(){
