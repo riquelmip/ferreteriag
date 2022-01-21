@@ -40,43 +40,7 @@ function cargar_datos(){
   
 };
 
-function fntGraficoPastel() {
 
-  google.charts.load("current", { packages: ["corechart"] });
-  google.charts.setOnLoadCallback(drawChart);
-  var ventas = [];
-  function drawChart() {
-    $.ajax({
-      dataType: "json",
-      method: "POST",
-      url: base_url + "/Dashboard/creditosProveedores",
-    }).done(function (json) {
-      console.log("EL consultar", json);
-      for (var i in json) ventas.push([i, json[i]]);
-        for (let index = 0; index < ventas.length; index++) {
-        
-        var data = new google.visualization.DataTable();
-        data.addColumn("string", "Week");
-        data.addColumn("number", "Retail");
-        json.forEach(function (row) {
-          data.addRow([row.nombre, parseFloat(row.total)]);
-        });
-      }
-      var options = {
-        title: "Créditos a proveedores",
-        is3D: true,
-      };
-
-      var chart = new google.visualization.PieChart(
-        document.getElementById("graficoPastel")
-      );
-
-      chart.draw(data, options);
-    });
-  }
-  
-  
-}
 
 function fntGraficoBarra(json) {
   var fecha = new Date();

@@ -53,13 +53,7 @@
 
   <div class="row">
 
-    <div class="col-md-6">
-      <div class="tile">
-        <div class="tile-body">
-          <div id="graficoPastel" style="width: 100%; height: 380px; display: flex;"></div>
-        </div>
-      </div>
-    </div>
+
     <div class="col-md-6">
       <div class="tile">
         <div class="tile-body">
