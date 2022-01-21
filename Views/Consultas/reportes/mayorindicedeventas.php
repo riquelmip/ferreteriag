@@ -32,7 +32,7 @@ function Footer()
     // Arial italic vacio es normal xd
     $this->SetFont('times','',12);
 
-    $this->Cell(0,10, utf8_decode('Derechos Reservados © 2021 - UES FMP'),0,0,'C');
+    $this->Cell(0,10, utf8_decode('Derechos Reservados © 2022 - UES FMP'),0,0,'C');
     $this->Cell(0,10,utf8_decode('Página').$this->PageNo(),0,0,'R');
 
 }
