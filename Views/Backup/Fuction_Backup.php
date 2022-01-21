@@ -33,7 +33,7 @@ function backup_tables($host,$user,$pass,$name,$tables = '*')
       $num_fields = mysqli_num_fields($result);
 
       
-      //$return.= 'DROP TABLE '.$table.';';
+      $return.= 'DROP TABLE IF EXISTS `'.$table.'`'.';';
       $row2 = mysqli_fetch_row($link->query('SHOW CREATE TABLE '.$table));
       $return.= "\n\n".$row2[1].";\n\n";
       

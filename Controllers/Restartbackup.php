@@ -70,14 +70,12 @@ public function resturar(){
     // Read in entire file
     $filePath='./Backups/db-ferreteria-2022-01-20.sql';
     $lines = file($filePath);
-    var_dump($lines);
     $error = ''; 
     
     // Loop through each line
     foreach ($lines as $line){
         // Skip it if it's a comment
         if(substr($line, 0, 2) == '--' || $line == ''){
-            var_dump("entre");
             continue;
         }
         
