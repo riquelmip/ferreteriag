@@ -63,7 +63,7 @@
     <div class="col-md-6">
       <div class="tile">
         <div class="tile-body">
-          <canvas id="myChart" width="100%" height="380px"></canvas>
+          <canvas id="myChart" width="400" height="200"></canvas>
         </div>
       </div>
     </div>
