@@ -169,7 +169,7 @@ $(document).on("change","#fecha_venta",function(e){
    $.ajax({
      dataType: "json",
      method: "POST",
-     url: base_url+"/Consultas/empleadosconmenorventas", 
+     url: base_url+"/Consultas/ventasanuladasdelmesgrafico", 
  }).done(function(json) {
      console.log("EL consultar",json);
      for(var i in json)
@@ -206,7 +206,7 @@ $(document).on("change","#fecha_venta",function(e){
       $.ajax({
         dataType: "json",
         method: "POST",
-        url: base_url + "/Consultas/empleadosconmenorventasfecha/" + fecha_fin,
+        url: base_url + "/Consultas/ventasanuladasdelmesgrafico/" + fecha_fin,
       }).done(function(json) {
           console.log("EL consultar",json);
           for(var i in json)
@@ -252,7 +252,7 @@ $(document).on("change","#fecha_venta",function(e){
          $.ajax({
            dataType: "json",
            method: "POST",
-           url: base_url+"/Consultas/empleadosconmenorventas", 
+           url: base_url+"/Consultas/ventasanuladasdelmesgrafico", 
        }).done(function(json) {
            console.log("EL consultar",json);
            for(var i in json)
@@ -291,7 +291,7 @@ $(document).on("change","#fecha_venta",function(e){
         $.ajax({
           dataType: "json",
           method: "POST",
-          url: base_url + "/Consultas/empleadosconmenorventasfecha/" + fecha_fin,
+          url: base_url + "/Consultas/ventasanuladasdelmesgrafico/" + fecha_fin,
            }).done(function(json) {
                console.log("EL consultar",json);
                for(var i in json)
@@ -337,7 +337,7 @@ $(document).on("change","#fecha_venta",function(e){
    $.ajax({
      dataType: "json",
      method: "POST",
-     url: base_url+"/Consultas/empleadosconmenorventas",
+     url: base_url+"/Consultas/ventasanuladasdelmesgrafico",
  }).done(function(json) {
      console.log("EL consultar",json);
      for(var i in json)
@@ -375,7 +375,7 @@ $(document).on("change","#fecha_venta",function(e){
       $.ajax({
         dataType: "json",
         method: "POST",
-        url: base_url + "/Consultas/empleadosconmenorventasfecha/" + fecha_fin,
+        url: base_url + "/Consultas/ventasanuladasdelmesgrafico/" + fecha_fin,
       }).done(function(json) {
           console.log("EL consultar",json);
           for(var i in json)
