@@ -71,7 +71,7 @@ public function resturar(){
     $filePath='./Backups/db_ferreteria.sql';
     $lines = file($filePath);
     var_dump($lines);
-    $error = '';
+    $error = ''; 
     
     // Loop through each line
     foreach ($lines as $line){
