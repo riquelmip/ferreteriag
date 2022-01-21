@@ -20,7 +20,7 @@
 		public function selectConsultaventaanulada()
 		{
 
-			$sql = "SELECT * from venta v where v.estado=2 and v.mes=EXTRACT(month from CURRENT_DATE)";
+			$sql = "SELECT * from venta v inner join cliente c on c.idcliente=v.idcliente where v.estado=2 and v.mes=EXTRACT(month from CURRENT_DATE)";
 			$request = $this->select_all($sql);
 			return $request;
 		}
