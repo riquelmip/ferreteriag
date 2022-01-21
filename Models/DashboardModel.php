@@ -25,7 +25,7 @@
 		public function obtenerTotalCredito(){
 			
 			$sql = "SELECT TRUNCATE(SUM(c.credito),2) AS totalCredito 
-					FROM compra c WHERE MONTH(c.fecha_credito) = MONTH(NOW()) AND YEAR(C.fecha_credito) = YEAR(NOW()) AND c.estado=0";
+					FROM compra c WHERE MONTH(c.fecha_credito) = MONTH(NOW()) AND YEAR(c.fecha_credito) = YEAR(NOW()) AND c.estado=0";
 			$request = $this->select($sql);
 			return $request;
 		}
