@@ -68,7 +68,7 @@ public function resturar(){
     $templine = '';
     
     // Read in entire file
-    $filePath='./Backups/db_ferreteria.sql';
+    $filePath='./Backups/db-ferreteria-2022-01-20.sql';
     $lines = file($filePath);
     var_dump($lines);
     $error = ''; 
