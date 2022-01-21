@@ -12,9 +12,9 @@ function cargar_datos(){
         data : datos,
     }).done(function(json) {
        
-         document.querySelector('#listCargo').innerHTML = json.listaFiles;
-         $('#listCargo').selectpicker('refresh');
-        $('#listCargo').selectpicker('render');
+         document.querySelector('#listBases').innerHTML = json.listaFiles;
+         $('#listBases').selectpicker('refresh');
+        $('#listBases').selectpicker('render');
 
     }).fail(function(){
 
