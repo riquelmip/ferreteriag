@@ -11,7 +11,7 @@ function backup_tables($host,$user,$pass,$name,$tables = '*')
    $link = new mysqli($host,$user,$pass,$name);
   // mysql_select_db($name,$link);
    
-   //get all of the tables
+   
    if($tables == '*')
    {
       $tables = array();
@@ -27,6 +27,9 @@ function backup_tables($host,$user,$pass,$name,$tables = '*')
    }
    
    //cycle through
+
+   $return.="\n\n".'SET NAMES utf8mb4;'."\n\n";
+   $return.="\n\n".'SET FOREIGN_KEY_CHECKS = 0;'."\n\n";
    foreach($tables as $table)
    {
       $result = $link->query('SELECT * FROM '.$table);

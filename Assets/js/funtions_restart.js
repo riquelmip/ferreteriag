@@ -12,9 +12,9 @@ function cargar_datos(){
         data : datos,
     }).done(function(json) {
        
-         document.querySelector('#listCargo').innerHTML = json.listaFiles;
-         $('#listCargo').selectpicker('refresh');
-        $('#listCargo').selectpicker('render');
+         document.querySelector('#listBases').innerHTML = json.listaFiles;
+         $('#listBases').selectpicker('refresh');
+        $('#listBases').selectpicker('render');
 
     }).fail(function(){
 
@@ -23,7 +23,7 @@ function cargar_datos(){
 }
 
 $(document).on("click","#restaurar",function restar() {
-	var datos = {"consultar_info":"si_consultala"}
+var datos = {"listBases":document.querySelector('#listBases').value}
 	   $.ajax({
         dataType: "json",
         method: "POST",

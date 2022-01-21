@@ -23,8 +23,16 @@ function cargar_datos(){
      
   });
 }
-
-
+$("#noTabla").click(function () {
+  var llave = document.getElementById("keyTable").value;
+  if (llave == 0) {
+    document.getElementById("laTabla").style.display = "none";
+    document.getElementById("keyTable").value = 1;
+  } else {
+    document.getElementById("laTabla").style.display = "block";
+    document.getElementById("keyTable").value = 0;
+  }
+});
 
 
 
