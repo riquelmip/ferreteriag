@@ -16,7 +16,7 @@
             <h1 style="margin-right: 50px;"><i class="far fa-chart-bar"></i> <?= $data['page_title'] ?></h1>
    
 
-            <label style="margin-top: 10px;" >Fecha de Venta</label>
+            <label style="margin-top: 10px;" >Fecha</label>
           <input type="date" id="fecha_venta"  style=" width: 170px; font-size: 16px; margin-right: 40px; margin-left: 10px;" name="fecha_fin" class="form-control form-control-sm"/>
 
           <select title="Seleccione el gráfico de tu agrado" class="form-control form-control-sm" style=" width:auto; font-size: 16px; margin-right: 50px;" id="graf" name="graf">
@@ -85,18 +85,14 @@
 
         <h5>Ayuda</h5>
         <hr>
-        <h5>Inventarios:</h5>
-        <p>El campo Buscar:</p>
-        <img src="<?= media(); ?>/images/ayuda/buscador.png" alt="" width="200">
-        <p>Permite hacer una busqueda especìfica de los datos del inventario.</p>
-        
-        <p>Boteones, permiten Exportar o copiar los datos de la tabla en formato PDF/EXEL/CVS:</p>
-        <img src="<?= media(); ?>/images/ayuda/exportar.png" alt="" width="200">
-        
-        <p>Filtros perrmitidos en la busqueda.</p>
-        <img src="<?= media(); ?>/images/ayuda/datos.png" alt="" width="450">
-        <p>Nota: El filtro muestra resultados automaticamente.</p>
-   
+        <h5>Consultas:</h5>
+        <p>El campo Fecha:</p>
+        <img src="<?= media(); ?>/images/ayuda/fecha.png" alt="" width="200">
+        <p>Puede filtrar los registros por las fechas correspondientes, asi mismo en la parte de grafico</p>
+        <p>Podra obtener los graficos de dicha información</p>
+        <p>El boton de PDF exportara la información en un reporte, y al presionar el botón junto a el, ocultara la tabla</p>
+       <p>Indicando que solo desea el grafico sin la tabla de datos</p>
+
       </div>
       
     </div>

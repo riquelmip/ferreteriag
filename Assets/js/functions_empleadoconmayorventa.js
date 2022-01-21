@@ -438,3 +438,7 @@ $(document).on("change","#fecha_venta",function(e){
  }
  
   });
+
+  function mostrarAyuda(){
+    $('#modalAyuda').modal('show');
+}

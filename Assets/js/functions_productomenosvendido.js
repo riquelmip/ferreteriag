@@ -440,3 +440,7 @@ switch (x) {
 }
 
  });
+
+ function mostrarAyuda(){
+  $('#modalAyuda').modal('show');
+}

@@ -401,3 +401,7 @@ $(document).on("change", "#graf", function (e) {
       break;
   }
 });
+
+function mostrarAyuda(){
+  $('#modalAyuda').modal('show');
+}

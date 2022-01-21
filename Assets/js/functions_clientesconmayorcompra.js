@@ -442,3 +442,7 @@ $(document).on("change","#fecha_venta",function(e){
       document.getElementById("keyTable").value = 0;
     }
   });
+
+  function mostrarAyuda(){
+    $('#modalAyuda').modal('show');
+}

@@ -72,3 +72,27 @@
 
         
 <?php footerAdmin($data); ?>
+
+<div class="modal fade" id="modalAyuda" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+        <h5>Ayuda</h5>
+        <hr>
+        <h5>Consultas:</h5>
+        <p>El campo Fecha:</p>
+        <img src="<?= media(); ?>/images/ayuda/fecha.png" alt="" width="200">
+        <p>Puede filtrar los registros por las fechas correspondientes, asi mismo en la parte de grafico</p>
+        <p>Podra obtener los graficos de dicha información</p>
+        <p>El boton de PDF exportara la información en un reporte, y al presionar el botón junto a el, ocultara la tabla</p>
+       <p>Indicando que solo desea el grafico sin la tabla de datos</p>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
