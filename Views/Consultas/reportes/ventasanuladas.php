@@ -201,13 +201,13 @@ if($tabla==0){
 $pdf->SetFillColor(93, 155, 155);
 $pdf->SetDrawColor(44, 62, 80);
 
-$pdf->Cell(80, 10, utf8_decode('N° de venta'), 1, 0, 'C', 1);
-$pdf->Cell(80, 10, utf8_decode('Nombre'), 1, 0, 'C', 1);
-$pdf->Cell(80, 10, 'Subtotal', 1, 1, 'C', 1);
+$pdf->Cell(30, 10, utf8_decode('N° de venta'), 1, 0, 'C', 1);
+$pdf->Cell(60, 10, utf8_decode('Nombre'), 1, 0, 'C', 1);
+$pdf->Cell(30, 10, 'Subtotal', 1, 1, 'C', 1);
 
 /* --- Datos de la tabla --- */
 //prueba con 32
-$pdf->SetWidths(array(20,60,30));
+$pdf->SetWidths(array(30,60,30));
 $pdf->SetFont('', '', 12);
 for ($i = 0; $i <count($array) ; $i++) {
         if($i%2==0){
