@@ -3,7 +3,7 @@ var divLoading = document.querySelector('#divLoading');
 document.addEventListener('DOMContentLoaded', function(){
 
    cargar_datos();
-    fntGraficoPastel();
+ 
 
 });
 
