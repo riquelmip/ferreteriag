@@ -195,14 +195,14 @@ $pdf->Text(70, 45,utf8_decode( 'VENTAS ANULADAS POR MES'));
 $pdf->Ln(16);
 /* ---Titulo de Tabla --- */
 
-$pdf->SetX(30);
+$pdf->SetX(45);
 $tabla = $_POST["keyTable"];
 if($tabla==0){
 $pdf->SetFillColor(93, 155, 155);
 $pdf->SetDrawColor(44, 62, 80);
 
 $pdf->Cell(30, 10, utf8_decode('N° de venta'), 1, 0, 'C', 1);
-$pdf->Cell(60, 10, utf8_decode('Nombre'), 1, 0, 'C', 1);
+$pdf->Cell(60, 10, utf8_decode('Nombre Completo'), 1, 0, 'C', 1);
 $pdf->Cell(30, 10, 'Subtotal', 1, 1, 'C', 1);
 
 /* --- Datos de la tabla --- */
@@ -221,7 +221,7 @@ for ($i = 0; $i <count($array) ; $i++) {
         $pdf->SetDrawColor(0, 0, 0);
         }
 
-$pdf->Row(array(utf8_decode($array[$i]['idventa']),utf8_decode($array[$i]['nombre']),'$'.utf8_decode($array[$i]['subtotal'])),30);
+$pdf->Row(array(utf8_decode($array[$i]['idventa']),utf8_decode($array[$i]['nombre']),'$'.utf8_decode($array[$i]['subtotal'])),45);
 
 }
 
