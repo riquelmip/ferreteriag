@@ -86,6 +86,18 @@
 			$this->views->getView($this,"menorindicedeventa",$data);
 		}
 
+		public function ventasanuladasdelmes(){ //Vista seis consulta
+
+			if (empty($_SESSION['permisosMod']['leer'])) {
+			header('location: '.base_url().'/dashboard');
+			}
+			$data['page_id'] = 3;
+			$data['page_tag'] = "Ventas anuladas del Mes";
+			$data['page_name'] = "consulta_1";
+			$data['page_title'] = "Parámetros: ";
+			 $data['page_functions_js'] = "functions_empleadoconmenorventa.js";
+			$this->views->getView($this,"ventasanuladasdelmes",$data);
+		}
 		public function stocklimitado10(){ //Vista siete consulta
 
 			if (empty($_SESSION['permisosMod']['leer'])) {
