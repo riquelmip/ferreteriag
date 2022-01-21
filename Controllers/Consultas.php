@@ -95,7 +95,7 @@
 			$data['page_tag'] = "Ventas anuladas del Mes";
 			$data['page_name'] = "consulta_1";
 			$data['page_title'] = "Parámetros: ";
-			 $data['page_functions_js'] = "functions_empleadoconmenorventa.js";
+			 $data['page_functions_js'] = "functions_ventasanuladasdelmes.js";
 			$this->views->getView($this,"ventasanuladasdelmes",$data);
 		}
 		public function stocklimitado10(){ //Vista siete consulta
