@@ -41,10 +41,10 @@
 					$datito2="$".$arrData[$i]['monto'];
 					$arrData[$i]['monto'] = $datito2;
 					if ($arrData[$i]['credito']=='$0') {
-						$arrData[$i]['credito']="Pago al crédito";
+						$arrData[$i]['credito']="Pago al contado";
 					}
 					if($arrData[$i]['fecha_credito']=='0000-00-00'){
-						$arrData[$i]['fecha_credito'] = "Pago al crédito";
+						$arrData[$i]['fecha_credito'] = "Pago al contado";
 					}else{
 						$cambio = date_format(date_create_from_format('Y-m-d', $arrData[$i]['fecha_credito']), 'd/m/Y'); ;
 					
