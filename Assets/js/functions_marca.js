@@ -217,4 +217,6 @@ $(function(){
 
 });
 
-
+function mostrarAyuda(){
+    $('#modalAyuda').modal('show');
+}

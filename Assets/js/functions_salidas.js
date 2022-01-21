@@ -83,3 +83,7 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 $('#tableSalidas').DataTable();
+
+function mostrarAyuda(){
+    $('#modalAyuda').modal('show');
+}

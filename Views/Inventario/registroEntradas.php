@@ -17,6 +17,10 @@
             <div class="col-md-12">
               <div class="tile">
                 <div class="tile-body">
+                  <div class="text-right">
+                      <a onmouseover="mostrarAyuda();"><i class="fa fa-question fa-lg"></i></a>
+                    </div>
+                    <br>
                   <div class="table-responsive">
                     <table class="table table-hover table-bordered" id="tableEntradas">
                       <thead>
@@ -41,4 +45,33 @@
         </div>
   
 <?php footerAdmin($data); ?>
-    
+  
+  <!-- MODAL PARA LA AYUDA -->
+
+<div class="modal fade" id="modalAyuda" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+        <h5>Ayuda</h5>
+        <hr>
+        <h5>Entredas productos:</h5>
+        <p>El campo Buscar:</p>
+        <img src="<?= media(); ?>/images/ayuda/buscador.png" alt="" width="200">
+        <p>Permite hacer una busqueda especìfica de los datos del inventario.</p>
+        
+        <p>Boteones, permiten Exportar o copiar los datos de la tabla en formato PDF/EXEL/CVS:</p>
+        <img src="<?= media(); ?>/images/ayuda/exportar.png" alt="" width="200">
+
+        <p>Filtros perrmitidos en la busqueda.</p>
+        <img src="<?= media(); ?>/images/ayuda/entradas.png" alt="" width="450">
+        <p>Nota: El filtro muestra resultados automaticamente.</p>
+   
+      </div>
+      
+    </div>
+  </div>
+</div>

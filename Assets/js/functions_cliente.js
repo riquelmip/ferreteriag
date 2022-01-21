@@ -232,3 +232,7 @@ function fntDelCliente(idcliente){
 
     });
 }
+
+function mostrarAyuda(){
+    $('#modalAyuda').modal('show');
+}
