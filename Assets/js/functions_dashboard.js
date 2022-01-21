@@ -133,7 +133,7 @@ function fntGraficoLineal(json){
     data: {
         labels: categoria,
         datasets: [{
-            label: 'Stock de productos por categoria ',
+            label: 'Productos por categoria con stock menor a 10 ',
             data: stock,
             backgroundColor: [
               'rgb(255, 99, 132)',

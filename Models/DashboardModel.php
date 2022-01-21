@@ -44,11 +44,11 @@
 		public function productosStockMenor(){
 			
 			$sql = "SELECT c.nombre,
-					p.stock
-					FROM producto p
-					INNER JOIN categoria c on c.idcategoria = p.idcategoria
-					WHERE p.stock < 10
-					GROUP BY c.nombre";
+			p.stock
+			FROM producto p
+			INNER JOIN categoria c on c.idcategoria = p.idcategoria
+			WHERE p.stock < 10
+			GROUP BY c.nombre";
 			$request = $this->select_all($sql);
 			return $request;
 		}
