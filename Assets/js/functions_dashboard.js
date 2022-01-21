@@ -129,7 +129,7 @@ function fntGraficoLineal(json){
     }
     const ctx = document.getElementById('graficoLineal').getContext('2d');
     const myChart = new Chart(ctx, {
-    type: 'line',
+    type: 'bar',
     data: {
         labels: categoria,
         datasets: [{
