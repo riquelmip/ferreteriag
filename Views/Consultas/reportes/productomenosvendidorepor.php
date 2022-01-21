@@ -193,6 +193,8 @@ $pdf->Ln(16);
 /* ---Titulo de Tabla --- */
 
 $pdf->SetX(30);
+$tabla = $_POST["keyTable"];
+if($tabla==0){
 $pdf->SetFillColor(93, 155, 155);
 $pdf->SetDrawColor(44, 62, 80);
 
@@ -219,7 +221,7 @@ $pdf->Row(array(utf8_decode(ucwords(strtolower($array[$i]['descripcion']))),utf8
 }
 
 
-
+}
 
 $pdf->Ln(5);
 /* --- GRAFICO --- */
