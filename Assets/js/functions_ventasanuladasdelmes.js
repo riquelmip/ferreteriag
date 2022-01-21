@@ -83,7 +83,7 @@ function inicializar_tabla(tabla){
       },
       "columns":[
           {"data":"idventa"},
-          {"data":"monto"},
+          {"data":"nombre"},
           {"data":"subtotal"},
 
   

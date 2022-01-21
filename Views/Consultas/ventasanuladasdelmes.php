@@ -53,9 +53,9 @@
                     <table class="table table-hover table-bordered" id="tableConsul">
                       <thead>
                         <tr>
-                          <th>Nombre</th>
-                          <th>Apellido</th>
-                          <th>Nª de Empleado</th>
+                          <th>Nª de Venta</th>
+                          <th>Nombre Completo</th>
+                          <th>Monto Retornado</th>
                           
                         </tr>
                       </thead>

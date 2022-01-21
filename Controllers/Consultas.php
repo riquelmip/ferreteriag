@@ -235,7 +235,7 @@
 			for ($i = 0; $i < count($arrData); $i++) {
 			$htmlDatosTabla .= '<tr>
 						<td>' . $arrData[$i]['idventa'] . '</td>
-						<td>' . $arrData[$i]['monto'] . '</td>
+						<td>' . $arrData[$i]['nombre'] . '</td>
 						<td>' . $arrData[$i]['subtotal'] . '</td>
 					 			</tr>';
 			}
