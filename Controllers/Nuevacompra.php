@@ -5,7 +5,7 @@
 		{
 			parent::__construct();
 			session_start();
-			session_regenerate_id(true); //para seguridad de sesiones, el id anterior se eliminara y creara uno nuevo
+			//session_regenerate_id(true); //para seguridad de sesiones, el id anterior se eliminara y creara uno nuevo
 			if (empty($_SESSION['login'])) {
 				header('location: '.base_url().'/login');
 			}
