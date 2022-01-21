@@ -62,14 +62,16 @@
 														estado,
 														idmarca,
 														idcategoria,
-														idunidadmedida) 
-								  VALUES(?,?,?,?,?,?)";
+														idunidadmedida,
+														stock) 
+								  VALUES(?,?,?,?,?,?, ?)";
 	        	$arrData = array($this->intCodigo,
         						$this->strDescripcion,
         						$this->intStatus,
         						$this->intMarcaId,
         						$this->intCategoriaId,
-        						$this->intUnidadId);
+        						$this->intUnidadId,
+        						0);
 	        	$request_insert = $this->insert($query_insert,$arrData);
 	        	$return = $request_insert;
 			}else{
