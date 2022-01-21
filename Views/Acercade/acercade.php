@@ -34,7 +34,7 @@ getModal('modalCargos', $data);
                 <div class="justify-content-md-end">
                     <a type="button" class="btn btn-light ms-4 mb-2 " onclick="window.open('Assets/images/ayuda/ManualdeInstalacion.pdf')" style="font-size: larger; background-color: green; border-color: black; color: white; "><i class=" bi bi-info-circle"></i> Manual de Instalación</a>
                     <a type="button" class="btn btn-light ms-4 mb-2 " onclick="window.open('Assets/images/ayuda/ManualdeUsuario.pdf')" style="font-size: larger; background-color: red; border-color: black; color: white; "><i class=" bi bi-info-circle"></i> Manual de Usuario</a>
-                    <a type="button" class="btn btn-light ms-4 mb-2 " onclick="window.open('Assets/images/ayuda/ManualdeUsuario.pdf')" style="font-size: larger; background-color: blue; border-color: black; color: white; "><i class=" bi bi-info-circle"></i> Manual del Programador</a>
+
                 </div>
 
             </div>
