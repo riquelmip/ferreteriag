@@ -491,6 +491,16 @@
 			$this->views->getView($this,"reportes/productomenosvendidorepor",$data);
 		}
 
+		public function ventasanuladasreporte(){
+			if (empty($_SESSION['permisosMod']['leer'])) {
+			header('location: '.base_url().'/dashboard');
+			}
+			$data['page_id'] = 3;
+			$data['page_tag'] = "Productos sin stock";
+			$data['page_name'] = "consulta_1";
+			$data['page_title'] = "Parámetros: ";
+			$this->views->getView($this,"reportes/ventasanuladas",$data);
+		}
 
 		 public function conmayorventas(){
 			if (empty($_SESSION['permisosMod']['leer'])) {
