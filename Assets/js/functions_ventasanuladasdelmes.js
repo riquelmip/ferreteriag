@@ -188,7 +188,7 @@ $(document).on("change","#fecha_venta",function(e){
  });
    }
    var options = {
-     title: 'Empleados con menor indice de venta',
+     title: 'Ventas anuladas del mes',
      is3D: true,
    };
    var chart = new google.visualization.PieChart(document.getElementById('graficoo'));
@@ -225,7 +225,7 @@ $(document).on("change","#fecha_venta",function(e){
       });
         }
         var options = {
-          title: 'Empleados con menor indice de venta',
+          title: 'Ventas anuladas del mes',
           is3D: true,
         };
         var chart = new google.visualization.PieChart(document.getElementById('graficoo'));
@@ -271,7 +271,7 @@ $(document).on("change","#fecha_venta",function(e){
    });
          }
      var options = {
-       title: 'Empleados con menor indice de venta',
+       title: 'Ventas anuladas del mes',
            colors: ['#1b9e77', '#d95f02', '#7570b3'],
             legend: { position: "none" },
          };
@@ -310,7 +310,7 @@ $(document).on("change","#fecha_venta",function(e){
        });
              }
          var options = {
-           title: 'Empleados con menor indice de venta',
+           title: 'Ventas anuladas del mes',
                colors: ['#1b9e77', '#d95f02', '#7570b3'],
                 legend: { position: "none" },
              };
@@ -356,7 +356,7 @@ $(document).on("change","#fecha_venta",function(e){
        });
      }
  var options = {
-   title: 'Empleados con menor indice de venta',
+   title: 'Ventas anuladas del mes',
            pieHole: 0.4,
          };
          var chart = new google.visualization.PieChart(document.getElementById('graficoo'));
@@ -394,7 +394,7 @@ $(document).on("change","#fecha_venta",function(e){
             });
           }
       var options = {
-        title: 'Empleados con menor indice de venta',
+        title: 'Ventas anuladas del mes',
                 pieHole: 0.4,
               };
               var chart = new google.visualization.PieChart(document.getElementById('graficoo'));

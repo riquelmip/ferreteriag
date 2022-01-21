@@ -190,7 +190,7 @@ $pdf->Ln();
 $pdf->Ln(30);
 $pdf->SetFont('', 'B', 12);
 
-$pdf->Text(70, 45,utf8_decode( 'VENTAS ANULADAS POR MES'));
+$pdf->Text(70, 45,utf8_decode( 'VENTAS ANULADAS DEL MES'));
 
 $pdf->Ln(16);
 /* ---Titulo de Tabla --- */
