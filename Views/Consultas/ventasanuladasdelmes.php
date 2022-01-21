@@ -16,8 +16,7 @@
             <h1 style="margin-right: 50px;"><i class="far fa-chart-bar"></i> <?= $data['page_title'] ?></h1>
    
 
-            <label style="margin-top: 10px;" >Fecha de Venta</label>
-          <input type="date" id="fecha_venta"  style=" width: 170px; font-size: 16px; margin-right: 40px; margin-left: 10px;" name="fecha_fin" class="form-control form-control-sm"/>
+           
 
           <select title="Seleccione el gráfico de tu agrado" class="form-control form-control-sm" style=" width:auto; font-size: 16px; margin-right: 50px;" id="graf" name="graf">
             <option value=-1>Gráfico</option>
