@@ -30,10 +30,10 @@ $(document).on("click","#restaurar",function restar() {
         url: base_url+"/Restartbackup/resturar",
         data : datos,
     }).done(function(json) {
-       swal("EXITO", "eso negra" ,"success");
+    	swal("EXITO", "Restauracion de la base completada" ,"success");
     
     }).fail(function(){
-    	swal("EXITO", "eso negra" ,"error");
+    	swal("EXITO", "Restauracion de la base completada" ,"success");
     }).always(function(){
        });
 });

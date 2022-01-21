@@ -62,21 +62,22 @@ $arrayDatos = array('listaFiles' => $htmlOptions);
 
 public function resturar(){
 	    // Connect & select the database
-    $db = new mysqli("localhost", "root", "", "db_ferreteria"); 
+    $db = new mysqli("ec2-18-218-117-12.us-east-2.compute.amazonaws.com", "will", "will", "db_ferreteria"); 
 
     // Temporary variable, used to store current query
     $templine = '';
     
     // Read in entire file
-    $filePath=base_url().'/Backups/db-ferreteria-2022-01-19.sql';
+    $filePath='./Backups/db_ferreteria.sql';
     $lines = file($filePath);
-    
-    $error = '';
+    var_dump($lines);
+    $error = ''; 
     
     // Loop through each line
     foreach ($lines as $line){
         // Skip it if it's a comment
         if(substr($line, 0, 2) == '--' || $line == ''){
+            var_dump("entre");
             continue;
         }
         
