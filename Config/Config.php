@@ -20,7 +20,7 @@ const BASE_URL2 = "http://ferreteria.hinakocc.engineer/consultas/";
 	
 
 	//Datos de conexión a Base de Datos
-	const DB_HOST = "ec2-18-218-117-12.us-east-2.compute.amazonaws.com";
+	const DB_HOST = "ec2-18-191-71-210.us-east-2.compute.amazonaws.com";
 	const DB_NAME = "db_ferreteria";
 	const DB_USER = "will";
 	const DB_PASSWORD = "will";
