@@ -119,6 +119,13 @@
 			die();
 		}
 
+		public function ventasanuladasdelmesgrafico() //septima consulta grafico
+		{
+			$arrData = $this->model->selectConsultaventaanulada();
+			echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+			die();
+		}
+
 		public function productosmasvendidosfecha(string $dato) //primera consulta grafico con fecha
 		{
 			$arrData = $this->model->filtrofecha10productosmasvendidos($dato);
@@ -220,6 +227,25 @@
 			die();
 		}
 
+		public function ventasanuladasdelmestabla() //primera consulta tabla
+		{
+	
+			$arrData = $this->model->selectConsultaventaanulada();
+			$htmlDatosTabla = "";
+			for ($i = 0; $i < count($arrData); $i++) {
+			$htmlDatosTabla .= '<tr>
+						<td>' . $arrData[$i]['idventa'] . '</td>
+						<td>' . $arrData[$i]['monto'] . '</td>
+						<td>' . $arrData[$i]['subtotal'] . '</td>
+					 			</tr>';
+			}
+			
+			
+			$arrayDatos = array('datosIndividuales' => $arrData, 'htmlDatosTabla' => $htmlDatosTabla);
+			echo json_encode($arrayDatos,JSON_UNESCAPED_UNICODE);
+	
+			die();
+		}
 		public function productosmenosvendidos() //segunda consulta tabla
 		{
 	

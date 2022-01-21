@@ -16,6 +16,14 @@
 			$request = $this->select_all($sql);
 			return $request;
 		}
+
+		public function selectConsultaventaanulada()
+		{
+
+			$sql = "SELECT * from venta v where v.estado=2 and v.mes=EXTRACT(month from CURRENT_DATE)";
+			$request = $this->select_all($sql);
+			return $request;
+		}
 		public function filtrofecha10productosmasvendidos(string $dato)
 		{
 			$this->strNombre = $dato;

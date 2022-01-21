@@ -40,7 +40,7 @@
         </div>
       </div><!-- final de title -->
 
-      <h2 style="text-align: center;"> Empleados con mayor indice de ventas por fecha</h2>
+      <h2 style="text-align: center;"> Ventas anuladas del mes</h2>
               <div class="row" id="laTabla">
             <div class="col-md-12">
               <div class="tile">
@@ -56,7 +56,7 @@
                           <th>Nombre</th>
                           <th>Apellido</th>
                           <th>Nª de Empleado</th>
-                          <th>Monto total vendido</th>
+                          
                         </tr>
                       </thead>
                       <tbody id="datos_tabla">
