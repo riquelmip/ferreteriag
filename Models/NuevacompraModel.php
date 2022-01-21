@@ -76,10 +76,20 @@
 			$anio = date("Y");
 			$estado = 0;
 			$idusuario =  $_SESSION['idUser'];
+			if ($credito == "") {
+				$credito = 0;
+			}
+
+			if ($fecha == "") {
+				$fecha = "0000-00-00";
+			}
 			if(empty($request))
 			{
+				
 				$query_insert  = "INSERT INTO compra(idproveedor,dia,mes,anio,monto,idusuario,estado,credito,fecha_credito) VALUES(?,?,?,?,?,?,?,?,?)";
 	        	$arrData = array($nombre,$dia,$mes,$anio,$monto,$idusuario,$estado,$credito,$fecha);
+				
+				
 	        	$request_insert = $this->insert($query_insert,$arrData);
 	        	$return = $request_insert;
 			}else{
